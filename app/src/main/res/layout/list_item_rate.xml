@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Layout for metals rate list item for future day (not today) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:orientation="horizontal"
+    android:background="@drawable/touch_selector">
+
+    <ImageView
+        android:id="@+id/list_item_delta_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip"
+        android:paddingStart="10dip"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_down"/>
+
+    <TextView
+        android:id="@+id/list_item_date_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/list_item_rate_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingRight="20dip"
+        android:paddingEnd="20dip"
+        android:gravity="end"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
+
+</LinearLayout>

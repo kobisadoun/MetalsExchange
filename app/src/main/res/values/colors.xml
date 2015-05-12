@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#FFFFFF</color>
+    <color name="grey">#cccccc</color>
+    <color name="grey_700">#646464</color>
+    <color name="black">#000000</color>
+
+    <color name="metalsexchange_light_color">#ffa9bdd8</color>
+    <color name="metalsexchange_color">#ff7092be</color>
+    <color name="metalsexchange_dark_color">#ff5f84b6</color>
+
+</resources>

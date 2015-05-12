@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="pref_units_options">
+        <item>@string/pref_units_label_grams</item>
+        <item>@string/pref_units_label_ounce</item>
+    </string-array>
+
+    <string-array name="pref_units_values">
+        <item>@string/pref_units_grams</item>
+        <item>@string/pref_units_ounce</item>
+    </string-array>
+
+    <string-array name="pref_main_currency_options">
+        <item>@string/pref_main_currency_label_nis</item>
+        <item>@string/pref_main_currency_label_usd</item>
+        <item>@string/pref_main_currency_label_eur</item>
+        <item>@string/pref_main_currency_label_gbp</item>
+    </string-array>
+
+    <string-array name="pref_main_currency_values">
+        <item>@string/pref_main_currency_nis</item>
+        <item>@string/pref_main_currency_usd</item>
+        <item>@string/pref_main_currency_eur</item>
+        <item>@string/pref_main_currency_gbp</item>
+    </string-array>
+</resources>

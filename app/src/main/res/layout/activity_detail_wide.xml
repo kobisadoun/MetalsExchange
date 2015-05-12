@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent">
+        <FrameLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/rate_detail_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.android.metalsexchange.app.DetailActivity"
+            tools:ignore="MergeRootFrame" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent">
+        <FrameLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/rate_graph_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="250dp"
+            tools:context="com.android.metalsexchange.app.DetailActivity"
+            tools:ignore="MergeRootFrame" />
+
+    </LinearLayout>
+</LinearLayout>

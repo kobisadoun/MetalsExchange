@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListPreference
+        android:title="@string/pref_units_label"
+        android:key="@string/pref_units_key"
+        android:defaultValue="@string/pref_units_grams"
+        android:entryValues="@array/pref_units_values"
+        android:entries="@array/pref_units_options" />
+
+    <ListPreference
+        android:title="@string/pref_main_currency_label"
+        android:key="@string/pref_main_currency_key"
+        android:defaultValue="@string/pref_main_currency_nis"
+        android:entryValues="@array/pref_main_currency_values"
+        android:entries="@array/pref_main_currency_options" />
+
+    <CheckBoxPreference
+        android:title="@string/pref_enable_notifications_label"
+        android:key="@string/pref_enable_notifications_key"
+        android:summaryOff="@string/pref_enable_notifications_false"
+        android:summaryOn="@string/pref_enable_notifications_true"
+        android:defaultValue="@string/pref_enable_notifications_default" />
+
+    <CheckBoxPreference
+        android:title="@string/pref_show_jewish_customs_label"
+        android:key="@string/pref_show_jewish_customs_key"
+        android:defaultValue="@string/pref_show_jewish_customs_default" />
+
+</PreferenceScreen>
