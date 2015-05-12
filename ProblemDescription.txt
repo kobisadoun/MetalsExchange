@@ -1,0 +1,11 @@
+The application i wrote is use to give the user the current prices of the precious metals Gold Silver Platinum and Palladium
+The source of the data is from a web site that shows the information for the last 10 rates, I’m using JSoup library to parse the data.
+
+My application using Sync Adapter will check this site and fetch the updated currencies and store them in the local SQlite Database.
+In case new rates are available the application will generate a notification to the user.
+
+The main activity show a list of rates with the latest rate in the first row with dedicated view.
+Also we use Sliding Tab Layout that I get from the web, to show list of rates per Metal.
+
+The detail view per rate will show the rates(the default currency and all the other currencies that the App supports ) for this date and also I show a trend graph
+Using the MPAndroidChart library.
