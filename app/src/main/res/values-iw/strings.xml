@@ -85,4 +85,9 @@
     <string name="about_continue">המשך..</string>
 
     <string name="copy_to_clipboard_toast">ערך %1$s הועתק ללוח</string>
+
+    <!-- error messages -->
+    <string name="error_no_internet_connection">אין גישה לאינטרנט</string>
+    <string name="error_server_response_not_valid">תגובת שרת אינה חוקית</string>
+    <string name="error_no_response_from_server">אין תגובה מהשרת</string>
 </resources>

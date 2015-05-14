@@ -21,11 +21,13 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.text.format.Time;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.metalsexchange.app.MainActivity;
 import com.android.metalsexchange.app.R;
@@ -131,6 +133,25 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             notifyRates();
         } catch (IOException e) {
             Log.e(LOG_TAG, "Error ", e);
+            Handler mainHandler = new Handler(getContext().getMainLooper());
+            mainHandler.post(new Runnable() {
+
+                @Override
+                public void run() {
+                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_no_response_from_server), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        catch (Exception e) {
+            Log.e(LOG_TAG, "Error ", e);
+            Handler mainHandler = new Handler(getContext().getMainLooper());
+            mainHandler.post(new Runnable() {
+
+                @Override
+                public void run() {
+                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_server_response_not_valid), Toast.LENGTH_LONG).show();
+                }
+            });
         }finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();

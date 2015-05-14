@@ -129,4 +129,9 @@
 
     <string name="copy_to_clipboard_toast">The value %1$s was copied to the clipboard</string>
 
+    <!-- error messages -->
+    <string name="error_no_internet_connection">No Internet connection!</string>
+    <string name="error_server_response_not_valid">Server response is not valid</string>
+    <string name="error_no_response_from_server">No response from server</string>
+
 </resources>

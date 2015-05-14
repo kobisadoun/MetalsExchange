@@ -15,10 +15,13 @@
  */
 package com.android.metalsexchange.app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -33,6 +36,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.metalsexchange.app.data.MetalsContract;
 import com.android.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
@@ -116,10 +120,10 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-//        if (id == R.id.action_refresh) {
-//            updateRates();
-//            return true;
-//        }
+        if (id == R.id.action_refresh) {
+            updateRates();
+            return true;
+        }
         if (id == R.id.action_calculate) {
             ArrayList<HashMap<String,Object>> items =new ArrayList<HashMap<String,Object>>();
             final PackageManager pm = getActivity().getPackageManager();
@@ -212,7 +216,20 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
 //    }
 
     private void updateRates() {
-        MetalsExchangeSyncAdapter.syncImmediately(getActivity());
+        if(isOnline()) {
+            MetalsExchangeSyncAdapter.syncImmediately(getActivity());
+        }
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager conMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
+
+        if(netInfo == null || !netInfo.isConnected() || !netInfo.isAvailable()){
+            Toast.makeText(getActivity(), getResources().getString(R.string.error_no_internet_connection), Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 
     @Override
