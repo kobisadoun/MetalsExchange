@@ -107,6 +107,8 @@
     <string name="format_full_friendly_date"><xliff:g id="month">%1$s</xliff:g>, <xliff:g id="day">%2$s</xliff:g></string>
 
     <!-- SyncAdapter related -->
+
+    <!-- please help me with what is wrong here -->
     <string name="sync_account_type" translatable="false">metalsexchange.com</string>
     <string name="content_authority" translatable="false">com.android.metalsexchange.app</string>
 
