@@ -1,4 +1,4 @@
-package com.android.metalsexchange.app.sync;
+package com.kobi.metalsexchange.app.sync;
 
 import android.app.Service;
 import android.content.Intent;

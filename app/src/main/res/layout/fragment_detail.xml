@@ -19,17 +19,20 @@
             android:orientation="horizontal">
             <TextView
                 android:layout_gravity="start"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="sans-serif"
                 android:id="@+id/detail_day_textview"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="3"
-                android:textColor="@color/black"
+                android:textColor="@color/secondary_text"
                 android:textSize="24sp"
+                android:layout_marginBottom="@dimen/abc_list_item_padding_horizontal_material"
+                android:layout_marginTop="@dimen/abc_list_item_padding_horizontal_material"
                 />
             <ImageButton
                 android:layout_gravity="end"
                 android:id="@+id/detail_shekel_button"
+                android:adjustViewBounds="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
@@ -38,6 +41,7 @@
             <ImageButton
                 android:layout_gravity="end"
                 android:id="@+id/detail_pidion_button"
+                android:adjustViewBounds="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
@@ -54,9 +58,23 @@
             <TextView
                 android:fontFamily="sans-serif-light"
                 android:id="@+id/detail_rate_textview"
+                android:textColor="@color/primary_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textSize="50sp"
+                />
+
+            <TextView
+                android:fontFamily="sans-serif-light"
+                android:id="@+id/detail_rate_unit_textview"
+                android:textColor="@color/primary_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="15sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 />
         </LinearLayout>
 
@@ -89,6 +107,7 @@
                     android:id="@+id/detail_currency1_textview"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
+                    android:textColor="@color/secondary_text"
                     android:textSize="25sp"
                     android:gravity="end"
                     />
@@ -98,6 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_width="match_parent"
+                    android:textColor="@color/secondary_text"
                     android:textSize="25sp"
                     android:gravity="end"
                     />
@@ -107,6 +127,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_width="match_parent"
+                    android:textColor="@color/secondary_text"
                     android:textSize="25sp"
                     android:gravity="end"
                     />

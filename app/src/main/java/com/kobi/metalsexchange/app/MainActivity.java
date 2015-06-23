@@ -13,25 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.metalsexchange.app;
+package com.kobi.metalsexchange.app;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.android.metalsexchange.app.component.SlidingTabLayout;
-import com.android.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
+import com.kobi.metalsexchange.app.component.SlidingTabLayout;
+import com.kobi.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
 
-public class MainActivity extends ActionBarActivity implements ExchangeRatesFragment.Callback {
+public class MainActivity extends AppCompatActivity implements ExchangeRatesFragment.Callback {
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
     private static final String DETAILFRAGMENT_TAG = "DFTAG";
@@ -47,6 +48,10 @@ public class MainActivity extends ActionBarActivity implements ExchangeRatesFrag
         mGrams = Utility.isGrams(this);
         setContentView(R.layout.activity_main);
 
+        // Creating The Toolbar and setting it as the Toolbar for the activity
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+
         Utility.setTwoPanesView(findViewById(R.id.rate_detail_container) != null);
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
@@ -61,11 +66,13 @@ public class MainActivity extends ActionBarActivity implements ExchangeRatesFrag
         // Center the tabs in the layout
         slidingTabLayout.setDistributeEvenly(true);
 
+        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.primary));
+
         // Customize tab color
         slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
-                return Color.RED;
+                return getResources().getColor(R.color.white);
             }
         });
 
@@ -149,6 +156,22 @@ public class MainActivity extends ActionBarActivity implements ExchangeRatesFrag
             welcomeAlert.show();
             // Make the textview clickable. Must be called after show()
             ((TextView)welcomeAlert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+            return true;
+        }
+        else if (id == R.id.action_rate) {
+            Uri uri = Uri.parse("market://details?id=" + getPackageName());
+            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+            try {
+                startActivity(goToMarket);
+            } catch (ActivityNotFoundException e) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(R.string.app_name)
+                        .setMessage("Couldn't launch the market")
+                        .setCancelable(true);
+
+                AlertDialog errorAlert = builder.create();
+                errorAlert.show();
+            }
             return true;
         }
 

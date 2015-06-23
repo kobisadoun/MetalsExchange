@@ -13,12 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.metalsexchange.app;
+package com.kobi.metalsexchange.app;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.text.format.Time;
+
+import com.kobi.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -35,7 +39,7 @@ public class Utility {
     public final static String CURRENCY_EUR = "eur";
 
 
-    public final static String GOLD  = "index";
+    public final static String GOLD  = "gold";
     public final static String SILVER = "silver";
     public final static String PLATINUM = "platinum";
     public final static String PALLADIUM = "palladium";
@@ -47,7 +51,6 @@ public class Utility {
     public final static int PLATINUM_IDX = 2;
     public final static int PALLADIUM_IDX = 3;
 
-//    public final static double GRAMS_IN_OUNCE = 28.3495231;
     public final static double GRAMS_IN_OUNCE = 31.1034768;//troy ounce
 
     private static boolean TWO_PANE;
@@ -289,6 +292,75 @@ public class Utility {
 
     public static List<String> getAllMetalIds(){
         return Arrays.asList(GOLD, SILVER, PLATINUM, PALLADIUM);
+    }
+
+    /**
+     * Returns true if the network is available or about to become available.
+     *
+     * @param c Context used to get the ConnectivityManager
+     * @return true if the network is available
+     */
+    static public boolean isNetworkAvailable(Context c) {
+        ConnectivityManager cm =  (ConnectivityManager)c.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+//        if(activeNetwork == null || !activeNetwork.isConnected() || !activeNetwork.isAvailable()){
+//            Toast.makeText(getActivity(), getResources().getString(R.string.error_no_internet_connection), Toast.LENGTH_LONG).show();
+//            return false;
+//        }
+
+        return activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+    }
+
+
+    /**
+     *
+     * @param c Context used to get the SharedPreferences
+     * @return the rates status integer type
+     */
+    @SuppressWarnings("ResourceType")
+    static public @MetalsExchangeSyncAdapter.RatesStatus
+    int getRatesStatus(Context c){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(c);
+        return sp.getInt(c.getString(R.string.pref_rates_status_key), MetalsExchangeSyncAdapter.RATES_STATUS_UNKNOWN);
+    }
+
+    static public void resetRatesStatus(Context c){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(c);
+        SharedPreferences.Editor spe = sp.edit();
+        spe.putInt(c.getString(R.string.pref_rates_status_key), MetalsExchangeSyncAdapter.RATES_STATUS_UNKNOWN);
+        spe.apply();
+    }
+
+    /**
+     * Sets the rates status into shared preference.  This function should not be called from
+     * the UI thread because it uses commit to write to the shared preferences.
+     * @param c Context to get the PreferenceManager from.
+     * @param locationStatus The IntDef value to set
+     */
+    static public void setRatesStatus(Context c, @MetalsExchangeSyncAdapter.RatesStatus int locationStatus){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(c);
+        SharedPreferences.Editor spe = sp.edit();
+        spe.putInt(c.getString(R.string.pref_rates_status_key), locationStatus);
+        spe.commit();
+    }
+
+    static public boolean syncAllAvailableDataOfThisYear(Context c){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(c);
+        return sp.getBoolean("sync-allData", true);
+    }
+
+    static public void setSyncAllAvailableDataOfThisYear(Context c, boolean syncAll){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(c);
+        SharedPreferences.Editor spe = sp.edit();
+        spe.putBoolean("sync-allData", syncAll);
+        spe.apply();
+    }
+
+    static public void resetSyncAllAvailableDataOfThisYear(Context c){
+        setSyncAllAvailableDataOfThisYear(c, false);
     }
 
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.metalsexchange.app;
+package com.kobi.metalsexchange.app;
 
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -46,7 +46,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.metalsexchange.app.data.MetalsContract;
+import com.kobi.metalsexchange.app.data.MetalsContract;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,6 +87,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     private ImageView mIconView;
     private TextView mFriendlyDateView;
     private TextView mRateView;
+    private TextView mRateUnitView;
     private TextView mDeltaView;
     private TextView mCurrency1View;
     private TextView mCurrency2View;
@@ -112,6 +113,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         mIconView = (ImageView) rootView.findViewById(R.id.detail_icon);
         mFriendlyDateView = (TextView) rootView.findViewById(R.id.detail_day_textview);
         mRateView = (TextView) rootView.findViewById(R.id.detail_rate_textview);
+        mRateUnitView = (TextView) rootView.findViewById(R.id.detail_rate_unit_textview);
 
         //mDeltaView = (TextView) rootView.findViewById(R.id.detail_delta_textview);
         mCurrency1View = (TextView) rootView.findViewById(R.id.detail_currency1_textview);
@@ -184,7 +186,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public void onResume() {
         super.onResume();
-        getLoaderManager().restartLoader(DETAIL_LOADER, null, this);
+        //getLoaderManager().restartLoader(DETAIL_LOADER, null, this);
     }
 
     @Override
@@ -309,6 +311,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             String preferredCurrency = Utility.getPreferredCurrency(getActivity());
             String rate = getRateForCurrency(data, preferredCurrency);
             mRateView.setText(rate);
+            mRateUnitView.setText("("+Utility.getWeightName(Utility.isGrams(getActivity()), getActivity())+")");
 
             oneGramPrice = data.getDouble(Utility.getPreferredCurrencyColumnId(preferredCurrency));
 

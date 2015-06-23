@@ -13,27 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.metalsexchange.app;
+package com.kobi.metalsexchange.app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.android.metalsexchange.app.data.MetalsContract;
+import com.kobi.metalsexchange.app.data.MetalsContract;
 
 
-public class DetailActivity extends ActionBarActivity {
+public class DetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        // Creating The Toolbar and setting it as the Toolbar for the activity
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+
         String metalId = MetalsContract.MetalsRateEntry.getMetalIdFromUri(getIntent().getData());
         setTitle(Utility.getMetalName(metalId, this));
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_HOME_AS_UP);
+      //  getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_HOME_AS_UP);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(Utility.getIconResourceForMetal(metalId));
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity

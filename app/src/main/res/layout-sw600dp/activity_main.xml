@@ -1,61 +1,82 @@
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:baselineAligned="false"
-    android:divider="?android:attr/dividerHorizontal"
-    android:orientation="horizontal"
-    tools:context="com.android.metalsexchange.app.MainActivity">
+    android:orientation="vertical">
 
-    <!--
-    This layout is a two-pane layout for the Items master/detail flow.
-    -->
-    <!--<fragment
-        android:id="@+id/fragment_rates"
-        android:name="com.android.metalsexchange.app.ExchangeRatesFragment"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        tools:layout="@android:layout/list_content" />-->
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="0dp"
-        android:layout_weight="2"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <com.android.metalsexchange.app.component.SlidingTabLayout
-            android:id="@+id/sliding_tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="1"
-            android:background="@android:color/white" />
-    </LinearLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@color/primary"
+        android:elevation="0dp"
+        android:scaleType="center"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"/>
 
     <LinearLayout
-        android:gravity="center_vertical"
-        android:layout_gravity="start"
-        android:layout_width="0dp"
-        android:layout_weight="2"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:baselineAligned="false"
+        android:divider="?android:attr/dividerHorizontal"
+        android:orientation="horizontal"
+        tools:context="com.kobi.metalsexchange.app.MainActivity">
 
-        <FrameLayout
-            android:id="@+id/rate_detail_container"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            />
+        <!--
+        This layout is a two-pane layout for the Items master/detail flow.
+        -->
+        <!--<fragment
+            android:id="@+id/fragment_rates"
+            android:name="ExchangeRatesFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            tools:layout="@android:layout/list_content" />-->
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/rate_graph_container"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:minHeight="250dp" />
+            <com.kobi.metalsexchange.app.component.SlidingTabLayout
+                android:id="@+id/sliding_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="2dp"
+                android:background="@color/primary"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_gravity="start"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <FrameLayout
+                android:id="@+id/rate_detail_container"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                />
+
+            <FrameLayout
+                android:id="@+id/rate_graph_container"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:minHeight="250dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -23,8 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dip"
-        android:fontFamily="sans-serif-condensed"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textColor="@color/secondary_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        />
 
     <TextView
         android:id="@+id/list_item_rate_textview"
@@ -34,7 +36,8 @@
         android:paddingRight="20dip"
         android:paddingEnd="20dip"
         android:gravity="end"
-        android:fontFamily="sans-serif-condensed"
-        android:textAppearance="?android:textAppearanceLarge"/>
+        android:textSize="20sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:textColor="@color/primary_text"/>
 
 </LinearLayout>

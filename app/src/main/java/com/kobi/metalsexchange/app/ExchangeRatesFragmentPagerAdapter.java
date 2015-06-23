@@ -1,4 +1,4 @@
-package com.android.metalsexchange.app;
+package com.kobi.metalsexchange.app;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

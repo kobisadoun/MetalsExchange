@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.metalsexchange.app.data;
+package com.kobi.metalsexchange.app.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.kobi.metalsexchange.app.Utility;
 
 /**
  * Manages a local database for metals rate data.
@@ -25,12 +27,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MetalsDbHelper extends SQLiteOpenHelper {
 
     // If you change the database schema, you must increment the database version.
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     static final String DATABASE_NAME = "metals.db";
 
+    private Context context;
+
     public MetalsDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -62,5 +67,6 @@ public class MetalsDbHelper extends SQLiteOpenHelper {
         // should be your top priority before modifying this method.
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MetalsContract.MetalsRateEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
+        Utility.resetRatesStatus(context);
     }
 }

@@ -1,4 +1,4 @@
-package com.android.metalsexchange.app;
+package com.kobi.metalsexchange.app;
 
 import android.database.Cursor;
 import android.graphics.Color;
@@ -14,7 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.metalsexchange.app.data.MetalsContract;
+import com.kobi.metalsexchange.app.data.MetalsContract;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -112,6 +112,8 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onResume() {
         super.onResume();
+
+        //need to check why we have to call this
         getLoaderManager().restartLoader(TREND_GRAPH_LOADER, null, this);
     }
 
@@ -178,7 +180,7 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
 //            set1.setColor(Color.GRAY);
 //            set1.setCircleColor(Color.BLACK);
             set1.setColor(Color.BLACK);
-            set1.setCircleColor(getResources().getColor(R.color.metalsexchange_dark_color));
+            set1.setCircleColor(getResources().getColor(R.color.primary_dark));
             set1.setLineWidth(2f);
             set1.setCircleSize(3f);
             set1.setDrawCircleHole(false);

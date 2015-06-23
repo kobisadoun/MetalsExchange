@@ -2,11 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.android.metalsexchange.app.ExchangeRatesFragment">
-    <ListView
-        style="@style/RatesListStyle"
-        android:id="@+id/listview_rates"
+    tools:context="com.kobi.metalsexchange.app.ExchangeRatesFragment">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/activity_main_swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            style="@style/RatesListStyle"
+            android:id="@+id/recyclerview_rates"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <!-- empty list -->
+    <TextView
+        android:id="@+id/recyclerview_rates_empty"
+        android:text="@string/empty_rates_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null" />
+        android:gravity="center_horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        />
 </FrameLayout>

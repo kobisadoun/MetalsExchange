@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.metalsexchange.app;
+package com.kobi.metalsexchange.app;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -23,6 +23,8 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+
+import com.kobi.metalsexchange.app.data.MetalsContract;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings.
@@ -67,7 +69,7 @@ public class SettingsActivity extends PreferenceActivity
     @Override
     public boolean onPreferenceChange(Preference preference, Object value) {
         String stringValue = value.toString();
-
+        Utility.resetRatesStatus(this);
         if (preference instanceof ListPreference) {
             // For list preferences, look up the correct display value in
             // the preference's 'entries' list (since they have separate labels/values).
@@ -80,6 +82,7 @@ public class SettingsActivity extends PreferenceActivity
             // For other preferences, set the summary to the value's simple string representation.
             preference.setSummary(stringValue);
         }
+        getContentResolver().notifyChange(MetalsContract.MetalsRateEntry.CONTENT_URI, null);
         return true;
     }
 

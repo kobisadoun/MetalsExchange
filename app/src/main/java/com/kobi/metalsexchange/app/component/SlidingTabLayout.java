@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.metalsexchange.app.component;
+package com.kobi.metalsexchange.app.component;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -31,8 +31,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.metalsexchange.app.ExchangeRatesFragmentPagerAdapter;
-import com.android.metalsexchange.app.R;
+import com.kobi.metalsexchange.app.ExchangeRatesFragmentPagerAdapter;
+import com.kobi.metalsexchange.app.R;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
@@ -201,19 +201,13 @@ public class SlidingTabLayout extends HorizontalScrollView {
                         false);
                 //View tabView = (LinearLayout) tabView.findViewById(mTabViewTextViewId);
 
-                tabTextView = (TextView) tabView.findViewById(R.id.tab_text);
-                tabIconView = (ImageView) tabView.findViewById(R.id.tab_icon);
-
-
-
-
+                tabTextView = (TextView) tabView.findViewById(com.kobi.metalsexchange.app.R.id.tab_text);
+                tabIconView = (ImageView) tabView.findViewById(com.kobi.metalsexchange.app.R.id.tab_icon);
             }
 
             if (tabView == null) {
                 tabView = createDefaultTabView(getContext());
             }
-
-
 
             if (mDistributeEvenly) {
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) tabView.getLayoutParams();
@@ -223,7 +217,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             tabTextView.setText(adapter.getPageTitle(i).toString().toUpperCase());
             tabIconView.setImageResource(adapter.getPageIcon(i));
-            //tabTitleView.setBackgroundColor(getContext().getResources().getColor(R.color.metalsexchange_color));
+            //tabTitleView.setBackgroundColor(getContext().getResources().getColor(R.color.primary));
             //tabTitleView.setBackground(getResources().getDrawable(R.drawable.touch_selector));
             tabView.setOnClickListener(tabClickListener);
             String desc = mContentDescriptions.get(i, null);
@@ -235,6 +229,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
             if (i == mViewPager.getCurrentItem()) {
                 tabView.setSelected(true);
             }
+
+            tabTextView.setTextSize(14);
         }
     }
 

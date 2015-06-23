@@ -1,4 +1,4 @@
-package com.android.metalsexchange.app.sync;
+package com.kobi.metalsexchange.app.sync;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -21,18 +21,17 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.IntDef;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.text.format.Time;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.android.metalsexchange.app.MainActivity;
-import com.android.metalsexchange.app.R;
-import com.android.metalsexchange.app.Utility;
-import com.android.metalsexchange.app.data.MetalsContract;
+import com.kobi.metalsexchange.app.MainActivity;
+import com.kobi.metalsexchange.app.R;
+import com.kobi.metalsexchange.app.Utility;
+import com.kobi.metalsexchange.app.data.MetalsContract;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -42,6 +41,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -49,11 +50,11 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Vector;
 
-public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
-    public final String LOG_TAG = MetalsExchangeSyncAdapter.class.getSimpleName();
+public class MetalsExchangeSyncAdapterOld extends AbstractThreadedSyncAdapter {
+    public final String LOG_TAG = MetalsExchangeSyncAdapterOld.class.getSimpleName();
     // Interval at which to sync with the rate site, in seconds.
-    // 60 seconds (1 minute) * 180 = 3 hours
-    public static final int SYNC_INTERVAL = 60 * 180;
+    // 60 seconds (1 minute) * 600 = 10 hours
+    public static final int SYNC_INTERVAL = 60 * 600;
     public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
     private static final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
     private static final int EXCHANGE_RATE_NOTIFICATION_ID = 9000;
@@ -74,7 +75,18 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
     private static final int INDEX_GBP_RATE = 3;
     private static final int INDEX_EUR_RATE = 4;
 
-    public MetalsExchangeSyncAdapter(Context context, boolean autoInitialize) {
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({RATES_STATUS_OK, RATES_STATUS_SERVER_DOWN, RATES_STATUS_SERVER_INVALID, RATES_STATUS_UNKNOWN, RATES_STATUS_INVALID})
+    public @interface RatesStatus {}
+
+    public static final int RATES_STATUS_OK = 0;
+    public static final int RATES_STATUS_SERVER_DOWN = 1;
+    public static final int RATES_STATUS_SERVER_INVALID = 2;
+    public static final int RATES_STATUS_UNKNOWN = 3;
+    public static final int RATES_STATUS_INVALID = 4;
+
+
+    public MetalsExchangeSyncAdapterOld(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
     }
 
@@ -125,6 +137,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
 
                 if (buffer.length() == 0) {
                     // Stream was empty.  No point in parsing.
+                    setRatesStatus(getContext(), RATES_STATUS_SERVER_DOWN);
                     return;
                 }
                 ratesStr = buffer.toString();
@@ -133,25 +146,27 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             notifyRates();
         } catch (IOException e) {
             Log.e(LOG_TAG, "Error ", e);
-            Handler mainHandler = new Handler(getContext().getMainLooper());
-            mainHandler.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_no_response_from_server), Toast.LENGTH_LONG).show();
-                }
-            });
+            setRatesStatus(getContext(), RATES_STATUS_SERVER_DOWN);
+//            Handler mainHandler = new Handler(getContext().getMainLooper());
+//            mainHandler.post(new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_no_response_from_server), Toast.LENGTH_LONG).show();
+//                }
+//            });
         }
         catch (Exception e) {
             Log.e(LOG_TAG, "Error ", e);
-            Handler mainHandler = new Handler(getContext().getMainLooper());
-            mainHandler.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_server_response_not_valid), Toast.LENGTH_LONG).show();
-                }
-            });
+            setRatesStatus(getContext(), RATES_STATUS_SERVER_INVALID);
+//            Handler mainHandler = new Handler(getContext().getMainLooper());
+//            mainHandler.post(new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_server_response_not_valid), Toast.LENGTH_LONG).show();
+//                }
+//            });
         }finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -194,10 +209,12 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
                 e.printStackTrace();
             }
 
-            double nisVal = Double.parseDouble(filterNonDigitChars(nis));
-            double usdVal = Double.parseDouble(filterNonDigitChars(usd));
-            double gbpVal = Double.parseDouble(filterNonDigitChars(gbp));
-            double eurVal = Double.parseDouble(filterNonDigitChars(eur));
+            double usdVal = parsePrice(usd);
+
+
+            double nisVal = parsePrice(nis);
+            double gbpVal = parsePrice(gbp);
+            double eurVal = parsePrice(eur);
 
             ContentValues metalRatesValues = new ContentValues();
             metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_DATE, MetalsContract.normalizeDate(convertedDate.getTime()));
@@ -229,8 +246,19 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         }
 
         Log.d(LOG_TAG, "Sync Complete. " + cVVector.size() + " Inserted");
+        setRatesStatus(getContext(), RATES_STATUS_OK);
 
+    }
 
+    private double parsePrice(String stringPrice){
+        double doubleVal = 0;
+        try {
+            doubleVal = Double.parseDouble(filterNonDigitChars(stringPrice));
+            return doubleVal;
+        }
+        catch (Exception e){
+           return 0;
+        }
     }
 
     private String filterNonDigitChars(String raw){
@@ -295,7 +323,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
                     // notifications.  Just throw in some data.
                     NotificationCompat.Builder mBuilder =
                             new NotificationCompat.Builder(getContext())
-                                    .setColor(resources.getColor(R.color.metalsexchange_light_color))
+                                    .setColor(resources.getColor(R.color.primary_light))
                                     .setSmallIcon(iconId)
                                     .setAutoCancel(true)
                                     .setLargeIcon(largeIcon)
@@ -424,7 +452,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         /*
          * Since we've created an account
          */
-        MetalsExchangeSyncAdapter.configurePeriodicSync(context, SYNC_INTERVAL, SYNC_FLEXTIME);
+        MetalsExchangeSyncAdapterOld.configurePeriodicSync(context, SYNC_INTERVAL, SYNC_FLEXTIME);
 
         /*
          * Without calling setSyncAutomatically, our periodic sync will not be enabled.
@@ -439,5 +467,18 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
 
     public static void initializeSyncAdapter(Context context) {
         getSyncAccount(context);
+    }
+
+    /**
+     * Sets the rates status into shared preference.  This function should not be called from
+     * the UI thread because it uses commit to write to the shared preferences.
+     * @param c Context to get the PreferenceManager from.
+     * @param locationStatus The IntDef value to set
+     */
+    static private void setRatesStatus(Context c, @RatesStatus int locationStatus){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(c);
+        SharedPreferences.Editor spe = sp.edit();
+        spe.putInt(c.getString(R.string.pref_rates_status_key), locationStatus);
+        spe.commit();
     }
 }

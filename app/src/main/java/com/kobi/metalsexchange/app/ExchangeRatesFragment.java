@@ -13,46 +13,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.metalsexchange.app;
+package com.kobi.metalsexchange.app;
 
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.android.metalsexchange.app.data.MetalsContract;
-import com.android.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
+import com.kobi.metalsexchange.app.data.MetalsContract;
+import com.kobi.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * Encapsulates fetching the rates and displaying it as a {@link ListView} layout.
+ * Encapsulates fetching the rates and displaying it as a {@link RecyclerView} layout.
  */
-public class ExchangeRatesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class ExchangeRatesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> , SharedPreferences.OnSharedPreferenceChangeListener{
     private ExchangeRatesAdapter mExchangeRatesAdapter;
 
-    private ListView mListView;
-    private int mPosition = ListView.INVALID_POSITION;
+    private RecyclerView  mRecyclerView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private int mPosition = RecyclerView.NO_POSITION;
 
     private static final String SELECTED_KEY = "selected_position";
 
@@ -155,32 +156,73 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // The ExchangeRatesAdapter will take data from a source and
-        // use it to populate the ListView it's attached to.
-        mExchangeRatesAdapter = new ExchangeRatesAdapter(getActivity(), null, 0, mMetalId);
+       View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout.setColorSchemeColors(R.color.primary_dark, R.color.primary_light, R.color.primary);
+        //mSwipeRefreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.CYAN);
 
-        // Get a reference to the ListView, and attach this adapter to it.
-        mListView = (ListView) rootView.findViewById(R.id.listview_rates);
-        mListView.setAdapter(mExchangeRatesAdapter);
-        // We'll call our MainActivity
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // CursorAdapter returns a cursor at the correct position for getItem(), or null
-                // if it cannot seek to that position.
-                Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
-                if (cursor != null) {
-                    ((Callback) getActivity())
-                            .onItemSelected(MetalsContract.MetalsRateEntry.buildMetalRatesWithDate(
-                                    mMetalId, cursor.getLong(COL_RATE_DATE)
-                            ));
-                }
-                mPosition = position;
+            public void onRefresh() {
+                updateRates();
+                //mSwipeRefreshLayout.setRefreshing(false);
             }
         });
+
+
+        // Get a reference to the ListView, and attach this adapter to it.
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_rates);
+
+        // Set the layout manager
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        View emptyView = rootView.findViewById(R.id.recyclerview_rates_empty);
+        mRecyclerView.setAdapter(mExchangeRatesAdapter);
+
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        mExchangeRatesAdapter = new ExchangeRatesAdapter(getActivity(), mMetalId, new ExchangeRatesAdapter.ExchangeRatesAdapterOnClickHandler() {
+
+            @Override
+            public void onClick(Long date, ExchangeRatesAdapter.RatesAdapterViewHolder vh) {
+
+                ((Callback) getActivity())
+                        .onItemSelected(MetalsContract.MetalsRateEntry.buildMetalRatesWithDate(
+                                mMetalId, date)
+                        );
+                mPosition = vh.getAdapterPosition();
+            }
+
+            @Override
+            public void onRefreshCurrent() {
+                mSwipeRefreshLayout.setRefreshing(true);
+                if(Utility.isNetworkAvailable(getActivity())) {
+                    MetalsExchangeSyncAdapter.syncImmediately(getActivity(), true);
+                }
+            }
+        }, emptyView);
+        mRecyclerView.setAdapter(mExchangeRatesAdapter);
+        // We'll call our MainActivity
+//        mRecyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                // CursorAdapter returns a cursor at the correct position for getItem(), or null
+//                // if it cannot seek to that position.
+//                Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
+//                if (cursor != null) {
+//                    ((Callback) getActivity())
+//                            .onItemSelected(MetalsContract.MetalsRateEntry.buildMetalRatesWithDate(
+//                                    mMetalId, cursor.getLong(COL_RATE_DATE)
+//                            ));
+//                }
+//                mPosition = position;
+//            }
+//        });
 
         // If there's instance state, mine it for useful information.
         // The end-goal here is that the user never knows that turning their device sideways
@@ -188,7 +230,7 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
         // or magically appeared to take advantage of room, but data or place in the app was never
         // actually *lost*.
         if (savedInstanceState != null && savedInstanceState.containsKey(SELECTED_KEY)) {
-            // The listview probably hasn't even been populated yet.  Actually perform the
+            // The RecyclerView  probably hasn't even been populated yet.  Actually perform the
             // swapout in onLoadFinished.
             mPosition = savedInstanceState.getInt(SELECTED_KEY);
         }
@@ -199,9 +241,18 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
     }
 
     @Override
-    public void onResume() {
+       public void onResume() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        sp.registerOnSharedPreferenceChangeListener(this);
         super.onResume();
         getLoaderManager().restartLoader(RATES_LOADER, null, this);
+    }
+
+    @Override
+    public void onPause() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        sp.unregisterOnSharedPreferenceChangeListener(this);
+        super.onPause();
     }
 
     @Override
@@ -210,34 +261,18 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
         super.onActivityCreated(savedInstanceState);
     }
 
-//    void onCurrencyOrWeightChanged() {
-//        updateRates();
-//        getLoaderManager().restartLoader(RATES_LOADER, null, this);
-//    }
-
     private void updateRates() {
-        if(isOnline()) {
-            MetalsExchangeSyncAdapter.syncImmediately(getActivity());
+        if(Utility.isNetworkAvailable(getActivity())) {
+            MetalsExchangeSyncAdapter.syncImmediately(getActivity(), false);
         }
-    }
-
-    public boolean isOnline() {
-        ConnectivityManager conMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
-
-        if(netInfo == null || !netInfo.isConnected() || !netInfo.isAvailable()){
-            Toast.makeText(getActivity(), getResources().getString(R.string.error_no_internet_connection), Toast.LENGTH_LONG).show();
-            return false;
-        }
-        return true;
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         // When tablets rotate, the currently selected list item needs to be saved.
-        // When no item is selected, mPosition will be set to Listview.INVALID_POSITION,
+        // When no item is selected, mPosition will be set to RecyclerView.NO_POSITION,
         // so check for that before storing.
-        if (mPosition != ListView.INVALID_POSITION) {
+        if (mPosition != RecyclerView.NO_POSITION) {
             outState.putInt(SELECTED_KEY, mPosition);
         }
         super.onSaveInstanceState(outState);
@@ -262,21 +297,64 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         mExchangeRatesAdapter.swapCursor(data);
-        if (mPosition != ListView.INVALID_POSITION) {
+        if (mPosition != RecyclerView.NO_POSITION) {
             // If we don't need to restart the loader, and there's a desired position to restore
             // to, do so now.
-            mListView.smoothScrollToPosition(mPosition);
+            mRecyclerView.smoothScrollToPosition(mPosition);
         }
+        updateEmptyView();
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
-    void onCurrencyOrWeightChanged() {
-        updateRates();
+    private void onCurrencyOrWeightChanged() {
         getLoaderManager().restartLoader(RATES_LOADER, null, this);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mExchangeRatesAdapter.swapCursor(null);
+    }
+
+    /*
+    Updates the empty list view with contextually relevant information that the user can
+    use to determine why they aren't seeing weather.
+    */
+    private void updateEmptyView() {
+        if ( mExchangeRatesAdapter.getItemCount() == 0 ) {
+            TextView tv = (TextView) getView().findViewById(R.id.recyclerview_rates_empty);
+            if ( null != tv ) {
+                // if cursor is empty, why? do we have an invalid location
+
+                int message = R.string.empty_rates_list;
+                if(Utility.syncAllAvailableDataOfThisYear(getActivity())){//on first launch --> no data
+                    message = R.string.empty_rates_list_startup;
+                }
+                @MetalsExchangeSyncAdapter.RatesStatus int location = Utility.getRatesStatus(getActivity());
+                switch (location) {
+                    case MetalsExchangeSyncAdapter.RATES_STATUS_SERVER_DOWN:
+                        message = R.string.empty_rates_list_server_down;
+                        break;
+                    case MetalsExchangeSyncAdapter.RATES_STATUS_SERVER_INVALID:
+                        message = R.string.empty_rates_list_server_error;
+                        break;
+                    default:
+                        if (!Utility.isNetworkAvailable(getActivity()) ) {
+                            message = R.string.empty_rates_list_no_network;
+                        }
+                }
+                tv.setText(message);
+            }
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if ( key.equals(getString(R.string.pref_rates_status_key)) ) {
+            updateEmptyView();
+        }
+        else{
+            onCurrencyOrWeightChanged();
+        }
     }
 
 }
