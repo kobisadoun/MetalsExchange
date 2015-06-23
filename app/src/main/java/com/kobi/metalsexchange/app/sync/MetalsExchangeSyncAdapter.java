@@ -101,6 +101,10 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         LastDayCurrenciesPerNisXMLParser lastDayCurrenciesXMLParser = new LastDayCurrenciesPerNisXMLParser(getContext());
         todayCurrenciesMap = lastDayCurrenciesXMLParser.getCurrenciesPerNIS();
 
+        if(todayCurrenciesMap.values().iterator().next().isEmpty()){
+            return;//
+        }
+
         if(extras.getBoolean("CURRENT")){//Only last price
             performSync(true);
         }

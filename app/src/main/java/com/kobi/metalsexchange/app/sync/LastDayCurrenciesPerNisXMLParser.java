@@ -42,25 +42,27 @@ public class LastDayCurrenciesPerNisXMLParser {
 	public LastDayCurrenciesPerNisXMLParser(Context context){
         this.context = context;
 		String xml = getXmlFromUrl(); // getting XML
-		Document doc = getDomElement(xml); // getting DOM element
+        if(xml != null && !xml.isEmpty()) {
+            Document doc = getDomElement(xml); // getting DOM element
 
 
-        NodeList n = doc.getElementsByTagName(KEY_CURRENCIES);
-        // looping through all item nodes <item>
-        for (int i = 0; i < n.getLength(); i++) {
-            // creating new HashMap
-            Element e = (Element) n.item(i);
-            lastUpdate = getValue(e, KEY_LAST_UPDATE);
+            NodeList n = doc.getElementsByTagName(KEY_CURRENCIES);
+            // looping through all item nodes <item>
+            for (int i = 0; i < n.getLength(); i++) {
+                // creating new HashMap
+                Element e = (Element) n.item(i);
+                lastUpdate = getValue(e, KEY_LAST_UPDATE);
+            }
+
+            NodeList nl = doc.getElementsByTagName(KEY_CURRENCY);
+            // looping through all item nodes <item>
+            for (int i = 0; i < nl.getLength(); i++) {
+                // creating new HashMap
+                Element e = (Element) nl.item(i);
+                // adding each child node to HashMap key => value
+                rawValuesMap.put(getValue(e, KEY_CURRENCYCODE), Double.parseDouble(getValue(e, KEY_RATE)));
+            }
         }
-
-		NodeList nl = doc.getElementsByTagName(KEY_CURRENCY);
-		// looping through all item nodes <item>
-		for (int i = 0; i < nl.getLength(); i++) {
-			// creating new HashMap
-			Element e = (Element) nl.item(i);
-			// adding each child node to HashMap key => value
-            rawValuesMap.put(getValue(e, KEY_CURRENCYCODE), Double.parseDouble(getValue(e, KEY_RATE)));
-		}
 	}
 
     public HashMap<String, HashMap<String, Double>> getCurrenciesPerNIS(){
