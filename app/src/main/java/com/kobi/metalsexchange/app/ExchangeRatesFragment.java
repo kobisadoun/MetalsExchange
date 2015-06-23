@@ -45,7 +45,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
+/**TEST
  * Encapsulates fetching the rates and displaying it as a {@link RecyclerView} layout.
  */
 public class ExchangeRatesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> , SharedPreferences.OnSharedPreferenceChangeListener{
