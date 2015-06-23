@@ -214,7 +214,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         int id = item.getItemId();
         if (id == R.id.action_calculate) {
 
-            String rateNumberRaw= mRateView.getText().toString().replaceAll("[^0-9.]", "");
+            String rateNumberRaw= mRateView.getText().toString().replaceAll("[^0-9,.]", "");
             // Gets a handle to the clipboard service.
             ClipboardManager clipboard = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("rate",rateNumberRaw);
