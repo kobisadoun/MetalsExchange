@@ -6,23 +6,23 @@
          It's to keep this short, so your launcher icon isn't displayed with "The greatest Wea"
          or something similar.
     -->
-    <string name="app_name">Les Prix Des Métaux</string>
+    <string name="app_name">Prix des métaux</string>
 
     <string name="GOLD">Or</string>
     <string name="SILVER">Argent</string>
     <string name="PLATINUM">Platine</string>
     <string name="PALLADIUM">Palladium</string>
 
-    <string name="pref_main_currency_default" translatable="false">eur</string>
+    <string name="pref_main_currency_default">eur</string>
 
     <!--
          By convention, "action" denotes that this String will be used as the label for an Action,
          typically from the action bar.  The ActionBar is limited real estate, so shorter is better.
     -->
     <string name="action_settings">Paramètres</string>
-    <string name="action_about">Environ</string>
-    <string name="action_rate">Prix</string>
-    <string name="action_share">Part</string>
+    <string name="action_about">À propos</string>
+    <string name="action_rate">Noter</string>
+    <string name="action_share">Partager</string>
 
     <!-- Menu label to fetch updated rates info from the server -->
     <string name="action_refresh">Rafraîchir</string>
@@ -31,37 +31,38 @@
     <string name="title_activity_settings">Paramètres</string>
 
     <!-- Strings related to Notification Enabled preference -->
-    <string name="pref_enable_notifications_label">Les Prix Des Métaux Notifications</string>
+    <string name="pref_enable_notifications_label">Notification du prix des métaux</string>
 
     <string name="pref_enable_notifications_true">Activé</string>
     <string name="pref_enable_notifications_false">Pas activé</string>
 
     <!-- Strings related to Jewish Customs Enabled preference -->
-    <string name="pref_show_jewish_customs_label">Afficher juive douanes</string>
+    <string name="pref_show_jewish_customs_label">Afficher les coutumes juives</string>
+    <string name="pref_show_jewish_customs_default">false</string>
 
     <!-- Label for the Weight units preference [CHAR LIMIT=30] -->
     <string name="pref_units_label">Unités de poids</string>
 
     <!-- Label for grams option in Weight unit preference [CHAR LIMIT=25] -->
-    <string name="pref_units_label_grams">Grammes</string>
+    <string name="pref_units_label_grams">Gramme</string>
 
     <!-- Label for ounce option in Weight unit preference [CHAR LIMIT=25] -->
-    <string name="pref_units_label_ounce">Once troy</string>
+    <string name="pref_units_label_ounce">Troy Ounce</string>
 
     <!-- Label for the currency preference [CHAR LIMIT=30] -->
     <string name="pref_main_currency_label">Devise par défaut</string>
 
     <!-- Label for nis option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_nis">Nouveau shekel israélien [NIS ₪]</string>
+    <string name="pref_main_currency_label_nis">Nouveau shekel israélien [₪]</string>
 
     <!-- Label for usd option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_usd">Dollars américain [USD $]</string>
+    <string name="pref_main_currency_label_usd">Dollar américain [$]</string>
 
     <!-- Label for eur option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_eur">Euro [EUR €]</string>
+    <string name="pref_main_currency_label_eur">Euro [€]</string>
 
     <!-- Label for gbp option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_gbp">British Pound [GBP £]</string>
+    <string name="pref_main_currency_label_gbp">British Pound [£]</string>
 
     <!-- Language-specific constants -->
     <string name="today">Aujourd\'hui</string>
@@ -70,20 +71,20 @@
     <!-- Date format [CHAR LIMIT=NONE] -->
     <string name="format_full_friendly_date"><xliff:g id="month">%1$s</xliff:g>, <xliff:g id="day">%2$s</xliff:g></string>
 
-    <string name="zecher_machatzit_hashekel">Zecher L’Machatzit Hashekel</string>
-    <string name="zecher_machatzit_hashekel_details">10 gr d\'argent pur: %1$s\nPour Machmirim ajouter la TVA.</string>
+    <string name="zecher_machatzit_hashekel">Zeher L’Mahatzit Hashekel</string>
+    <string name="zecher_machatzit_hashekel_details">10 gr d\'argent pur: %1$s\nPour Mahmirim ajouter la TVA.</string>
     <string name="about_zecher_machatzit_hashekel">Qu\'est-ce que c\'est?</string>
 
     <string name="pidyon_haben">Pidyon Haben</string>
-    <string name="pidyon_haben_details">10 gr d\'argent pur: %1$s\nPour Machmirim ajouter la TVA.</string>
+    <string name="pidyon_haben_details">10 gr d\'argent pur: %1$s\nPour Mahmirim ajouter la TVA.</string>
     <string name="about_pidyon_haben">Qu\'est-ce que c\'est?</string>
 
 
     <!--<string name="about">This application was written by Kobi Sadoun as part of the final project of the Developing Android Apps course 2015.</string>-->
-    <string name="about">Les métaux taux sont prises <a href="http://www.kitco.com/">KITCO</a></string>
+    <string name="about">Le taux des métaux pris de <a href="http://www.kitco.com/">KITCO</a></string>
     <string name="about_continue">Continuer..</string>
 
-    <string name="copy_to_clipboard_toast">La valeur %1$s a été copié dans le presse-papiers</string>
+    <string name="copy_to_clipboard_toast">La valeur %1$s a été copiée dans le presse-papiers</string>
 
     <!-- error messages -->
     <string name="error_no_internet_connection">Pas de connexion Internet!</string>
@@ -91,9 +92,9 @@
     <string name="error_no_response_from_server">Pas de réponse du serveur</string>
     <!-- Empty Rates Database -->
     <string name="empty_rates_list_startup">Chargement des données ...</string>
-    <string name="empty_rates_list">Information sur les prix des métaux disponibles.</string>
-    <string name="empty_rates_list_no_network">Information sur les prix des métaux disponibles. Le réseau ne sont pas disponibles.</string>
-    <string name="empty_rates_list_server_down">Information sur les prix des métaux disponibles. Le serveur ne retourne pas de données.</string>
-    <string name="empty_rates_list_server_error">Information sur les prix des métaux disponibles. Le serveur ne retourne pas de données valides. S\'il vous plaît vérifier une version mise à jour \'Les Prix Des Métaux\'.</string>
-    <string name="empty_rates_list_invalid">Information sur les prix des métaux disponibles. La requête est pas reconnu par le serveur.</string>
+    <string name="empty_rates_list">Information sur les prix des métaux non disponibles.</string>
+    <string name="empty_rates_list_no_network">Information sur les prix des métaux non disponibles. Le réseau n\'est pas disponible.</string>
+    <string name="empty_rates_list_server_down">Information sur les prix des métaux non disponibles. Le serveur ne retourne pas les données.</string>
+    <string name="empty_rates_list_server_error">Information subler les prix des métaux non disponis. Le serveur ne retourne pas de données valides. S\'il vous plaît vérifier la version mise à jour \'Les Prix Des Métaux\'.</string>
+    <string name="empty_rates_list_invalid">Information sur les prix des métaux non disponibles. La requête n\'est pas reconnue par le serveur.</string>
 </resources>

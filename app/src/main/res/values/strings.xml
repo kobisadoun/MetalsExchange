@@ -39,7 +39,7 @@
     <!-- Strings related to Jewish Customs Enabled preference -->
     <string name="pref_show_jewish_customs_key" translatable="false">show_jewish_customs</string>
     <string name="pref_show_jewish_customs_label">Show Jewish Customs</string>
-    <string name="pref_show_jewish_customs_default" translatable="false">false</string>
+    <string name="pref_show_jewish_customs_default">false</string>
 
     <!-- Strings for formatting Weight-related data -->
 
@@ -47,7 +47,7 @@
     <string name="pref_units_label">Weight Units</string>
 
     <!-- Label for grams option in Weight unit preference [CHAR LIMIT=25] -->
-    <string name="pref_units_label_grams">Grams</string>
+    <string name="pref_units_label_grams">Gram</string>
 
     <!-- Label for ounce option in Weight unit preference [CHAR LIMIT=25] -->
     <string name="pref_units_label_ounce">Troy Ounce</string>
@@ -82,7 +82,7 @@
     <!-- Key name for currency preference in SharedPreferences [CHAR LIMIT=NONE] -->
     <string name="pref_main_currency_key" translatable="false">main_currency</string>
 
-    <string name="pref_main_currency_default" translatable="false">usd</string>
+    <string name="pref_main_currency_default">usd</string>
 
 
     <!-- Value in SharedPreferences for nis currency option [CHAR LIMIT=NONE] -->
@@ -143,7 +143,7 @@
     <!-- Empty Rates Database -->
     <string name="empty_rates_list_startup">Loading data...</string>
     <string name="empty_rates_list">No Rates Information Available</string>
-    <string name="empty_rates_list_no_network">No rates information available. The network is not available to fetch rates data.</string>
+    <string name="empty_rates_list_no_network">No rates information available. The network is not available.</string>
     <string name="empty_rates_list_server_down">No rates information available. The server is not returning data.</string>
     <string name="empty_rates_list_server_error">No rates information available. The server is not returning valid data. Please check for an updated version of \'Metals Exchange\'.</string>
     <string name="empty_rates_list_invalid">No rates information available. The query is not recognized by the rates server.</string>

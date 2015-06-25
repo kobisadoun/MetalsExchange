@@ -14,8 +14,8 @@
     <string name="PALLADIUM">פלדיום</string>
 
 
-    <string name="pref_main_currency_default" translatable="false">nis</string>
-    <string name="pref_show_jewish_customs_default" translatable="false">true</string>
+    <string name="pref_main_currency_default">nis</string>
+    <string name="pref_show_jewish_customs_default">true</string>
 
     <!--
          By convention, "action" denotes that this String will be used as the label for an Action,
