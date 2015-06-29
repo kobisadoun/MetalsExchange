@@ -16,14 +16,9 @@
 package com.kobi.metalsexchange.app;
 
 import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,7 +29,6 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.ShareActionProvider;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -44,13 +38,11 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.kobi.metalsexchange.app.data.MetalsContract;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class DetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -95,6 +87,8 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     private ImageButton mShekelButtonView;
     private ImageButton mPidionButtonView;
     private double oneGramPrice = 0;
+
+    private long mDate;
 
     public DetailFragment() {
         setHasOptionsMenu(true);
@@ -213,40 +207,14 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_calculate) {
-
             String rateNumberRaw= mRateView.getText().toString().replaceAll("[^0-9,.]", "");
-            // Gets a handle to the clipboard service.
-            ClipboardManager clipboard = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("rate",rateNumberRaw);
-            clipboard.setPrimaryClip(clip);
-
-            Toast toast = Toast.makeText(getActivity().getBaseContext(), getString(R.string.copy_to_clipboard_toast, rateNumberRaw),
-                    Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.TOP,0,200);
-            toast.show();
-
-
-            ArrayList<HashMap<String,Object>> items =new ArrayList<HashMap<String,Object>>();
-            final PackageManager pm = getActivity().getPackageManager();
-            List<PackageInfo> packs = pm.getInstalledPackages(0);
-            for (PackageInfo pi : packs) {
-                if( pi.packageName.toString().toLowerCase().contains("calcul")){
-                    HashMap<String, Object> map = new HashMap<String, Object>();
-                    map.put("appName", pi.applicationInfo.loadLabel(pm));
-                    map.put("packageName", pi.packageName);
-                    items.add(map);
-                }
-            }
-            if(items.size()>=1){
-                String packageName = (String) items.get(0).get("packageName");
-                Intent i = pm.getLaunchIntentForPackage(packageName);
-                if (i != null)
-                    startActivity(i);
-            }
-            else{
-                // Application not found
-            }
-
+            Bundle b = new Bundle();
+            b.putString("METAL_ID", Utility.getCurrentMetalId(getActivity()));
+            b.putDouble("CURRENT_VALUE", Double.valueOf(rateNumberRaw));
+            b.putLong("CURRENT_DATE", mDate);
+            Intent calculateIntent = new Intent(getActivity(), CalculateActivity.class);
+            calculateIntent.putExtras(b);
+            startActivity(calculateIntent);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -302,8 +270,8 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             // Use currency art image
             mIconView.setImageResource(Utility.getArtResourceForMetal(metalId));
             // Read date from cursor and update views for day of week and date
-            long date = data.getLong(COL_RATE_DATE);
-            String friendlyDateText = Utility.getFriendlyDayString(getActivity(), date);
+            mDate = data.getLong(COL_RATE_DATE);
+            String friendlyDateText = Utility.getFriendlyDayString(getActivity(), mDate);
             mFriendlyDateView.setText(friendlyDateText);
 
 //            // For accessibility, add a content description to the icon field

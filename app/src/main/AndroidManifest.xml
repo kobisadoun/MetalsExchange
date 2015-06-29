@@ -41,6 +41,15 @@
                 android:value="com.kobi.metalsexchange.app.MainActivity" />
         </activity>
         <activity
+            android:name=".CalculateActivity"
+            android:label="@string/title_activity_detail"
+            android:theme="@style/AppTheme.Details"
+            android:parentActivityName=".DetailActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kobi.metalsexchange.app.DetailActivity" />
+        </activity>
+        <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity"
