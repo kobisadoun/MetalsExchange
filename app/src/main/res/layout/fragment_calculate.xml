@@ -95,6 +95,25 @@
         <TextView
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
+            android:id="@+id/gold_purity_textview"
+            android:gravity="center_vertical"
+            android:text="Gold Purity:"/>
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gold_purity_spinner"
+            app:layout_gravity="fill"
+            android:drawSelectorOnTop="true"
+            style="@android:style/Widget.Holo.Light.Spinner"
+            app:layout_columnSpan="1"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            />
+
+        <TextView
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
             android:gravity="center_vertical"
             android:text="Weight Unit:"
             />
@@ -111,25 +130,6 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
-
-        <TextView
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1"
-            android:gravity="center_vertical"
-            android:text="Gold Purity:"/>
-
-        <android.support.v7.widget.AppCompatSpinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gold_purity_spinner"
-            app:layout_gravity="fill"
-            android:drawSelectorOnTop="true"
-            style="@android:style/Widget.Holo.Light.Spinner"
-            app:layout_columnSpan="1"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1"
-            />
-
 
         <TextView
             app:layout_columnWeight="1"

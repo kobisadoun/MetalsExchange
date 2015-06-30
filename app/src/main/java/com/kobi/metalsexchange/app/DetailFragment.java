@@ -213,8 +213,9 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             Bundle b = new Bundle();
             b.putString("METAL_ID", Utility.getCurrentMetalId(getActivity()));
             try {
-                Double t = (Double) nf.parse(rateNumberRaw);
-                b.putDouble("CURRENT_VALUE", t);
+                Number t = nf.parse(rateNumberRaw);
+                double d = t.doubleValue();
+                b.putDouble("CURRENT_VALUE", d);
             }catch (Exception e){
                 System.out.print("error");
             }
