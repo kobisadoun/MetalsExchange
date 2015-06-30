@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="@color/secondary_text"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:layout_marginBottom="@dimen/abc_list_item_padding_horizontal_material"
                 android:layout_marginTop="@dimen/abc_list_item_padding_horizontal_material"
                 android:text="toady 25 Jun"
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/abc_list_item_padding_horizontal_material"
-                    android:textSize="40sp"
+                    android:textSize="35sp"
                     android:layout_gravity="bottom"
                     />
 
@@ -154,14 +154,14 @@
             android:layout_marginBottom="@dimen/abc_list_item_padding_horizontal_material"
             android:layout_marginTop="@dimen/abc_list_item_padding_horizontal_material"
             android:gravity="center_horizontal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@color/primary_text_default_material_light"
             app:layout_columnSpan="2"
             app:layout_columnWeight="1"
             app:layout_gravity="fill_horizontal"
-            android:fontFamily="sans-serif"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:text="1500$"
-            android:textSize="40sp" />
+            android:textSize="40sp"
+            android:background="@drawable/back"/>
 
 
 

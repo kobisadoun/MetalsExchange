@@ -73,13 +73,6 @@ public class CalculateFragment extends Fragment {
         mWeightSpinner = (Spinner) rootView.findViewById(R.id.weight_unit_spinner);
         mWeightSpinner.setAdapter(new ArrayAdapter<WeightUnitEnum>(getActivity(), android.R.layout.simple_spinner_dropdown_item, WeightUnitEnum.values()));
 
-
-        return rootView;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         mIconView.setImageResource(Utility.getArtResourceForMetal(mMetalId));
         String friendlyDateText = Utility.getFriendlyDayString(getActivity(), mDate);
         mFriendlyDateView.setText(friendlyDateText);
@@ -109,7 +102,9 @@ public class CalculateFragment extends Fragment {
             mShareActionProvider.setShareIntent(createShareExchangeRatesIntent());
         }
 
+        return rootView;
     }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -146,5 +141,23 @@ public class CalculateFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt("mGoldPuritySpinner_postion", mGoldPuritySpinner.getSelectedItemPosition());
+        outState.putInt("mWeightSpinner_postion", mWeightSpinner.getSelectedItemPosition());
+        super.onSaveInstanceState(outState);
+    }
 
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        if(savedInstanceState != null) {
+            if (mGoldPuritySpinner != null) {
+                mGoldPuritySpinner.setSelection(savedInstanceState.getInt("mGoldPuritySpinner_postion"));
+            }
+            if (mWeightSpinner != null) {
+                mWeightSpinner.setSelection(savedInstanceState.getInt("mWeightSpinner_postion"));
+            }
+        }
+        super.onViewStateRestored(savedInstanceState);
+    }
 }
