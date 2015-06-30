@@ -5,7 +5,7 @@
     android:gravity="top"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="10dp">
 
     <LinearLayout
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="@color/secondary_text"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:layout_marginBottom="@dimen/abc_list_item_padding_horizontal_material"
                 android:layout_marginTop="@dimen/abc_list_item_padding_horizontal_material"
                 android:text="toady 25 Jun"
@@ -74,14 +74,15 @@
 
             </LinearLayout>
 
+            <ImageView
+                android:id="@+id/detail_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_gravity="end"
+                />
+
         </LinearLayout>
-        <ImageView
-            android:id="@+id/detail_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_gravity="end"
-            />
 
     </LinearLayout>
 
@@ -91,8 +92,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         app:useDefaultMargins="true"
-        app:columnCount="2">
+        app:columnCount="2"
+        android:layout_marginLeft="20dp">
 
 
         <TextView
@@ -177,9 +180,10 @@
             android:textColor="@color/primary_text_default_material_light"
             app:layout_columnSpan="2"
             app:layout_columnWeight="1"
+            android:fontFamily="sans-serif"
             app:layout_gravity="fill_horizontal"
             android:text=""
-            android:textSize="50sp" />
+            android:textSize="50sp"/>
 
 
 

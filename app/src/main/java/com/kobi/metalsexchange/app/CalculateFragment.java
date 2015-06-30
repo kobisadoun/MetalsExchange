@@ -26,7 +26,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class CalculateFragment extends Fragment {
@@ -39,6 +42,9 @@ public class CalculateFragment extends Fragment {
     private TextView mFriendlyDateView;
     private TextView mRateView;
     private TextView mRateUnitView;
+    private Spinner mSpinner;
+    private RadioButton mRadioGram;
+    private RadioButton mRadioTroy;
 
     private String mMetalId;
     private double mMetalPrice;
@@ -64,6 +70,12 @@ public class CalculateFragment extends Fragment {
         mFriendlyDateView = (TextView) rootView.findViewById(R.id.detail_day_textview);
         mRateView = (TextView) rootView.findViewById(R.id.detail_rate_textview);
         mRateUnitView = (TextView) rootView.findViewById(R.id.detail_rate_unit_textview);
+        mRadioGram = (RadioButton) rootView.findViewById(R.id.radioGram);
+        mRadioTroy = (RadioButton) rootView.findViewById(R.id.radioTroy);
+        mSpinner = (Spinner) rootView.findViewById(R.id.gold_purity_spinner);
+        mSpinner.setAdapter(new ArrayAdapter<KaratEnum>(getActivity(), android.R.layout.simple_spinner_dropdown_item, KaratEnum.values()));
+
+
         return rootView;
     }
 
@@ -76,6 +88,12 @@ public class CalculateFragment extends Fragment {
 
         String preferredCurrency = Utility.getPreferredCurrency(getActivity());
 
+        if(Utility.isGrams(getActivity())) {
+            mRadioGram.setSelected(true);
+        }
+        else {
+            mRadioTroy.setSelected(true);
+        }
 
         String rate = Utility.getFormattedCurrency(mMetalPrice, preferredCurrency, getActivity(), true);
         mRateView.setText(rate);
@@ -99,7 +117,7 @@ public class CalculateFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        inflater.inflate(R.menu.detailfragment, menu);
+        inflater.inflate(R.menu.calculatefragment, menu);
 
         // Retrieve the share menu item
         MenuItem menuItem = menu.findItem(R.id.action_share);

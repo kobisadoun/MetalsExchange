@@ -44,10 +44,10 @@
             android:name=".CalculateActivity"
             android:label="@string/title_activity_detail"
             android:theme="@style/AppTheme.Details"
-            android:parentActivityName=".DetailActivity" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.kobi.metalsexchange.app.DetailActivity" />
+                android:value="com.kobi.metalsexchange.app.MainActivity" />
         </activity>
         <activity
             android:name=".SettingsActivity"
