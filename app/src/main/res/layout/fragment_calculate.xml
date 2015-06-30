@@ -5,12 +5,11 @@
     android:gravity="top"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:gravity="center_vertical"
-        android:layout_gravity="start"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:orientation="horizontal"
@@ -23,8 +22,6 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             >
-
-
             <TextView
                 android:layout_gravity="start"
                 android:fontFamily="sans-serif"
@@ -73,16 +70,15 @@
                     />
 
             </LinearLayout>
+            <ImageView
+                android:id="@+id/detail_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center_horizontal"
+                />
 
         </LinearLayout>
-        <ImageView
-            android:id="@+id/detail_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_gravity="end"
-            />
-
     </LinearLayout>
 
     <android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -92,7 +88,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         app:useDefaultMargins="true"
-        app:columnCount="2">
+        app:columnCount="2"
+        >
 
 
         <TextView
@@ -103,34 +100,36 @@
             />
 
 
-        <RadioGroup
-            android:id="@+id/radio_weight"
-            app:layout_gravity="fill_horizontal"
+        <android.support.v7.widget.AppCompatSpinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
+            android:id="@+id/weight_unit_spinner"
+            app:layout_gravity="fill"
+            android:drawSelectorOnTop="true"
+            style="@android:style/Widget.Holo.Light.Spinner"
             app:layout_columnSpan="1"
             app:layout_columnWeight="1"
-            app:layout_rowWeight="1">
+            app:layout_rowWeight="1"
+            />
 
-            <RadioButton
-                android:id="@+id/radioGram"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/pref_units_label_grams"
-                android:buttonTint="@color/primary"/>
-            <RadioButton
-                android:id="@+id/radioTroy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/pref_units_label_ounce"
-                android:buttonTint="@color/primary"/>
-        </RadioGroup>
+        <TextView
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:gravity="center_vertical"
+            android:text="Gold Purity:"/>
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gold_purity_spinner"
+            app:layout_gravity="fill"
+            android:drawSelectorOnTop="true"
+            style="@android:style/Widget.Holo.Light.Spinner"
+            app:layout_columnSpan="1"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            />
+
 
         <TextView
             app:layout_columnWeight="1"
@@ -151,24 +150,6 @@
 
 
         <TextView
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1"
-            android:gravity="center_vertical"
-            android:text="Gold Purity:"/>
-
-        <android.support.v7.widget.AppCompatSpinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gold_purity_spinner"
-            app:layout_gravity="fill"
-            android:drawSelectorOnTop="true"
-            style="@android:style/Widget.Holo.Light.Spinner"
-            app:layout_columnSpan="1"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1"
-            />
-
-        <TextView
             android:id="@+id/metal_price_textview"
             android:layout_marginBottom="@dimen/abc_list_item_padding_horizontal_material"
             android:layout_marginTop="@dimen/abc_list_item_padding_horizontal_material"
@@ -178,8 +159,9 @@
             app:layout_columnSpan="2"
             app:layout_columnWeight="1"
             app:layout_gravity="fill_horizontal"
-            android:text=""
-            android:textSize="50sp" />
+            android:fontFamily="sans-serif"
+            android:text="1500$"
+            android:textSize="40sp" />
 
 
 

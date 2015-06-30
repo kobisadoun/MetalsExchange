@@ -28,7 +28,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -42,9 +41,8 @@ public class CalculateFragment extends Fragment {
     private TextView mFriendlyDateView;
     private TextView mRateView;
     private TextView mRateUnitView;
-    private Spinner mSpinner;
-    private RadioButton mRadioGram;
-    private RadioButton mRadioTroy;
+    private Spinner mGoldPuritySpinner;
+    private Spinner mWeightSpinner;
 
     private String mMetalId;
     private double mMetalPrice;
@@ -70,10 +68,10 @@ public class CalculateFragment extends Fragment {
         mFriendlyDateView = (TextView) rootView.findViewById(R.id.detail_day_textview);
         mRateView = (TextView) rootView.findViewById(R.id.detail_rate_textview);
         mRateUnitView = (TextView) rootView.findViewById(R.id.detail_rate_unit_textview);
-        mRadioGram = (RadioButton) rootView.findViewById(R.id.radioGram);
-        mRadioTroy = (RadioButton) rootView.findViewById(R.id.radioTroy);
-        mSpinner = (Spinner) rootView.findViewById(R.id.gold_purity_spinner);
-        mSpinner.setAdapter(new ArrayAdapter<KaratEnum>(getActivity(), android.R.layout.simple_spinner_dropdown_item, KaratEnum.values()));
+        mGoldPuritySpinner = (Spinner) rootView.findViewById(R.id.gold_purity_spinner);
+        mGoldPuritySpinner.setAdapter(new ArrayAdapter<KaratEnum>(getActivity(), android.R.layout.simple_spinner_dropdown_item, KaratEnum.values()));
+        mWeightSpinner = (Spinner) rootView.findViewById(R.id.weight_unit_spinner);
+        mWeightSpinner.setAdapter(new ArrayAdapter<WeightUnitEnum>(getActivity(), android.R.layout.simple_spinner_dropdown_item, WeightUnitEnum.values()));
 
 
         return rootView;
@@ -88,14 +86,13 @@ public class CalculateFragment extends Fragment {
 
         String preferredCurrency = Utility.getPreferredCurrency(getActivity());
 
-        if(Utility.isGrams(getActivity())) {
-            mRadioGram.setSelected(true);
-        }
-        else {
-            mRadioTroy.setSelected(true);
-        }
+        WeightUnitEnum unitEnum = Utility.isGrams(getActivity()) ? WeightUnitEnum.GRAM : WeightUnitEnum.TROY;
+        ArrayAdapter weightAdapter = (ArrayAdapter) mWeightSpinner.getAdapter();
+        int spinnerPosition = weightAdapter.getPosition(unitEnum);
+        mWeightSpinner.setSelection(spinnerPosition);
 
-        String rate = Utility.getFormattedCurrency(mMetalPrice, preferredCurrency, getActivity(), true);
+
+        String rate = Utility.getFormattedCurrency(mMetalPrice, preferredCurrency, getActivity(), false);
         mRateView.setText(rate);
         mRateUnitView.setText("("+Utility.getWeightName(Utility.isGrams(getActivity()), getActivity())+")");
 

@@ -41,6 +41,7 @@ import android.widget.TextView;
 
 import com.kobi.metalsexchange.app.data.MetalsContract;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -208,9 +209,16 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         int id = item.getItemId();
         if (id == R.id.action_calculate) {
             String rateNumberRaw= mRateView.getText().toString().replaceAll("[^0-9,.]", "");
+            NumberFormat nf = NumberFormat.getInstance();
             Bundle b = new Bundle();
             b.putString("METAL_ID", Utility.getCurrentMetalId(getActivity()));
-            b.putDouble("CURRENT_VALUE", Double.valueOf(rateNumberRaw));
+            try {
+                Double t = (Double) nf.parse(rateNumberRaw);
+                b.putDouble("CURRENT_VALUE", t);
+            }catch (Exception e){
+                System.out.print("error");
+            }
+            //b.putDouble("CURRENT_VALUE", Double.valueOf(rateNumberRaw));
             b.putLong("CURRENT_DATE", mDate);
             Intent calculateIntent = new Intent(getActivity(), CalculateActivity.class);
             calculateIntent.putExtras(b);
