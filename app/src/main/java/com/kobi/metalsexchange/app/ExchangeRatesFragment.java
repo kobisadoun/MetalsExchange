@@ -15,15 +15,13 @@
  */
 package com.kobi.metalsexchange.app;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -40,10 +38,6 @@ import android.widget.TextView;
 
 import com.kobi.metalsexchange.app.data.MetalsContract;
 import com.kobi.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**T
  * Encapsulates fetching the rates and displaying it as a {@link RecyclerView} layout.
@@ -126,26 +120,50 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
 //            return true;
 //        }
         if (id == R.id.action_calculate) {
-            ArrayList<HashMap<String,Object>> items =new ArrayList<HashMap<String,Object>>();
-            final PackageManager pm = getActivity().getPackageManager();
-            List<PackageInfo> packs = pm.getInstalledPackages(0);
-            for (PackageInfo pi : packs) {
-                if( pi.packageName.toString().toLowerCase().contains("calcul")){
-                    HashMap<String, Object> map = new HashMap<String, Object>();
-                    map.put("appName", pi.applicationInfo.loadLabel(pm));
-                    map.put("packageName", pi.packageName);
-                    items.add(map);
-                }
+            ExchangeRatesAdapter adapter = (ExchangeRatesAdapter)mRecyclerView.getAdapter();
+            int position = mPosition;
+            if(position != RecyclerView.NO_POSITION) {
+                adapter.getCursor().moveToPosition(position);
+                // Read date from cursor
+                long dateInMillis = adapter.getCursor().getLong(ExchangeRatesFragment.COL_RATE_DATE);
+                double rateRaw = adapter.getCursor().getDouble(Utility.getPreferredCurrencyColumnId(Utility.getPreferredCurrency(getActivity())));
+
+                Bundle b = new Bundle();
+                b.putString("METAL_ID", Utility.getCurrentMetalId(getActivity()));
+                b.putDouble("CURRENT_VALUE", rateRaw);
+                b.putLong("CURRENT_DATE", dateInMillis);
+
+
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                CalculatorDialogFragment myDialogFragment = new CalculatorDialogFragment();
+                myDialogFragment.setArguments(b);
+                //myDialogFragment.getDialog().setTitle(getResources().getString(R.string.calculator_fragment_name));
+                myDialogFragment.show(fm, "dialog_fragment");
             }
-            if(items.size()>=1){
-                String packageName = (String) items.get(0).get("packageName");
-                Intent i = pm.getLaunchIntentForPackage(packageName);
-                if (i != null)
-                    startActivity(i);
-            }
-            else{
-                // Application not found
-            }
+
+//            ArrayList<HashMap<String,Object>> items =new ArrayList<HashMap<String,Object>>();
+//            final PackageManager pm = getActivity().getPackageManager();
+//            List<PackageInfo> packs = pm.getInstalledPackages(0);
+//            for (PackageInfo pi : packs) {
+//                if( pi.packageName.toString().toLowerCase().contains("calcul")){
+//                    HashMap<String, Object> map = new HashMap<String, Object>();
+//                    map.put("appName", pi.applicationInfo.loadLabel(pm));
+//                    map.put("packageName", pi.packageName);
+//                    items.add(map);
+//                }
+//            }
+//            if(items.size()>=1){
+//                String packageName = (String) items.get(0).get("packageName");
+//                Intent i = pm.getLaunchIntentForPackage(packageName);
+//                if (i != null)
+//                    startActivity(i);
+//            }
+//            else{
+//                // Application not found
+//            }
+//
+//
+//
 
             return true;
         }

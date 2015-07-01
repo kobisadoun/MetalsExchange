@@ -319,7 +319,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             String showJewishCustomsCurrencyKey = getActivity().getString(R.string.pref_show_jewish_customs_key);
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
             boolean showJewishCustomsCurrency = prefs.getBoolean(showJewishCustomsCurrencyKey,
-                   Boolean.parseBoolean(getActivity().getString(R.string.pref_show_jewish_customs_default)));
+                    Boolean.parseBoolean(getActivity().getString(R.string.pref_show_jewish_customs_default)));
 
             if(Utility.getCurrentMetalId(getActivity()).equals(Utility.SILVER) && showJewishCustomsCurrency){
                 mShekelButtonView.setVisibility(View.VISIBLE);

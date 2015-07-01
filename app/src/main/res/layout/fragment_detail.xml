@@ -30,6 +30,7 @@
                 android:layout_marginTop="@dimen/abc_list_item_padding_horizontal_material"
                 />
             <ImageButton
+                android:visibility="gone"
                 android:layout_gravity="end"
                 android:id="@+id/detail_shekel_button"
                 android:adjustViewBounds="true"
@@ -39,6 +40,7 @@
                 android:src="@drawable/shekel"
                 android:background="#00000000" />
             <ImageButton
+                android:visibility="gone"
                 android:layout_gravity="end"
                 android:id="@+id/detail_pidion_button"
                 android:adjustViewBounds="true"
