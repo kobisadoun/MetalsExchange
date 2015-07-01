@@ -230,7 +230,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabView.setSelected(true);
             }
 
-            tabTextView.setTextSize(14);
+            tabTextView.setTextSize(12);
         }
     }
 

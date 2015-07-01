@@ -102,4 +102,11 @@
     <string name="empty_rates_list_server_down">מידע על שערי מתכות לא זמין.השרת אינו מחזיר נתונים.</string>
     <string name="empty_rates_list_server_error">מידע על שערי מתכות לא זמין.השרת אינו מחזיר נתונים תקינים.אנא בדוק אם יש גרסה חדשה לאפליקציה.</string>
     <string name="empty_rates_list_invalid">מידע על שערי מתכות לא זמין.השאילתה אינה מוכרת על ידי שרת.</string>
+
+    <!-- calculatror -->
+    <string name="calculator_fragment_name">מחשבון</string>
+    <string name="calculator_gold_purity">טוהר זהב</string>
+    <string name="calculator_weight">משקל</string>
+    <string name="calculator_copy_action">העתק</string>
+    <string name="calculator_copy_action_toast">המחיר הועתק</string>
 </resources>

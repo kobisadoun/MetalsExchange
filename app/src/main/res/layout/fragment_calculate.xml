@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             >
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_gravity="start"
                 android:fontFamily="sans-serif"
                 android:id="@+id/detail_day_textview"
@@ -30,7 +30,6 @@
                 android:layout_width="wrap_content"
                 android:textColor="@color/secondary_text"
                 android:textSize="20sp"
-                android:layout_marginBottom="@dimen/abc_list_item_padding_horizontal_material"
                 android:layout_marginTop="@dimen/abc_list_item_padding_horizontal_material"
                 android:text="toady 25 Jun"
                 />
@@ -43,7 +42,7 @@
                 android:orientation="horizontal"
                 >
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:fontFamily="sans-serif-light"
                     android:id="@+id/detail_rate_textview"
                     android:textColor="@color/primary_text"
@@ -51,11 +50,11 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/abc_list_item_padding_horizontal_material"
-                    android:textSize="35sp"
+                    android:textSize="30sp"
                     android:layout_gravity="bottom"
                     />
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:fontFamily="sans-serif-light"
                     android:id="@+id/detail_rate_unit_textview"
                     android:textColor="@color/primary_text"
@@ -92,12 +91,12 @@
         >
 
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:id="@+id/gold_purity_textview"
             android:gravity="center_vertical"
-            android:text="Gold Purity:"/>
+            android:text="@string/calculator_gold_purity"/>
 
         <android.support.v7.widget.AppCompatSpinner
             android:layout_width="wrap_content"
@@ -111,34 +110,36 @@
             app:layout_rowWeight="1"
             />
 
-        <TextView
+        <!--<android.support.v7.widget.AppCompatTextView-->
+            <!--app:layout_columnWeight="1"-->
+            <!--app:layout_rowWeight="1"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="Weight Unit:"-->
+            <!--android:visibility="gone"-->
+            <!--/>-->
+
+
+        <!--<android.support.v7.widget.AppCompatSpinner-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/weight_unit_spinner"-->
+            <!--app:layout_gravity="fill"-->
+            <!--android:drawSelectorOnTop="true"-->
+            <!--style="@android:style/Widget.Holo.Light.Spinner"-->
+            <!--app:layout_columnSpan="1"-->
+            <!--app:layout_columnWeight="1"-->
+            <!--app:layout_rowWeight="1"-->
+            <!--android:visibility="gone"-->
+            <!--/>-->
+
+        <android.support.v7.widget.AppCompatTextView
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:gravity="center_vertical"
-            android:text="Weight Unit:"
+            android:text="@string/calculator_weight"
             />
 
-
-        <android.support.v7.widget.AppCompatSpinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/weight_unit_spinner"
-            app:layout_gravity="fill"
-            android:drawSelectorOnTop="true"
-            style="@android:style/Widget.Holo.Light.Spinner"
-            app:layout_columnSpan="1"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1"
-            />
-
-        <TextView
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1"
-            android:gravity="center_vertical"
-            android:text="Weight:"
-            />
-
-        <EditText
+        <android.support.v7.widget.AppCompatEditText
             android:id="@+id/weight_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -146,21 +147,23 @@
             android:inputType="numberDecimal"
             app:layout_columnSpan="1"
             app:layout_columnWeight="1"
-            app:layout_rowWeight="1"/>
+            app:layout_rowWeight="1"
+            android:width = "200sp"
+            style="@android:style/Widget.Holo.Light.EditText"
+            />
 
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/metal_price_textview"
             android:layout_marginBottom="@dimen/abc_list_item_padding_horizontal_material"
             android:layout_marginTop="@dimen/abc_list_item_padding_horizontal_material"
             android:gravity="center_horizontal"
-            android:textColor="@color/primary_text_default_material_light"
+            android:textColor="@android:color/white"
             app:layout_columnSpan="2"
             app:layout_columnWeight="1"
             app:layout_gravity="fill_horizontal"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:text="1500$"
-            android:textSize="40sp"
+            android:textSize="35sp"
             android:background="@drawable/back"/>
 
 

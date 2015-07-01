@@ -15,6 +15,9 @@
  */
 package com.kobi.metalsexchange.app;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,6 +25,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.ShareActionProvider;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,12 +38,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CalculateFragment extends Fragment {
 
     private static final String LOG_TAG = CalculateFragment.class.getSimpleName();
     private ShareActionProvider mShareActionProvider;
-    private String mExchangeRate;
+    private String mExchangePrice;
 
     private ImageView mIconView;
     private TextView mFriendlyDateView;
@@ -49,7 +54,7 @@ public class CalculateFragment extends Fragment {
     private TextView metalPriceTextview;
     private TextView mGoldPurityTextView;
     private Spinner mGoldPuritySpinner;
-    private Spinner mWeightSpinner;
+//    private Spinner mWeightSpinner;
 
     private String mMetalId;
     private double mMetalPrice;
@@ -108,41 +113,33 @@ public class CalculateFragment extends Fragment {
                     }
                 });
 
-        mWeightSpinner = (Spinner) rootView.findViewById(R.id.weight_unit_spinner);
-        mWeightSpinner.setAdapter(new ArrayAdapter<WeightUnitEnum>(getActivity(), android.R.layout.simple_spinner_dropdown_item, WeightUnitEnum.values()));
-        mWeightSpinner.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-                    public void onItemSelected(
-                            AdapterView<?> parent, View view, int position, long id) {
-                        calculate();
-                    }
-
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
-                });
+//        mWeightSpinner = (Spinner) rootView.findViewById(R.id.weight_unit_spinner);
+//        mWeightSpinner.setAdapter(new ArrayAdapter<WeightUnitEnum>(getActivity(), android.R.layout.simple_spinner_dropdown_item, WeightUnitEnum.values()));
+//        mWeightSpinner.setOnItemSelectedListener(
+//                new AdapterView.OnItemSelectedListener() {
+//                    public void onItemSelected(
+//                            AdapterView<?> parent, View view, int position, long id) {
+//                        calculate();
+//                    }
+//
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//                    }
+//                });
 
 
         mIconView.setImageResource(Utility.getArtResourceForMetal(mMetalId));
         String friendlyDateText = Utility.getFriendlyDayString(getActivity(), mDate);
         mFriendlyDateView.setText(friendlyDateText);
 
-        WeightUnitEnum unitEnum = Utility.isGrams(getActivity()) ? WeightUnitEnum.GRAM : WeightUnitEnum.TROY;
-        ArrayAdapter weightAdapter = (ArrayAdapter) mWeightSpinner.getAdapter();
-        int spinnerPosition = weightAdapter.getPosition(unitEnum);
-        mWeightSpinner.setSelection(spinnerPosition);
+//        WeightUnitEnum unitEnum = Utility.isGrams(getActivity()) ? WeightUnitEnum.GRAM : WeightUnitEnum.TROY;
+//        ArrayAdapter weightAdapter = (ArrayAdapter) mWeightSpinner.getAdapter();
+//        int spinnerPosition = weightAdapter.getPosition(unitEnum);
+//        mWeightSpinner.setSelection(spinnerPosition);
 
 
         String rate = Utility.getFormattedCurrency(mMetalPrice, Utility.getPreferredCurrency(getActivity()), getActivity(), false);
         mRateView.setText(rate);
         mRateUnitView.setText("("+Utility.getWeightName(Utility.isGrams(getActivity()), getActivity())+")");
-
-        String metalName = Utility.getMetalName(mMetalId, getActivity());
-//        mExchangeRate = getActivity().getString(R.string.app_name)+"("+friendlyDateText+" ["+Utility.getWeightName(Utility.isGrams(getActivity()), getActivity())+"])"+":\n"+
-//                "------"+metalName+"----"+"\n"+
-//                rate +"\n"+
-//                otherRate1 +"\n"+
-//                otherRate2 +"\n"+
-//                otherRate3;
 
         // If onCreateOptionsMenu has already happened, we need to update the share intent now.
         if (mShareActionProvider != null) {
@@ -162,13 +159,14 @@ public class CalculateFragment extends Fragment {
     }
 
     private void calculate(){
-        WeightUnitEnum unitEnum = (WeightUnitEnum)mWeightSpinner.getSelectedItem();
+        //WeightUnitEnum unitEnum = (WeightUnitEnum)mWeightSpinner.getSelectedItem();
         double weight = 0;
         try {
             weight = Double.parseDouble(mWeightEditText.getText().toString());
         }
         catch (Exception e){
             metalPriceTextview.setText("");
+            mExchangePrice = "";
             return;
         }
 
@@ -179,19 +177,28 @@ public class CalculateFragment extends Fragment {
         }
 
         double priceResult = mMetalPrice * weight;
-        if(Utility.isGrams(getActivity()) != unitEnum.isGrams()){
-            if(unitEnum.isGrams()){
-                priceResult /= Utility.GRAMS_IN_OUNCE;
-            }
-            else{
-                priceResult *= Utility.GRAMS_IN_OUNCE;
-            }
-        }
+//        if(Utility.isGrams(getActivity()) != unitEnum.isGrams()){
+//            if(unitEnum.isGrams()){
+//                priceResult /= Utility.GRAMS_IN_OUNCE;
+//            }
+//            else{
+//                priceResult *= Utility.GRAMS_IN_OUNCE;
+//            }
+//        }
 
         priceResult *= factor;
-
         String priceString = Utility.getFormattedCurrency(priceResult, Utility.getPreferredCurrency(getActivity()), getActivity(), false);
         metalPriceTextview.setText(priceString);
+
+        //generate the share text
+        String metalName = Utility.getMetalName(mMetalId, getActivity());
+        mExchangePrice = getActivity().getString(R.string.app_name)+"("+mFriendlyDateView.getText()+")"+":\n"+
+                "------"+metalName+"----"+"\n"+
+                getActivity().getString(R.string.calculator_weight)+" ["+Utility.getWeightName(Utility.isGrams(getActivity()), getActivity())+"]" +"\n"+
+                weight+"\n"+
+                "================"+"\n"+
+                priceString+"\n"+
+                "================";
     }
 
 
@@ -207,13 +214,26 @@ public class CalculateFragment extends Fragment {
         mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
 
         // If onLoadFinished happens before this, we can go ahead and set the share intent now.
-        if (mExchangeRate != null) {
+        if (mExchangePrice != null) {
             mShareActionProvider.setShareIntent(createShareExchangeRatesIntent());
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_copy) {
+            String rateNumberRaw = metalPriceTextview.getText().toString().replaceAll("[^0-9,.]", "");
+            // Gets a handle to the clipboard service.
+            ClipboardManager clipboard = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("rate",rateNumberRaw);
+            clipboard.setPrimaryClip(clip);
+
+            Toast toast = Toast.makeText(getActivity().getBaseContext(), getString(R.string.copy_to_clipboard_toast, rateNumberRaw),
+                    Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.show();
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -221,7 +241,7 @@ public class CalculateFragment extends Fragment {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, mExchangeRate);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, mExchangePrice);
         return shareIntent;
     }
 
@@ -233,7 +253,7 @@ public class CalculateFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putInt("mGoldPuritySpinner_postion", mGoldPuritySpinner.getSelectedItemPosition());
-        outState.putInt("mWeightSpinner_postion", mWeightSpinner.getSelectedItemPosition());
+//        outState.putInt("mWeightSpinner_postion", mWeightSpinner.getSelectedItemPosition());
         super.onSaveInstanceState(outState);
     }
 
@@ -243,9 +263,9 @@ public class CalculateFragment extends Fragment {
             if (mGoldPuritySpinner != null) {
                 mGoldPuritySpinner.setSelection(savedInstanceState.getInt("mGoldPuritySpinner_postion"));
             }
-            if (mWeightSpinner != null) {
-                mWeightSpinner.setSelection(savedInstanceState.getInt("mWeightSpinner_postion"));
-            }
+//            if (mWeightSpinner != null) {
+//                mWeightSpinner.setSelection(savedInstanceState.getInt("mWeightSpinner_postion"));
+//            }
         }
         super.onViewStateRestored(savedInstanceState);
     }

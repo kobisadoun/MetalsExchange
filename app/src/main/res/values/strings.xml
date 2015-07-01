@@ -147,4 +147,13 @@
     <string name="empty_rates_list_server_down">No rates information available. The server is not returning data.</string>
     <string name="empty_rates_list_server_error">No rates information available. The server is not returning valid data. Please check for an updated version of \'Metals Exchange\'.</string>
     <string name="empty_rates_list_invalid">No rates information available. The query is not recognized by the rates server.</string>
+
+
+
+    <!-- calculatror -->
+    <string name="calculator_fragment_name">Calculator</string>
+    <string name="calculator_gold_purity">Gold Purity</string>
+    <string name="calculator_weight">Weight</string>
+    <string name="calculator_copy_action">Copy</string>
+    <string name="calculator_copy_action_toast">Price copied</string>
 </resources>

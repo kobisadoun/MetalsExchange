@@ -43,7 +43,7 @@
         </activity>
         <activity
             android:name=".CalculateActivity"
-            android:label="@string/title_activity_detail"
+            android:label="@string/calculator_fragment_name"
             android:theme="@style/AppTheme.Details"
             android:parentActivityName=".MainActivity" >
             <meta-data

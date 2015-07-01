@@ -7,4 +7,10 @@
         app:showAsAction="always"
         app:actionProviderClass="android.support.v7.widget.ShareActionProvider" />
 
+    <item
+        android:id="@+id/menu_copy"
+        android:title="@string/calculator_copy_action"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_content_copy"/>
+
 </menu>

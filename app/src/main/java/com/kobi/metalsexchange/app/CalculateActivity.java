@@ -38,7 +38,7 @@ public class CalculateActivity extends AppCompatActivity {
         double currentPrice  = arguments.getDouble("CURRENT_VALUE");
         long currentDate  = arguments.getLong("CURRENT_DATE");
 
-        setTitle(Utility.getMetalName(metalId, this));
+        setTitle(getResources().getString(R.string.calculator_fragment_name));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(Utility.getIconResourceForMetal(metalId));
         if (savedInstanceState == null) {

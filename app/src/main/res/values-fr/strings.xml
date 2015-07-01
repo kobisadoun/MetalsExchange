@@ -97,4 +97,11 @@
     <string name="empty_rates_list_server_down">Information sur les prix des métaux non disponibles. Le serveur ne retourne pas les données.</string>
     <string name="empty_rates_list_server_error">Information subler les prix des métaux non disponis. Le serveur ne retourne pas de données valides. S\'il vous plaît vérifier la version mise à jour \'Les Prix Des Métaux\'.</string>
     <string name="empty_rates_list_invalid">Information sur les prix des métaux non disponibles. La requête n\'est pas reconnue par le serveur.</string>
+
+    <!-- calculatror -->
+    <string name="calculator_fragment_name">Calculatrice</string>
+    <string name="calculator_gold_purity">Pureté de l’or</string>
+    <string name="calculator_weight">Poids</string>
+    <string name="calculator_copy_action">Copier</string>
+    <string name="calculator_copy_action_toast">Price copié</string>
 </resources>
