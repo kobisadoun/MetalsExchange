@@ -199,8 +199,8 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
 
             @Override
             public void onRefreshCurrent() {
-                mSwipeRefreshLayout.setRefreshing(true);
                 if(Utility.isNetworkAvailable(getActivity())) {
+                    mSwipeRefreshLayout.setRefreshing(true);
                     MetalsExchangeSyncAdapter.syncImmediately(getActivity(), true);
                 }
             }

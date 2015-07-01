@@ -21,6 +21,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.text.format.Time;
+import android.widget.Toast;
 
 import com.kobi.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
 
@@ -305,10 +306,10 @@ public class Utility {
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
-//        if(activeNetwork == null || !activeNetwork.isConnected() || !activeNetwork.isAvailable()){
-//            Toast.makeText(getActivity(), getResources().getString(R.string.error_no_internet_connection), Toast.LENGTH_LONG).show();
-//            return false;
-//        }
+        if(activeNetwork == null || !activeNetwork.isConnected() || !activeNetwork.isAvailable()){
+            Toast.makeText(c, c.getResources().getString(R.string.error_no_internet_connection), Toast.LENGTH_LONG).show();
+            return false;
+        }
 
         return activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
