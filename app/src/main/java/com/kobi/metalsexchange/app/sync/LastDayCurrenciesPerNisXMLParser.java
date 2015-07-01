@@ -2,8 +2,11 @@ package com.kobi.metalsexchange.app.sync;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.kobi.metalsexchange.app.R;
 import com.kobi.metalsexchange.app.Utility;
 
 import org.w3c.dom.Document;
@@ -109,18 +112,26 @@ public class LastDayCurrenciesPerNisXMLParser {
         } catch (IOException e) {
             Log.e(LOG_TAG, "Error ", e);
             Utility.setRatesStatus(context, MetalsExchangeSyncAdapter.RATES_STATUS_SERVER_DOWN);
+            Handler mainHandler = new Handler(context.getMainLooper());
+            mainHandler.post(new Runnable() {
+
+                @Override
+                public void run() {
+                    Toast.makeText(context, context.getResources().getString(R.string.error_no_response_from_server), Toast.LENGTH_LONG).show();
+                }
+            });
         }
         catch (Exception e) {
             Log.e(LOG_TAG, "Error ", e);
             Utility.setRatesStatus(context, MetalsExchangeSyncAdapter.RATES_STATUS_SERVER_INVALID);
-//            Handler mainHandler = new Handler(getContext().getMainLooper());
-//            mainHandler.post(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_server_response_not_valid), Toast.LENGTH_LONG).show();
-//                }
-//            });
+            Handler mainHandler = new Handler(context.getMainLooper());
+            mainHandler.post(new Runnable() {
+
+                @Override
+                public void run() {
+                    Toast.makeText(context, context.getResources().getString(R.string.error_server_response_not_valid), Toast.LENGTH_LONG).show();
+                }
+            });
         }finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();

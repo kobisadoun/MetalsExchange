@@ -21,12 +21,14 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.IntDef;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.text.format.Time;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.kobi.metalsexchange.app.MainActivity;
 import com.kobi.metalsexchange.app.R;
@@ -151,6 +153,14 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             if (buffer.toString().isEmpty()) {
                 // Stream was empty.  No point in parsing.
                 Utility.setRatesStatus(getContext(), RATES_STATUS_SERVER_DOWN);
+                Handler mainHandler = new Handler(getContext().getMainLooper());
+                mainHandler.post(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_no_response_from_server), Toast.LENGTH_LONG).show();
+                    }
+                });
                 return;
             }
             ratesStr = buffer.toString();
@@ -164,18 +174,26 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         } catch (IOException e) {
             Log.e(LOG_TAG, "Error ", e);
             Utility.setRatesStatus(getContext(), RATES_STATUS_SERVER_DOWN);
+            Handler mainHandler = new Handler(getContext().getMainLooper());
+            mainHandler.post(new Runnable() {
+
+                @Override
+                public void run() {
+                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_no_response_from_server), Toast.LENGTH_LONG).show();
+                }
+            });
         }
         catch (Exception e) {
             Log.e(LOG_TAG, "Error ", e);
             Utility.setRatesStatus(getContext(), RATES_STATUS_SERVER_INVALID);
-//            Handler mainHandler = new Handler(getContext().getMainLooper());
-//            mainHandler.post(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_server_response_not_valid), Toast.LENGTH_LONG).show();
-//                }
-//            });
+            Handler mainHandler = new Handler(getContext().getMainLooper());
+            mainHandler.post(new Runnable() {
+
+                @Override
+                public void run() {
+                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_server_response_not_valid), Toast.LENGTH_LONG).show();
+                }
+            });
         }finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
