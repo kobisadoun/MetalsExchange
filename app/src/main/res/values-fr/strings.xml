@@ -13,8 +13,6 @@
     <string name="PLATINUM">Platine</string>
     <string name="PALLADIUM">Palladium</string>
 
-    <string name="pref_main_currency_default">eur</string>
-
     <!--
          By convention, "action" denotes that this String will be used as the label for an Action,
          typically from the action bar.  The ActionBar is limited real estate, so shorter is better.
@@ -31,7 +29,7 @@
     <string name="title_activity_settings">Paramètres</string>
 
     <!-- Strings related to Notification Enabled preference -->
-    <string name="pref_enable_notifications_label">Notification du prix des métaux</string>
+    <string name="pref_enable_notifications_label">Notification</string>
 
     <string name="pref_enable_notifications_true">Activé</string>
     <string name="pref_enable_notifications_false">Pas activé</string>

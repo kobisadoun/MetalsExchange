@@ -79,10 +79,13 @@ public class CalculateFragment extends Fragment {
         if (id == R.id.menu_copy) {
             // Gets a handle to the clipboard service.
             ClipboardManager clipboard = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("rate",calculateFragmentViewHelper.getPriceResult()+"");
+
+            String price = Utility.getFormattedCurrency(calculateFragmentViewHelper.getPriceResult(), Utility.getPreferredCurrency(getActivity()), getActivity(), false);
+
+            ClipData clip = ClipData.newPlainText("rate",price);
             clipboard.setPrimaryClip(clip);
 
-            Toast toast = Toast.makeText(getActivity().getBaseContext(), getString(R.string.copy_to_clipboard_toast, calculateFragmentViewHelper.getPriceResult()),
+            Toast toast = Toast.makeText(getActivity().getBaseContext(), getString(R.string.copy_to_clipboard_toast, price),
                     Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER,0,0);
             toast.show();
