@@ -101,7 +101,9 @@
     <!-- calculatror -->
     <string name="calculator_fragment_name">Calculatrice</string>
     <string name="calculator_gold_purity">Pureté de l’or</string>
-    <string name="calculator_weight">Poids</string>
+    <string name="calculator_weight">Poids(g)</string>
+    <string name="calculator_weight_gram">Poids(g)</string>
+    <string name="calculator_weight_ounce">Poids(oz t)</string>
     <string name="calculator_copy_action">Copier</string>
     <string name="calculator_copy_action_toast">Price copié</string>
 </resources>

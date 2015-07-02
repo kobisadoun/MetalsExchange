@@ -153,7 +153,8 @@
     <!-- calculatror -->
     <string name="calculator_fragment_name">Calculator</string>
     <string name="calculator_gold_purity">Gold Purity</string>
-    <string name="calculator_weight">Weight</string>
+    <string name="calculator_weight_gram">Weight(g.)</string>
+    <string name="calculator_weight_ounce">Weight(oz t)</string>
     <string name="calculator_copy_action">Copy</string>
     <string name="calculator_copy_action_toast">Price copied</string>
 </resources>

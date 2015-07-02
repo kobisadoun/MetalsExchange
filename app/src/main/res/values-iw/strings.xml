@@ -107,6 +107,8 @@
     <string name="calculator_fragment_name">מחשבון</string>
     <string name="calculator_gold_purity">טוהר זהב</string>
     <string name="calculator_weight">משקל</string>
+    <string name="calculator_weight_gram">משקל(גרם)</string>
+    <string name="calculator_weight_ounce">משקל(אונקיה)</string>
     <string name="calculator_copy_action">העתק</string>
     <string name="calculator_copy_action_toast">המחיר הועתק</string>
 </resources>

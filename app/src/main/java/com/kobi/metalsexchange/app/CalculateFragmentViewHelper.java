@@ -37,6 +37,7 @@ public class CalculateFragmentViewHelper  {
     private TextView mRateView;
     private TextView mRateUnitView;
     private EditText mWeightEditText;
+    private TextView mWeightTextView;
     private TextView metalPriceTextview;
     private TextView mGoldPurityTextView;
     private Spinner mGoldPuritySpinner;
@@ -60,6 +61,7 @@ public class CalculateFragmentViewHelper  {
         metalPriceTextview = (TextView) rootView.findViewById(R.id.metal_price_textview);
         mRateUnitView = (TextView) rootView.findViewById(R.id.detail_rate_unit_textview);
         mWeightEditText = (EditText) rootView.findViewById(R.id.weight_textview);
+        mWeightTextView = (TextView) rootView.findViewById(R.id.weight_label);
         mWeightEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -118,8 +120,15 @@ public class CalculateFragmentViewHelper  {
         String rate = Utility.getFormattedCurrency(mMetalPrice, Utility.getPreferredCurrency(context),context, false);
         mRateView.setText(rate);
         mRateUnitView.setText("("+Utility.getWeightName(Utility.isGrams(context), context)+")");
+        if(Utility.isGrams(context)){
+            mWeightTextView.setText(context.getResources().getString(R.string.calculator_weight_gram));
+        }
+        else{
+            mWeightTextView.setText(context.getResources().getString(R.string.calculator_weight_ounce));
+        }
 
-        if(mMetalId.equals(Utility.GOLD)){
+
+        if (mMetalId.equals(Utility.GOLD)){
             mGoldPurityTextView.setVisibility(View.VISIBLE);
             mGoldPuritySpinner.setVisibility(View.VISIBLE);
         }

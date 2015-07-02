@@ -135,10 +135,11 @@
             <!--/>-->
 
         <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/weight_label"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:gravity="center_vertical"
-            android:text="@string/calculator_weight"
+            android:text="@string/calculator_weight_gram"
             />
 
         <android.support.v7.widget.AppCompatEditText
