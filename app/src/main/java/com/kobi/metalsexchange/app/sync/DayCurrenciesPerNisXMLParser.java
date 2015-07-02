@@ -2,11 +2,8 @@ package com.kobi.metalsexchange.app.sync;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.kobi.metalsexchange.app.R;
 import com.kobi.metalsexchange.app.Utility;
 
 import org.w3c.dom.Document;
@@ -29,8 +26,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class LastDayCurrenciesPerNisXMLParser {
-    public final String LOG_TAG = LastDayCurrenciesPerNisXMLParser.class.getSimpleName();
+public class DayCurrenciesPerNisXMLParser {
+    public final String LOG_TAG = DayCurrenciesPerNisXMLParser.class.getSimpleName();
 	// XML node keys
 	static final String KEY_CURRENCY = "CURRENCY";
     static final String KEY_CURRENCYCODE = "CURRENCYCODE";
@@ -38,64 +35,72 @@ public class LastDayCurrenciesPerNisXMLParser {
 	static final String KEY_CURRENCIES = "CURRENCIES";
 	static final String KEY_LAST_UPDATE = "LAST_UPDATE";
 
-    private String lastUpdate = "";
+    private String dateString;
     private Context context;
 
-    private HashMap<String, Double> rawValuesMap = new HashMap<String, Double>();
-	public LastDayCurrenciesPerNisXMLParser(Context context){
+    private HashMap<String, Double> rawValuesMap = new HashMap<>();
+    public DayCurrenciesPerNisXMLParser(Context context, String dateArg){
         this.context = context;
-		String xml = getXmlFromUrl(); // getting XML
-        if(xml != null && !xml.isEmpty()) {
+        String xml = getXmlFromUrl(dateArg); // getting XML
+        if(!xml.isEmpty()) {
             Document doc = getDomElement(xml); // getting DOM element
+            if(doc != null){
+                NodeList n = doc.getElementsByTagName(KEY_CURRENCIES);
+                // looping through all item nodes <item>
+                for (int i = 0; i < n.getLength(); i++) {
+                    // creating new HashMap
+                    Element e = (Element) n.item(i);
+                    dateString = getValue(e, KEY_LAST_UPDATE);
+                    if (dateString == null || dateString.isEmpty()) {
+                        //no currencies for date
+                        return;
+                    }
+                }
 
-
-            NodeList n = doc.getElementsByTagName(KEY_CURRENCIES);
-            // looping through all item nodes <item>
-            for (int i = 0; i < n.getLength(); i++) {
-                // creating new HashMap
-                Element e = (Element) n.item(i);
-                lastUpdate = getValue(e, KEY_LAST_UPDATE);
-            }
-
-            NodeList nl = doc.getElementsByTagName(KEY_CURRENCY);
-            // looping through all item nodes <item>
-            for (int i = 0; i < nl.getLength(); i++) {
-                // creating new HashMap
-                Element e = (Element) nl.item(i);
-                // adding each child node to HashMap key => value
-                rawValuesMap.put(getValue(e, KEY_CURRENCYCODE), Double.parseDouble(getValue(e, KEY_RATE)));
+                NodeList nl = doc.getElementsByTagName(KEY_CURRENCY);
+                if (nl != null) {
+                    // looping through all item nodes <item>
+                    for (int i = 0; i < nl.getLength(); i++) {
+                        // creating new HashMap
+                        Element e = (Element) nl.item(i);
+                        // adding each child node to HashMap key => value
+                        rawValuesMap.put(getValue(e, KEY_CURRENCYCODE), Double.parseDouble(getValue(e, KEY_RATE)));
+                    }
+                }
             }
         }
-	}
+    }
 
     public HashMap<String, HashMap<String, Double>> getCurrenciesPerNIS(){
-        HashMap<String, HashMap<String, Double>> map = new HashMap<String, HashMap<String, Double>>();
-        map.put(lastUpdate ,rawValuesMap);
+        if(dateString == null || dateString.isEmpty() ){
+            return null;
+        }
+        HashMap<String, HashMap<String, Double>> map = new HashMap<>();
+        map.put(dateString ,rawValuesMap);
         return map;
     }
 
-    private String getXmlFromUrl() {
-        String xml = null;
+    private String getXmlFromUrl(String dateArg) {
         HttpURLConnection urlConnection = null;
         try {
+            String args = dateArg !=null && !dateArg.isEmpty() ? "?rdate="+dateArg : "";
 
-            BufferedReader reader = null;
-            Uri builtUri = Uri.parse("http://www.boi.org.il/currency.xml").buildUpon().build();
+            Uri builtUri = Uri.parse("http://www.boi.org.il/currency.xml"+args).buildUpon().build();
             URL url = new URL(builtUri.toString());
 
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            urlConnection.setRequestProperty("User-Agent", "Chrome/41.0.2272.89");
+            urlConnection.setRequestProperty("User-Agent", "Chrome/43.0.2357.130");
             urlConnection.connect();
 
             // Read the input stream into a String
             InputStream inputStream = urlConnection.getInputStream();
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             if (inputStream == null) {
                 // Nothing to do.
                 return "";
             }
-            reader = new BufferedReader(new InputStreamReader(inputStream));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
             String line;
             while ((line = reader.readLine()) != null) {
@@ -112,37 +117,37 @@ public class LastDayCurrenciesPerNisXMLParser {
         } catch (IOException e) {
             Log.e(LOG_TAG, "Error ", e);
             Utility.setRatesStatus(context, MetalsExchangeSyncAdapter.RATES_STATUS_SERVER_DOWN);
-            Handler mainHandler = new Handler(context.getMainLooper());
-            mainHandler.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    Toast.makeText(context, context.getResources().getString(R.string.error_no_response_from_server), Toast.LENGTH_LONG).show();
-                }
-            });
+//            Handler mainHandler = new Handler(context.getMainLooper());
+//            mainHandler.post(new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                    Toast.makeText(context, context.getResources().getString(R.string.error_no_response_from_server), Toast.LENGTH_LONG).show();
+//                }
+//            });
         }
         catch (Exception e) {
             Log.e(LOG_TAG, "Error ", e);
             Utility.setRatesStatus(context, MetalsExchangeSyncAdapter.RATES_STATUS_SERVER_INVALID);
-            Handler mainHandler = new Handler(context.getMainLooper());
-            mainHandler.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    Toast.makeText(context, context.getResources().getString(R.string.error_server_response_not_valid), Toast.LENGTH_LONG).show();
-                }
-            });
+//            Handler mainHandler = new Handler(context.getMainLooper());
+//            mainHandler.post(new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                    Toast.makeText(context, context.getResources().getString(R.string.error_server_response_not_valid), Toast.LENGTH_LONG).show();
+//                }
+//            });
         }finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
             }
         }
-        // return XML
-        return xml;
+        return "";
     }
 
     private Document getDomElement(String xml){
-        Document doc = null;
+        xml = xml.replaceAll("[^\\x20-\\x7e]", "");
+        Document doc;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
@@ -166,7 +171,7 @@ public class LastDayCurrenciesPerNisXMLParser {
     /** Getting node value
      * @param elem element
      */
-    private final String getElementValue( Node elem ) {
+    private String getElementValue( Node elem ) {
         Node child;
         if( elem != null){
             if (elem.hasChildNodes()){

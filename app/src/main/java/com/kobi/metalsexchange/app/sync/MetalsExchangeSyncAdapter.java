@@ -49,6 +49,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -89,8 +90,6 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
     public static final int RATES_STATUS_UNKNOWN = 3;
     public static final int RATES_STATUS_INVALID = 4;
 
-    HashMap<String, HashMap<String, Double>> todayCurrenciesMap;
-
     public MetalsExchangeSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
     }
@@ -99,14 +98,6 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
         Log.d(LOG_TAG, "Starting sync");
 
-        //currencies conversion
-        LastDayCurrenciesPerNisXMLParser lastDayCurrenciesXMLParser = new LastDayCurrenciesPerNisXMLParser(getContext());
-        todayCurrenciesMap = lastDayCurrenciesXMLParser.getCurrenciesPerNIS();
-
-        if(todayCurrenciesMap.values().iterator().next().isEmpty()){
-            return;//
-        }
-
         if(extras.getBoolean("CURRENT")){//Only last price
             performSync(true);
         }
@@ -114,6 +105,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             performSync(false);
             performSync(true);
         }
+        Utility.setRatesStatus(getContext(), RATES_STATUS_OK);
     }
 
     private void performSync(boolean current){
@@ -121,8 +113,6 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         // so that they can be closed in the finally block.
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
-
-        String ratesStr = null;
 
         try {
             String urlSite = "http://www.kitco.com/gold.londonfix.html";
@@ -134,12 +124,12 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             URL url = new URL(builtUri.toString());
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            urlConnection.setRequestProperty("User-Agent", "Chrome/41.0.2272.89");
+            urlConnection.setRequestProperty("User-Agent", "Chrome/43.0.2357.130");
             urlConnection.connect();
 
             // Read the input stream into a String
             InputStream inputStream = urlConnection.getInputStream();
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             if (inputStream == null) {
                 // Nothing to do.
                 return;
@@ -163,13 +153,12 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
                 });
                 return;
             }
-            ratesStr = buffer.toString();
+            String ratesStr = buffer.toString();
             if(current) {
                 getTodayRates(ratesStr);
             }else{
-                getRates(ratesStr);
+                getHistoryRates(ratesStr);
             }
-            Utility.setRatesStatus(getContext(), RATES_STATUS_OK);
             notifyRates();
         } catch (IOException e) {
             Log.e(LOG_TAG, "Error ", e);
@@ -221,7 +210,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             //date value
             String date = values.next().text();
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-            Date convertedDate = new Date();
+            Date convertedDate;
             try{
                 convertedDate = dateFormat.parse(date);
             }
@@ -230,26 +219,30 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             }
             String metalPriceUSD = values.next().text();
             //---------------------------------------------------
-            fillMetalRatesValues(convertedDate, Utility.getMetalIdForTabPosition(metalIdIdx), metalPriceUSD, todayCurrenciesMap.values().iterator().next());
+            SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyyMMdd");
+            String dateStringAsArg = dateFormat1.format(convertedDate);
+
+            DayCurrenciesPerNisXMLParser lastDayCurrenciesXMLParser = new DayCurrenciesPerNisXMLParser(getContext(), dateStringAsArg);
+            HashMap<String, HashMap<String, Double>> currenciesMap = lastDayCurrenciesXMLParser.getCurrenciesPerNIS();
+
+            if(currenciesMap == null){
+                //no currencies yet for last day so we will take the latest available
+                lastDayCurrenciesXMLParser = new DayCurrenciesPerNisXMLParser(getContext(), "");
+                currenciesMap = lastDayCurrenciesXMLParser.getCurrenciesPerNIS();
+            }
+
+            fillMetalRatesValues(convertedDate, Utility.getMetalIdForTabPosition(metalIdIdx), metalPriceUSD, currenciesMap.values().iterator().next());
             metalIdIdx++;
         }
     }
 
-    private void getRates(String ratesStr){
+    private void getHistoryRates(String ratesStr){
 
         //we need to know if the user asked to fetch all values from the beginin of the year
         boolean syncAllDataOfCurrentYear = Utility.syncAllAvailableDataOfThisYear(getContext());
         Utility.resetSyncAllAvailableDataOfThisYear(getContext());
 
         //currencies conversion
-        HashMap<String, HashMap<String, Double>> currenciesMap;
-        if(!syncAllDataOfCurrentYear) {
-            currenciesMap = todayCurrenciesMap;
-        }
-        else{
-            AllDaysCurrenciesPerNisXLSParser allDaysCurrenciesPerNisXLSParser = new AllDaysCurrenciesPerNisXLSParser(getContext());
-            currenciesMap = allDaysCurrenciesPerNisXLSParser.getCurrenciesPerNIS();
-        }
         Document doc = Jsoup.parse(ratesStr);
         Element table = doc.getElementsByTag("table").get(4);
         Iterator<Element> rows = table.select("tr").iterator();
@@ -267,12 +260,26 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             //date value
             String date = values.next().text();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date convertedDate = new Date();
+            Date convertedDate;
             try{
                 convertedDate = dateFormat.parse(date);
             }
             catch (Exception e){
                 continue;
+            }
+            SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyyMMdd");
+            String dateStringAsArg = dateFormat1.format(convertedDate);
+
+            DayCurrenciesPerNisXMLParser lastDayCurrenciesXMLParser = new DayCurrenciesPerNisXMLParser(getContext(), dateStringAsArg);
+            HashMap<String, HashMap<String, Double>> currenciesMap = lastDayCurrenciesXMLParser.getCurrenciesPerNIS();
+            while(currenciesMap == null){
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(convertedDate);
+                cal.add(Calendar.DATE, -1);
+                convertedDate = cal.getTime();
+                dateStringAsArg = dateFormat1.format(convertedDate);
+                lastDayCurrenciesXMLParser = new DayCurrenciesPerNisXMLParser(getContext(), dateStringAsArg);
+                currenciesMap = lastDayCurrenciesXMLParser.getCurrenciesPerNIS();
             }
 
             //Gold
@@ -302,8 +309,9 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             fillMetalRatesValues(convertedDate, Utility.SILVER, silverUSD, map);
             fillMetalRatesValues(convertedDate, Utility.PLATINUM, platinumUSD, map);
             fillMetalRatesValues(convertedDate, Utility.PALLADIUM, palladiumUSD, map);
-            //we break after first row
 
+
+            //we break after first row incase weak refresh
             if(!syncAllDataOfCurrentYear){
                 break;
             }
@@ -330,7 +338,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_USD_RATE, usdVal);
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_GBP_RATE, gbpVal);
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_EUR_RATE, eurVal);
-        Vector<ContentValues> cVVector = new Vector<ContentValues>();
+        Vector<ContentValues> cVVector = new Vector<>();
         cVVector.add(metalRatesValues);
         // Insert the new rate information into the database
         // add to database

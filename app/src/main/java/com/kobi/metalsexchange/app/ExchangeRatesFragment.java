@@ -81,7 +81,7 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
         /**
          * DetailFragmentCallback for when an item has been selected.
          */
-        public void onItemSelected(Uri dateUri);
+        void onItemSelected(Uri dateUri);
     }
 
     public static final String METAL_ID = "METAL_ID";
@@ -283,6 +283,9 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
         if(Utility.isNetworkAvailable(getActivity())) {
             MetalsExchangeSyncAdapter.syncImmediately(getActivity(), false);
         }
+        else {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
@@ -338,7 +341,7 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
     use to determine why they aren't seeing weather.
     */
     private void updateEmptyView() {
-        if ( mExchangeRatesAdapter.getItemCount() == 0 ) {
+        if ( mExchangeRatesAdapter.getItemCount() == 0 &&  getView() != null) {
             TextView tv = (TextView) getView().findViewById(R.id.recyclerview_rates_empty);
             if ( null != tv ) {
                 // if cursor is empty, why? do we have an invalid location
