@@ -25,7 +25,7 @@ import com.kobi.metalsexchange.app.Utility;
  * Manages a local database for metals rate data.
  */
 public class MetalsDbHelper extends SQLiteOpenHelper {
-
+    //tt
     // If you change the database schema, you must increment the database version.
     private static final int DATABASE_VERSION = 2;
 
