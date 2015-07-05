@@ -87,7 +87,7 @@ public class ApplicationContextProvider extends Application {
 
                         switch(countryCode){
                             case "IL":
-                                defaultCurrency = Utility.CURRENCY_NIS;
+                                defaultCurrency = Utility.CURRENCY_ILS;
                                 break;
                             case "GB":
                                 defaultCurrency = Utility.CURRENCY_GBP;
@@ -101,7 +101,7 @@ public class ApplicationContextProvider extends Application {
                         }
 
                         if(countryCode.equalsIgnoreCase("IL")){
-                            defaultCurrency = Utility.CURRENCY_NIS;
+                            defaultCurrency = Utility.CURRENCY_ILS;
                         }
 
                         spe.putString(sContext.getString(R.string.pref_main_currency_key), defaultCurrency);

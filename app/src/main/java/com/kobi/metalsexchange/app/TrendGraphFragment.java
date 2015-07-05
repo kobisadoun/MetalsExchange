@@ -56,7 +56,7 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
     public static final int COL_RATE_ID = 0;
     public static final int COL_RATE_DATE = 1;
     public static final int COL_RATE_METAL_ID = 2;
-    public static final int COL_RATE_NIS_RATE = 3;
+    public static final int COL_RATE_ILS_RATE = 3;
     public static final int COL_RATE_USD_RATE = 4;
     public static final int COL_RATE_GBP_RATE = 5;
     public static final int COL_RATE_EUR_RATE = 6;

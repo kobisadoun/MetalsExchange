@@ -34,7 +34,7 @@ import java.util.Locale;
 
 public class Utility {
 
-    public final static String CURRENCY_NIS = "ILS";
+    public final static String CURRENCY_ILS = "ILS";
     public final static String CURRENCY_USD = "USD";
     public final static String CURRENCY_GBP = "GBP";
     public final static String CURRENCY_EUR = "EUR";
@@ -65,14 +65,27 @@ public class Utility {
 
     public static String getPreferredCurrency(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString(context.getString(R.string.pref_main_currency_key),CURRENCY_USD);
+        String currency = context.getString(R.string.pref_main_currency_key);
+        if(currency.equals("nis")){
+            return CURRENCY_ILS;
+        }
+        else if(currency.equals("usd")){
+            return CURRENCY_USD;
+        }
+        else if(currency.equals("gbp")){
+            return CURRENCY_GBP;
+        }
+        else if(currency.equals("eur")){
+            return CURRENCY_EUR;
+        }
+        return prefs.getString(currency,CURRENCY_USD);
     }
 
 
     public static int getPreferredCurrencyColumnId(String currencyId) {
         switch (currencyId) {
-            case CURRENCY_NIS:
-                return ExchangeRatesFragment.COL_RATE_NIS;
+            case CURRENCY_ILS:
+                return ExchangeRatesFragment.COL_RATE_ILS;
             case CURRENCY_USD:
                 return ExchangeRatesFragment.COL_RATE_USD;
             case CURRENCY_GBP:
@@ -94,15 +107,15 @@ public class Utility {
             case CURRENCY_EGP:
                 return ExchangeRatesFragment.COL_RATE_EGP;
         }
-        return -1;
+        return ExchangeRatesFragment.COL_RATE_USD;
 
     }
 
     public static int getTrendPreferredCurrencyColumnId(String currencyId) {
 
         switch (currencyId) {
-            case CURRENCY_NIS:
-                return TrendGraphFragment.COL_RATE_NIS_RATE;
+            case CURRENCY_ILS:
+                return TrendGraphFragment.COL_RATE_ILS_RATE;
             case CURRENCY_USD:
                 return TrendGraphFragment.COL_RATE_USD_RATE;
             case CURRENCY_GBP:
@@ -319,7 +332,7 @@ public class Utility {
     public static String getFormattedCurrency(Double price, String currencyId, Context context, boolean convertIfNeeded){
         Locale locale = null;
         switch (currencyId) {
-            case CURRENCY_NIS:
+            case CURRENCY_ILS:
                 locale = new Locale("iw","IL");
                 break;
             case CURRENCY_USD:

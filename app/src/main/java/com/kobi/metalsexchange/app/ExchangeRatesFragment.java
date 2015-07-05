@@ -74,7 +74,7 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
     public static final int COL_RATE_ID = 0;
     public static final int COL_RATE_DATE = 1;
     public static final int COL_RATE_METAL_ID = 2;
-    public static final int COL_RATE_NIS = 3;
+    public static final int COL_RATE_ILS = 3;
     public static final int COL_RATE_USD = 4;
     public static final int COL_RATE_GBP = 5;
     public static final int COL_RATE_EUR = 6;

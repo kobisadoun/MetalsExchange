@@ -341,7 +341,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         //the database stores the prices in Grams
         //so we need to covert ounce to grams
         double usdVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_USD, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
-        double nisVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_NIS, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
+        double nisVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_ILS, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
         double gbpVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_GBP, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
         double eurVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_EUR, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
 
@@ -397,7 +397,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         if(currencyCode.equalsIgnoreCase(Utility.CURRENCY_USD)){
             return usd;
         }
-        else if(currencyCode.equalsIgnoreCase(Utility.CURRENCY_NIS)){
+        else if(currencyCode.equalsIgnoreCase(Utility.CURRENCY_ILS)){
             return  usd * nisPerUsdVal;
         }
         else{
@@ -426,7 +426,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
     public static int getPreferredCurrencyColumnId(String currencyId) {
 
         switch (currencyId) {
-            case Utility.CURRENCY_NIS:
+            case Utility.CURRENCY_ILS:
                 return INDEX_ILS_RATE;
             case Utility.CURRENCY_USD:
                 return INDEX_USD_RATE;
@@ -542,7 +542,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         if (cursor.moveToFirst()) {
             newRatesForToday = true;
             // Read rate from cursor
-            String rateNIS = Utility.getFormattedCurrency( cursor.getDouble(getPreferredCurrencyColumnId(Utility.CURRENCY_NIS)), Utility.CURRENCY_NIS, context, true);
+            String rateNIS = Utility.getFormattedCurrency( cursor.getDouble(getPreferredCurrencyColumnId(Utility.CURRENCY_ILS)), Utility.CURRENCY_ILS, context, true);
             String rateUSD = Utility.getFormattedCurrency( cursor.getDouble(getPreferredCurrencyColumnId(Utility.CURRENCY_USD)), Utility.CURRENCY_USD, context, true);
 
             //TODO
