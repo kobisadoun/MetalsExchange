@@ -36,6 +36,6 @@
         android:paddingTop="1dp"
         android:paddingRight="3dp"
         android:paddingEnd="3dp"
-        android:paddingBottom="4dp" />
+        android:paddingBottom="10dp" />
 
 </LinearLayout>
