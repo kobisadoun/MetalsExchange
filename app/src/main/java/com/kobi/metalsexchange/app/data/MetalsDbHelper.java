@@ -39,7 +39,7 @@ public class MetalsDbHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {//tes
         final String SQL_CREATE_METALS_EXCHANGE_RATES_TABLE = "CREATE TABLE " + MetalsContract.MetalsRateEntry.TABLE_NAME + " (" +
                 MetalsContract.MetalsRateEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
 
