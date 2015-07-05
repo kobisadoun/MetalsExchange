@@ -17,7 +17,7 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <!-- empty list -->
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/recyclerview_rates_empty"
         android:text=""
         android:layout_width="match_parent"
@@ -29,5 +29,6 @@
         android:paddingEnd="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         />
 </FrameLayout>
