@@ -65,6 +65,13 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             MetalsContract.MetalsRateEntry.COLUMN_USD_RATE,
             MetalsContract.MetalsRateEntry.COLUMN_GBP_RATE,
             MetalsContract.MetalsRateEntry.COLUMN_EUR_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_CAD_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_DKK_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_NOK_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_SEK_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_CHF_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_JOD_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_EGP_RATE
     };
 
     // These indices are tied to DETAIL_COLUMNS.  If DETAIL_COLUMNS changes, these
@@ -72,10 +79,6 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     public static final int COL_RATE_ID = 0;
     public static final int COL_RATE_DATE = 1;
     public static final int COL_RATE_METAL_ID = 2;
-    public static final int COL_RATE_NIS_RATE = 3;
-    public static final int COL_RATE_USD_RATE = 4;
-    public static final int COL_RATE_GBP_RATE = 5;
-    public static final int COL_RATE_EUR_RATE = 6;
 
     private ImageView mIconView;
     private TextView mFriendlyDateView;
@@ -247,8 +250,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         Uri uri = mUri;
         if (null != uri) {
             long date = MetalsContract.MetalsRateEntry.getDateFromUri(uri);
-            Uri updatedUri = MetalsContract.MetalsRateEntry.buildMetalRatesWithDate(Utility.getCurrentMetalId(getActivity()), date);
-            mUri = updatedUri;
+            mUri = MetalsContract.MetalsRateEntry.buildMetalRatesWithDate(Utility.getCurrentMetalId(getActivity()), date);
             getLoaderManager().restartLoader(DETAIL_LOADER, null, this);
         }
     }
@@ -293,7 +295,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             oneGramPrice = data.getDouble(Utility.getPreferredCurrencyColumnId(preferredCurrency));
 
 
-            List<String> otherCurrencies = new ArrayList(Arrays.asList("nis", "usd", "gbp", "eur"));
+            List<String> otherCurrencies = new ArrayList(Arrays.asList("ILS", "USD", "GBP", "EUR"));
             otherCurrencies.remove(preferredCurrency);
 
             String otherRate1 = getRateForCurrency(data, otherCurrencies.get(0));

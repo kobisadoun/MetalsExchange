@@ -29,7 +29,7 @@
     <string name="title_activity_settings">Paramètres</string>
 
     <!-- Strings related to Notification Enabled preference -->
-    <string name="pref_enable_notifications_label">Notification</string>
+    <string name="pref_enable_notifications_label">Notification du prix des métaux</string>
 
     <string name="pref_enable_notifications_true">Activé</string>
     <string name="pref_enable_notifications_false">Pas activé</string>
@@ -51,7 +51,7 @@
     <string name="pref_main_currency_label">Devise par défaut</string>
 
     <!-- Label for nis option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_nis">Nouveau shekel israélien [₪]</string>
+    <string name="pref_main_currency_label_nis">Shekel israélien [₪]</string>
 
     <!-- Label for usd option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_usd">Dollar américain [$]</string>
@@ -61,6 +61,30 @@
 
     <!-- Label for gbp option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_gbp">British Pound [£]</string>
+
+    <!-- Label for CAD option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_cad">Dollar canadien [$]</string>
+
+    <!-- Label for DKK option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_dkk">Le Danemark Krone [kr]</string>
+
+    <!-- Label for NOK option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_nok">La Norvège Krone [kr]</string>
+
+    <!-- Label for SEK option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_sek">Sweden Krona [kr]</string>
+
+    <!-- Label for CHF option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_chf">Franc suisse [CHF]</string>
+
+    <!-- Label for JOD option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_jod">Le dinar jordanien [د.ا]</string>
+
+    <!-- Label for EGP option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_egp">L\'Égypte Pound [£]</string>
+
+
+
 
     <!-- Language-specific constants -->
     <string name="today">Aujourd\'hui</string>
@@ -90,18 +114,26 @@
     <string name="error_no_response_from_server">Pas de réponse du serveur</string>
     <!-- Empty Rates Database -->
     <string name="empty_rates_list_startup">Chargement des données ...</string>
-    <string name="empty_rates_list">Information sur les prix des métaux non disponibles.</string>
+    <!--<string name="empty_rates_list">Information sur les prix des métaux non disponibles.</string>-->
     <string name="empty_rates_list_no_network">Information sur les prix des métaux non disponibles. Le réseau n\'est pas disponible.</string>
     <string name="empty_rates_list_server_down">Information sur les prix des métaux non disponibles. Le serveur ne retourne pas les données.</string>
     <string name="empty_rates_list_server_error">Information subler les prix des métaux non disponis. Le serveur ne retourne pas de données valides. S\'il vous plaît vérifier la version mise à jour \'Les Prix Des Métaux\'.</string>
     <string name="empty_rates_list_invalid">Information sur les prix des métaux non disponibles. La requête n\'est pas reconnue par le serveur.</string>
 
     <!-- calculatror -->
+
+
     <string name="calculator_fragment_name">Calculatrice</string>
+
     <string name="calculator_gold_purity">Pureté de l’or</string>
+
     <string name="calculator_weight">Poids(g)</string>
+
     <string name="calculator_weight_gram">Poids(g)</string>
+
     <string name="calculator_weight_ounce">Poids(oz t)</string>
+
     <string name="calculator_copy_action">Copier</string>
+
     <string name="calculator_copy_action_toast">Price copié</string>
 </resources>

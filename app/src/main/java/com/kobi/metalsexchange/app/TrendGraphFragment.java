@@ -42,6 +42,13 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
             MetalsContract.MetalsRateEntry.COLUMN_USD_RATE,
             MetalsContract.MetalsRateEntry.COLUMN_GBP_RATE,
             MetalsContract.MetalsRateEntry.COLUMN_EUR_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_CAD_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_DKK_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_NOK_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_SEK_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_CHF_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_JOD_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_EGP_RATE
     };
 
     // These indices are tied to TREND_GRAPH_COLUMNS.  If TREND_GRAPH_COLUMNS changes, these
@@ -53,6 +60,13 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
     public static final int COL_RATE_USD_RATE = 4;
     public static final int COL_RATE_GBP_RATE = 5;
     public static final int COL_RATE_EUR_RATE = 6;
+    public static final int COL_RATE_CAD_RATE = 7;
+    public static final int COL_RATE_DKK_RATE = 8;
+    public static final int COL_RATE_NOK_RATE = 9;
+    public static final int COL_RATE_SEK_RATE = 10;
+    public static final int COL_RATE_CHF_RATE = 11;
+    public static final int COL_RATE_JOD_RATE = 12;
+    public static final int COL_RATE_EGP_RATE = 13;
 
     //private ImageView mIconView;
     private LineChart mChart;
@@ -145,8 +159,8 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
         if (cursor != null) {
             int xAxisIdx = 0;
             int xAxisHighlighted = -1;
-            ArrayList<String> xVals = new ArrayList<String>();
-            ArrayList<Entry> yVals = new ArrayList<Entry>();
+            ArrayList<String> xVals = new ArrayList();
+            ArrayList<Entry> yVals = new ArrayList();
             float maxVal=0;
             float minVal=Float.MAX_VALUE;
             while (cursor.moveToNext()) {
@@ -192,7 +206,7 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
             // set1.setShader(new LinearGradient(0, 0, 0, mChart.getHeight(),
             // Color.BLACK, Color.WHITE, Shader.TileMode.MIRROR));
 
-            ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
+            ArrayList<LineDataSet> dataSets = new ArrayList();
             dataSets.add(set1); // add the datasets
 
             // create a data object with the datasets

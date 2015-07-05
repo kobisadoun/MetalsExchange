@@ -34,10 +34,17 @@ import java.util.Locale;
 
 public class Utility {
 
-    public final static String CURRENCY_NIS = "nis";
-    public final static String CURRENCY_USD = "usd";
-    public final static String CURRENCY_GBP = "gbp";
-    public final static String CURRENCY_EUR = "eur";
+    public final static String CURRENCY_NIS = "ILS";
+    public final static String CURRENCY_USD = "USD";
+    public final static String CURRENCY_GBP = "GBP";
+    public final static String CURRENCY_EUR = "EUR";
+    public final static String CURRENCY_CAD = "CAD";
+    public final static String CURRENCY_DKK = "DKK";
+    public final static String CURRENCY_NOK = "NOK";
+    public final static String CURRENCY_SEK = "SEK";
+    public final static String CURRENCY_CHF = "CHF";
+    public final static String CURRENCY_JOD = "JOD";
+    public final static String CURRENCY_EGP = "EGP";
 
 
     public final static String GOLD  = "gold";
@@ -58,34 +65,67 @@ public class Utility {
 
     public static String getPreferredCurrency(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString(context.getString(R.string.pref_main_currency_key),context.getString(R.string.pref_main_currency_default));
+        return prefs.getString(context.getString(R.string.pref_main_currency_key),CURRENCY_USD);
     }
 
 
     public static int getPreferredCurrencyColumnId(String currencyId) {
-        if(currencyId.equals(CURRENCY_NIS)){
-            return ExchangeRatesFragment.COL_RATE_NIS;
-        } else if(currencyId.equals(CURRENCY_USD)){
-            return ExchangeRatesFragment.COL_RATE_USD;
-        }else if(currencyId.equals(CURRENCY_GBP)){
-            return ExchangeRatesFragment.COL_RATE_GBP;
-        }else if(currencyId.equals(CURRENCY_EUR)){
-            return ExchangeRatesFragment.COL_RATE_EUR;
+        switch (currencyId) {
+            case CURRENCY_NIS:
+                return ExchangeRatesFragment.COL_RATE_NIS;
+            case CURRENCY_USD:
+                return ExchangeRatesFragment.COL_RATE_USD;
+            case CURRENCY_GBP:
+                return ExchangeRatesFragment.COL_RATE_GBP;
+            case CURRENCY_EUR:
+                return ExchangeRatesFragment.COL_RATE_EUR;
+            case CURRENCY_CAD:
+                return ExchangeRatesFragment.COL_RATE_CAD;
+            case CURRENCY_DKK:
+                return ExchangeRatesFragment.COL_RATE_DKK;
+            case CURRENCY_NOK:
+                return ExchangeRatesFragment.COL_RATE_NOK;
+            case CURRENCY_SEK:
+                return ExchangeRatesFragment.COL_RATE_SEK;
+            case CURRENCY_CHF:
+                return ExchangeRatesFragment.COL_RATE_CHF;
+            case CURRENCY_JOD:
+                return ExchangeRatesFragment.COL_RATE_JOD;
+            case CURRENCY_EGP:
+                return ExchangeRatesFragment.COL_RATE_EGP;
         }
-        return ExchangeRatesFragment.COL_RATE_NIS;
+        return -1;
+
     }
 
     public static int getTrendPreferredCurrencyColumnId(String currencyId) {
-        if(currencyId.equals(CURRENCY_NIS)){
-            return TrendGraphFragment.COL_RATE_NIS_RATE;
-        } else if(currencyId.equals(CURRENCY_USD)){
-            return TrendGraphFragment.COL_RATE_USD_RATE;
-        }else if(currencyId.equals(CURRENCY_GBP)){
-            return TrendGraphFragment.COL_RATE_GBP_RATE;
-        }else if(currencyId.equals(CURRENCY_EUR)){
-            return TrendGraphFragment.COL_RATE_EUR_RATE;
+
+        switch (currencyId) {
+            case CURRENCY_NIS:
+                return TrendGraphFragment.COL_RATE_NIS_RATE;
+            case CURRENCY_USD:
+                return TrendGraphFragment.COL_RATE_USD_RATE;
+            case CURRENCY_GBP:
+                return TrendGraphFragment.COL_RATE_GBP_RATE;
+            case CURRENCY_EUR:
+                return TrendGraphFragment.COL_RATE_EUR_RATE;
+            case CURRENCY_CAD:
+                return TrendGraphFragment.COL_RATE_CAD_RATE;
+            case CURRENCY_DKK:
+                return TrendGraphFragment.COL_RATE_DKK_RATE;
+            case CURRENCY_NOK:
+                return TrendGraphFragment.COL_RATE_NOK_RATE;
+            case CURRENCY_SEK:
+                return TrendGraphFragment.COL_RATE_SEK_RATE;
+            case CURRENCY_CHF:
+                return TrendGraphFragment.COL_RATE_CHF_RATE;
+            case CURRENCY_JOD:
+                return TrendGraphFragment.COL_RATE_JOD_RATE;
+            case CURRENCY_EGP:
+                return TrendGraphFragment.COL_RATE_EGP_RATE;
+
         }
-        return TrendGraphFragment.COL_RATE_NIS_RATE;
+        return -1;
     }
 
     public static boolean isGrams(Context context) {
@@ -181,27 +221,30 @@ public class Utility {
     }
 
     public static int getTabIdxForMetal(String metalId) {
-        if(metalId.equals(GOLD)){
-            return GOLD_IDX;
-        } else if(metalId.equals(SILVER)){
-            return SILVER_IDX;
-        }else if(metalId.equals(PLATINUM)){
-            return PLATINUM_IDX;
-        }else if(metalId.equals(PALLADIUM)) {
-            return PALLADIUM_IDX;
+
+        switch (metalId) {
+            case GOLD:
+                return GOLD_IDX;
+            case SILVER:
+                return SILVER_IDX;
+            case PLATINUM:
+                return PLATINUM_IDX;
+            case PALLADIUM:
+                return PALLADIUM_IDX;
         }
         return -1;
     }
 
     public static int getArtResourceForMetal(String metalId) {
-        if(metalId.equals(GOLD)){
-            return R.drawable.gold;
-        } else if(metalId.equals(SILVER)){
-            return R.drawable.silver;
-        }else if(metalId.equals(PLATINUM)){
-            return R.drawable.platinum;
-        }else if(metalId.equals(PALLADIUM)) {
-            return R.drawable.palladium;
+        switch (metalId) {
+            case GOLD:
+                return R.drawable.gold;
+            case SILVER:
+                return R.drawable.silver;
+            case PLATINUM:
+                return R.drawable.platinum;
+            case PALLADIUM:
+                return R.drawable.palladium;
         }
         return -1;
     }
@@ -215,27 +258,29 @@ public class Utility {
 
 
     public static String getMetalName(String metalId, Context context) {
-        if(metalId.equals(GOLD)){
-            return context.getString(R.string.GOLD);
-        } else if(metalId.equals(SILVER)){
-            return context.getString(R.string.SILVER);
-        }else if(metalId.equals(PLATINUM)){
-            return context.getString(R.string.PLATINUM);
-        }else if(metalId.equals(PALLADIUM)) {
-            return context.getString(R.string.PALLADIUM);
+        switch (metalId) {
+            case GOLD:
+                return context.getString(R.string.GOLD);
+            case SILVER:
+                return context.getString(R.string.SILVER);
+            case PLATINUM:
+                return context.getString(R.string.PLATINUM);
+            case PALLADIUM:
+                return context.getString(R.string.PALLADIUM);
         }
         return "";
     }
 
     public static int getTabPositionForMetalId(String metalId){
-        if(metalId.equals(GOLD)){
-            return 0;
-        } else if(metalId.equals(SILVER)){
-            return 1;
-        }else if(metalId.equals(PLATINUM)){
-            return 2;
-        }else if(metalId.equals(PALLADIUM)) {
-            return 3;
+        switch (metalId) {
+            case GOLD:
+                return 0;
+            case SILVER:
+                return 1;
+            case PLATINUM:
+                return 2;
+            case PALLADIUM:
+                return 3;
         }
         return 0;
     }
@@ -258,29 +303,57 @@ public class Utility {
 
 
     public static int getIconResourceForMetal(String metalId) {
-        if(metalId.equals(GOLD)){
-            return R.drawable.ic_gold;
-        } else if(metalId.equals(SILVER)){
-            return R.drawable.ic_silver;
-        }else if(metalId.equals(PLATINUM)){
-            return R.drawable.ic_platinum;
-        }else if(metalId.equals(PALLADIUM)) {
-            return R.drawable.ic_palladium;
+        switch (metalId) {
+            case GOLD:
+                return R.drawable.ic_gold;
+            case SILVER:
+                return R.drawable.ic_silver;
+            case PLATINUM:
+                return R.drawable.ic_platinum;
+            case PALLADIUM:
+                return R.drawable.ic_palladium;
         }
         return -1;
     }
 
     public static String getFormattedCurrency(Double price, String currencyId, Context context, boolean convertIfNeeded){
         Locale locale = null;
-        if(currencyId.equals(CURRENCY_NIS)){
-            locale = new Locale("iw","IL");
-        } else if(currencyId.equals(CURRENCY_USD)){
-            locale = Locale.US;
-        }else if(currencyId.equals(CURRENCY_GBP)){
-            locale = Locale.UK;
-        }else if(currencyId.equals(CURRENCY_EUR)){
-            locale = Locale.FRANCE;
+        switch (currencyId) {
+            case CURRENCY_NIS:
+                locale = new Locale("iw","IL");
+                break;
+            case CURRENCY_USD:
+                locale = Locale.US;
+                break;
+            case CURRENCY_GBP:
+                locale = Locale.UK;
+                break;
+            case CURRENCY_EUR:
+                locale = Locale.FRANCE;
+                break;
+            case CURRENCY_CAD:
+                locale = Locale.CANADA;
+                break;
+            case CURRENCY_DKK:
+                locale = new Locale("da","DK");
+                break;
+            case CURRENCY_NOK:
+                locale = new Locale("no","NO");
+                break;
+            case CURRENCY_SEK:
+                locale = new Locale("sv","SE");
+                break;
+            case CURRENCY_CHF:
+                locale = new Locale("de","CH");
+                break;
+            case CURRENCY_JOD:
+                locale = new Locale("ar","JO");
+                break;
+            case CURRENCY_EGP:
+                locale = new Locale("ar","EG");
+                break;
         }
+
         Currency curr = Currency.getInstance(locale);
         if(convertIfNeeded && !isGrams(context)) {
             price *= GRAMS_IN_OUNCE;
@@ -311,8 +384,7 @@ public class Utility {
             return false;
         }
 
-        return activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
+        return activeNetwork.isConnectedOrConnecting();
     }
 
 

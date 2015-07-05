@@ -68,22 +68,42 @@
     <string name="pref_main_currency_label">Default Currency</string>
 
     <!-- Label for nis option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_nis">Israeli New Sheqel [NIS ₪]</string>
+    <string name="pref_main_currency_label_nis">Israel Shekel [₪]</string>
 
     <!-- Label for usd option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_usd">US Dollar [USD $]</string>
+    <string name="pref_main_currency_label_usd">US Dollar [$]</string>
 
     <!-- Label for eur option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_eur">Euro [EUR €]</string>
+    <string name="pref_main_currency_label_eur">Euro [€]</string>
 
     <!-- Label for gbp option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_gbp">British Pound [GBP £]</string>
+    <string name="pref_main_currency_label_gbp">British Pound [£]</string>
+
+    <!-- Label for CAD option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_cad">Canada Dollar [$]</string>
+
+    <!-- Label for DKK option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_dkk">Denmark Krone [kr]</string>
+
+    <!-- Label for NOK option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_nok">Norway Krone [kr]</string>
+
+    <!-- Label for SEK option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_sek">Sweden Krona [kr]</string>
+
+    <!-- Label for CHF option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_chf">Switzerland Franc [CHF]</string>
+
+    <!-- Label for JOD option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_jod">Jordanian dinar [د.ا]</string>
+
+    <!-- Label for EGP option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_egp">Egypt Pound [£]</string>
+
+
 
     <!-- Key name for currency preference in SharedPreferences [CHAR LIMIT=NONE] -->
     <string name="pref_main_currency_key" translatable="false">main_currency</string>
-
-    <string name="pref_main_currency_default" translatable="false">usd</string>
-
 
     <!-- Value in SharedPreferences for nis currency option [CHAR LIMIT=NONE] -->
     <string name="pref_main_currency_nis" translatable="false">nis</string>
@@ -142,20 +162,26 @@
     <string name="error_no_response_from_server">No response from server</string>
     <!-- Empty Rates Database -->
     <string name="empty_rates_list_startup">Loading data...</string>
-    <string name="empty_rates_list">No Rates Information Available</string>
+    <!--<string name="empty_rates_list">No Rates Information Available</string>-->
     <string name="empty_rates_list_no_network">No rates information available. The network is not available.</string>
     <string name="empty_rates_list_server_down">No rates information available. The server is not returning data.</string>
     <string name="empty_rates_list_server_error">No rates information available. The server is not returning valid data. Please check for an updated version of \'Metals Exchange\'.</string>
     <string name="empty_rates_list_invalid">No rates information available. The query is not recognized by the rates server.</string>
 
-
-
     <!-- calculatror -->
+
+
     <string name="calculator_fragment_name">Calculator</string>
+
     <string name="calculator_gold_purity">Gold Purity</string>
+
     <string name="calculator_weight">Weight</string>
+
     <string name="calculator_weight_gram">Weight(g.)</string>
+
     <string name="calculator_weight_ounce">Weight(oz t)</string>
+
     <string name="calculator_copy_action">Copy</string>
+
     <string name="calculator_copy_action_toast">Price copied</string>
 </resources>

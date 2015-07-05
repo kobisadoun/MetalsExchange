@@ -59,18 +59,32 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
             MetalsContract.MetalsRateEntry.COLUMN_ILS_RATE,
             MetalsContract.MetalsRateEntry.COLUMN_USD_RATE,
             MetalsContract.MetalsRateEntry.COLUMN_GBP_RATE,
-            MetalsContract.MetalsRateEntry.COLUMN_EUR_RATE
+            MetalsContract.MetalsRateEntry.COLUMN_EUR_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_CAD_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_DKK_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_NOK_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_SEK_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_CHF_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_JOD_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_EGP_RATE
     };
 
     // These indices are tied to RATES_COLUMNS.  If RATES_COLUMNS changes, these
     // must change.
-    static final int COL_RATE_ID = 0;
-    static final int COL_RATE_DATE = 1;
-    static final int COL_RATE_METAL_ID = 2;
-    static final int COL_RATE_NIS = 3;
-    static final int COL_RATE_USD = 4;
-    static final int COL_RATE_GBP = 5;
-    static final int COL_RATE_EUR = 6;
+    public static final int COL_RATE_ID = 0;
+    public static final int COL_RATE_DATE = 1;
+    public static final int COL_RATE_METAL_ID = 2;
+    public static final int COL_RATE_NIS = 3;
+    public static final int COL_RATE_USD = 4;
+    public static final int COL_RATE_GBP = 5;
+    public static final int COL_RATE_EUR = 6;
+    public static final int COL_RATE_CAD = 7;
+    public static final int COL_RATE_DKK= 8;
+    public static final int COL_RATE_NOK = 9;
+    public static final int COL_RATE_SEK = 10;
+    public static final int COL_RATE_CHF = 11;
+    public static final int COL_RATE_JOD = 12;
+    public static final int COL_RATE_EGP = 13;
 
     /**
      * A callback interface that all activities containing this fragment must
@@ -341,26 +355,26 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
     use to determine why they aren't seeing weather.
     */
     private void updateEmptyView() {
-        if ( mExchangeRatesAdapter.getItemCount() == 0 &&  getView() != null) {
+        if ( mExchangeRatesAdapter.getItemCount() == 0 ) {
             TextView tv = (TextView) getView().findViewById(R.id.recyclerview_rates_empty);
             if ( null != tv ) {
                 // if cursor is empty, why? do we have an invalid location
-
-                int message = R.string.empty_rates_list;
+                //String message =  getActivity().getResources().getString(R.string.empty_rates_list);
+                String message = "";
                 if(Utility.syncAllAvailableDataOfThisYear(getActivity())){//on first launch --> no data
-                    message = R.string.empty_rates_list_startup;
+                    message =  getActivity().getResources().getString(R.string.empty_rates_list_startup);
                 }
                 @MetalsExchangeSyncAdapter.RatesStatus int location = Utility.getRatesStatus(getActivity());
                 switch (location) {
                     case MetalsExchangeSyncAdapter.RATES_STATUS_SERVER_DOWN:
-                        message = R.string.empty_rates_list_server_down;
+                        message =  getActivity().getResources().getString(R.string.empty_rates_list_server_down);
                         break;
                     case MetalsExchangeSyncAdapter.RATES_STATUS_SERVER_INVALID:
-                        message = R.string.empty_rates_list_server_error;
+                        message =  getActivity().getResources().getString(R.string.empty_rates_list_server_error);
                         break;
                     default:
                         if (!Utility.isNetworkAvailable(getActivity()) ) {
-                            message = R.string.empty_rates_list_no_network;
+                            message =  getActivity().getResources().getString(R.string.empty_rates_list_no_network);
                         }
                 }
                 tv.setText(message);

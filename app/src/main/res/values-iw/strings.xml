@@ -57,16 +57,37 @@
     <string name="pref_main_currency_label">מטבע ברירת מחדל</string>
 
     <!-- Label for nis option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_nis">ש"ח [NIS ₪]</string>
+    <string name="pref_main_currency_label_nis">ש"ח [₪]</string>
 
     <!-- Label for usd option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_usd">דולר אמריקאי [USD $]</string>
+    <string name="pref_main_currency_label_usd">דולר אמריקאי [$]</string>
 
     <!-- Label for eur option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_eur">אירו [EUR €]</string>
+    <string name="pref_main_currency_label_eur">אירו [€]</string>
 
     <!-- Label for gbp option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_gbp">פאונד בריטי [GBP £]</string>
+    <string name="pref_main_currency_label_gbp">פאונד בריטי [£]</string>
+
+    <!-- Label for CAD option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_cad">דולר קנדי [$]</string>
+
+    <!-- Label for DKK option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_dkk">כתר דני [kr]</string>
+
+    <!-- Label for NOK option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_nok">כתר נורבגי [kr]</string>
+
+    <!-- Label for SEK option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_sek">כתר שבדי [kr]</string>
+
+    <!-- Label for CHF option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_chf">פרנק שווייצרי [CHF]</string>
+
+    <!-- Label for JOD option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_jod">דינר ירדני [د.ا]</string>
+
+    <!-- Label for EGP option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_egp">פאונד מצרי [£]</string>
 
     <!-- Language-specific constants -->
     <string name="today">היום</string>
@@ -83,7 +104,6 @@
     <string name="pidyon_haben_details">ערך לפי 100 גרם כסף טהור: %1$s\n למחמירים הוסף מס ערך מוסף</string>
     <string name="about_pidyon_haben">מה זה?</string>
 
-    <!--<string name="about">אפליקציה זו נכתבה על ידי קובי סעדון כפרוייקט סיום בקורס פיתוח אפליקציות אנדרואיד</string>-->
     <string name="about">שערי המתכות נלקחו מ <a href="http://www.kitco.com/">KITCO</a></string>
     <string name="about_continue">המשך..</string>
 
@@ -96,18 +116,26 @@
 
     <!-- Empty Rates Database -->
     <string name="empty_rates_list_startup">הנתונים בטעינה...</string>
-    <string name="empty_rates_list">מידע על שערי מתכות לא זמין.</string>
+    <!--<string name="empty_rates_list">מידע על שערי מתכות לא זמין.</string>-->
     <string name="empty_rates_list_no_network">מידע על שערי מתכות לא זמין.הרשת אינה זמינה.</string>
     <string name="empty_rates_list_server_down">מידע על שערי מתכות לא זמין.השרת אינו מחזיר נתונים.</string>
     <string name="empty_rates_list_server_error">מידע על שערי מתכות לא זמין.השרת אינו מחזיר נתונים תקינים.אנא בדוק אם יש גרסה חדשה לאפליקציה.</string>
     <string name="empty_rates_list_invalid">מידע על שערי מתכות לא זמין.השאילתה אינה מוכרת על ידי שרת.</string>
 
     <!-- calculatror -->
+
+
     <string name="calculator_fragment_name">מחשבון</string>
+
     <string name="calculator_gold_purity">טוהר זהב</string>
+
     <string name="calculator_weight">משקל</string>
+
     <string name="calculator_weight_gram">משקל(גרם)</string>
+
     <string name="calculator_weight_ounce">משקל(אונקיה)</string>
+
     <string name="calculator_copy_action">העתק</string>
+
     <string name="calculator_copy_action_toast">המחיר הועתק</string>
 </resources>

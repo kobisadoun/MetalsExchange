@@ -82,10 +82,17 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
 
     // these indices must match the projection
     private static final int INDEX_METAL_ID = 0;
-    private static final int INDEX_NIS_RATE = 1;
+    private static final int INDEX_ILS_RATE = 1;
     private static final int INDEX_USD_RATE = 2;
     private static final int INDEX_GBP_RATE = 3;
     private static final int INDEX_EUR_RATE = 4;
+    private static final int INDEX_CAD_RATE = 7;
+    private static final int INDEX_DKK_RATE = 8;
+    private static final int INDEX_NOK_RATE = 9;
+    private static final int INDEX_SEK_RATE = 10;
+    private static final int INDEX_CHF_RATE = 11;
+    private static final int INDEX_JOD_RATE = 12;
+    private static final int INDEX_EGP_RATE = 13;
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({RATES_STATUS_OK, RATES_STATUS_SERVER_DOWN, RATES_STATUS_SERVER_INVALID, RATES_STATUS_UNKNOWN, RATES_STATUS_INVALID})
@@ -338,6 +345,15 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         double gbpVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_GBP, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
         double eurVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_EUR, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
 
+        double cadVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_CAD, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
+        double dkkVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_DKK, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
+        double nokVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_NOK, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
+        double sekVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_SEK, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
+        double chfVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_CHF, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
+        double jodVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_JOD, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
+        double egpVal = convertDollarPriceToOtherCurrency(Double.parseDouble(metalUSD), Utility.CURRENCY_EGP, currenciesMap)/ Utility.GRAMS_IN_OUNCE;
+
+
 
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_DATE, MetalsContract.normalizeDate(convertedDate.getTime()));
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_METAL_ID, metalQuery);
@@ -345,6 +361,14 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_USD_RATE, usdVal);
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_GBP_RATE, gbpVal);
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_EUR_RATE, eurVal);
+        metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_CAD_RATE, cadVal);
+        metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_DKK_RATE, dkkVal);
+        metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_NOK_RATE, nokVal);
+        metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_SEK_RATE, sekVal);
+        metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_CHF_RATE, chfVal);
+        metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_JOD_RATE, jodVal);
+        metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_EGP_RATE, egpVal);
+
         Vector<ContentValues> cVVector = new Vector<>();
         cVVector.add(metalRatesValues);
         // Insert the new rate information into the database
@@ -369,7 +393,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
     private Double convertDollarPriceToOtherCurrency(double usd, String currencyCode, HashMap<String, Double> currenciesMap){
-        Double nisPerUsdVal = currenciesMap.get(Utility.CURRENCY_USD.toUpperCase());
+        Double nisPerUsdVal = currenciesMap.get(Utility.CURRENCY_USD);
         if(currencyCode.equalsIgnoreCase(Utility.CURRENCY_USD)){
             return usd;
         }
@@ -377,7 +401,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             return  usd * nisPerUsdVal;
         }
         else{
-            return  usd * nisPerUsdVal / currenciesMap.get(currencyCode.toUpperCase()) ;
+            return  usd * nisPerUsdVal / currenciesMap.get(currencyCode) ;
         }
     }
 
@@ -400,17 +424,32 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
 //    }
 
     public static int getPreferredCurrencyColumnId(String currencyId) {
-        if(currencyId.equals(Utility.CURRENCY_NIS)){
-            return INDEX_NIS_RATE;
-        } else if(currencyId.equals(Utility.CURRENCY_USD)){
-            return INDEX_USD_RATE;
-        }else if(currencyId.equals(Utility.CURRENCY_GBP)){
-            return INDEX_GBP_RATE;
-        }else if(currencyId.equals(Utility.CURRENCY_EUR)){
-            return INDEX_EUR_RATE;
-        }
-        return INDEX_NIS_RATE;
 
+        switch (currencyId) {
+            case Utility.CURRENCY_NIS:
+                return INDEX_ILS_RATE;
+            case Utility.CURRENCY_USD:
+                return INDEX_USD_RATE;
+            case Utility.CURRENCY_GBP:
+                return INDEX_GBP_RATE;
+            case Utility.CURRENCY_EUR:
+                return INDEX_EUR_RATE;
+            case Utility.CURRENCY_CAD:
+                return INDEX_CAD_RATE;
+            case Utility.CURRENCY_DKK:
+                return INDEX_DKK_RATE;
+            case Utility.CURRENCY_NOK:
+                return INDEX_NOK_RATE;
+            case Utility.CURRENCY_SEK:
+                return INDEX_SEK_RATE;
+            case Utility.CURRENCY_CHF:
+                return INDEX_CHF_RATE;
+            case Utility.CURRENCY_JOD:
+                return INDEX_JOD_RATE;
+            case Utility.CURRENCY_EGP:
+                return INDEX_EGP_RATE;
+        }
+        return -1;
     }
 
     public static long normalizeDate(long startDate) {
@@ -505,6 +544,9 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             // Read rate from cursor
             String rateNIS = Utility.getFormattedCurrency( cursor.getDouble(getPreferredCurrencyColumnId(Utility.CURRENCY_NIS)), Utility.CURRENCY_NIS, context, true);
             String rateUSD = Utility.getFormattedCurrency( cursor.getDouble(getPreferredCurrencyColumnId(Utility.CURRENCY_USD)), Utility.CURRENCY_USD, context, true);
+
+            //TODO
+
             contentText.append(Utility.getMetalName(metalId, context)+": "+rateNIS+"/"+rateUSD+"\n");
         }
         cursor.close();

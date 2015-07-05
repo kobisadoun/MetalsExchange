@@ -18,6 +18,7 @@ package com.kobi.metalsexchange.app.component;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.SparseArray;
@@ -32,7 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kobi.metalsexchange.app.ExchangeRatesFragmentPagerAdapter;
-import com.kobi.metalsexchange.app.R;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
@@ -215,7 +215,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 lp.weight = 1;
             }
 
-            tabTextView.setText(adapter.getPageTitle(i).toString().toUpperCase());
+            tabTextView.setText(adapter.getPageTitle(i).toString());
             tabIconView.setImageResource(adapter.getPageIcon(i));
             //tabTitleView.setBackgroundColor(getContext().getResources().getColor(R.color.primary));
             //tabTitleView.setBackground(getResources().getDrawable(R.drawable.touch_selector));
@@ -230,7 +230,13 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabView.setSelected(true);
             }
 
-            tabTextView.setTextSize(12);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                tabTextView.setTextSize(14);
+            }
+            else{
+                tabTextView.setTextSize(12);
+            }
+
         }
     }
 
