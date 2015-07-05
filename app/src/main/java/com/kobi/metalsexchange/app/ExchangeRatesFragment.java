@@ -56,7 +56,7 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
             MetalsContract.MetalsRateEntry.TABLE_NAME + "." + MetalsContract.MetalsRateEntry._ID,
             MetalsContract.MetalsRateEntry.COLUMN_DATE,
             MetalsContract.MetalsRateEntry.COLUMN_METAL_ID,
-            MetalsContract.MetalsRateEntry.COLUMN_NIS_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_ILS_RATE,
             MetalsContract.MetalsRateEntry.COLUMN_USD_RATE,
             MetalsContract.MetalsRateEntry.COLUMN_GBP_RATE,
             MetalsContract.MetalsRateEntry.COLUMN_EUR_RATE

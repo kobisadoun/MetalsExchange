@@ -67,10 +67,17 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
 
     private static final String[] NOTIFY_METAL_PROJECTION = new String[] {
             MetalsContract.MetalsRateEntry.COLUMN_METAL_ID,
-            MetalsContract.MetalsRateEntry.COLUMN_NIS_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_ILS_RATE,
             MetalsContract.MetalsRateEntry.COLUMN_USD_RATE,
             MetalsContract.MetalsRateEntry.COLUMN_GBP_RATE,
-            MetalsContract.MetalsRateEntry.COLUMN_EUR_RATE
+            MetalsContract.MetalsRateEntry.COLUMN_EUR_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_CAD_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_DKK_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_NOK_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_SEK_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_CHF_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_JOD_RATE,
+            MetalsContract.MetalsRateEntry.COLUMN_EGP_RATE
     };
 
     // these indices must match the projection
@@ -334,7 +341,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
 
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_DATE, MetalsContract.normalizeDate(convertedDate.getTime()));
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_METAL_ID, metalQuery);
-        metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_NIS_RATE, nisVal);
+        metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_ILS_RATE, nisVal);
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_USD_RATE, usdVal);
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_GBP_RATE, gbpVal);
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_EUR_RATE, eurVal);

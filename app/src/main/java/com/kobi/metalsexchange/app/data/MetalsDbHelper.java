@@ -25,9 +25,9 @@ import com.kobi.metalsexchange.app.Utility;
  * Manages a local database for metals rate data.
  */
 public class MetalsDbHelper extends SQLiteOpenHelper {
-    //tt
+
     // If you change the database schema, you must increment the database version.
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     static final String DATABASE_NAME = "metals.db";
 
@@ -46,10 +46,17 @@ public class MetalsDbHelper extends SQLiteOpenHelper {
                 MetalsContract.MetalsRateEntry.COLUMN_DATE + " INTEGER NOT NULL, " +
                 MetalsContract.MetalsRateEntry.COLUMN_METAL_ID + " STRING NOT NULL," +
 
-                MetalsContract.MetalsRateEntry.COLUMN_NIS_RATE + " REAL NOT NULL, " +
+                MetalsContract.MetalsRateEntry.COLUMN_ILS_RATE + " REAL NOT NULL, " +
                 MetalsContract.MetalsRateEntry.COLUMN_USD_RATE + " REAL NOT NULL, " +
                 MetalsContract.MetalsRateEntry.COLUMN_GBP_RATE + " REAL NOT NULL, " +
                 MetalsContract.MetalsRateEntry.COLUMN_EUR_RATE + " REAL NOT NULL, " +
+                MetalsContract.MetalsRateEntry.COLUMN_CAD_RATE + " REAL NOT NULL, " +
+                MetalsContract.MetalsRateEntry.COLUMN_DKK_RATE + " REAL NOT NULL, " +
+                MetalsContract.MetalsRateEntry.COLUMN_NOK_RATE + " REAL NOT NULL, " +
+                MetalsContract.MetalsRateEntry.COLUMN_SEK_RATE + " REAL NOT NULL, " +
+                MetalsContract.MetalsRateEntry.COLUMN_CHF_RATE + " REAL NOT NULL, " +
+                MetalsContract.MetalsRateEntry.COLUMN_JOD_RATE + " REAL NOT NULL, " +
+                MetalsContract.MetalsRateEntry.COLUMN_EGP_RATE + " REAL NOT NULL, " +
 
                 " UNIQUE (" + MetalsContract.MetalsRateEntry.COLUMN_DATE + ", " +
                 MetalsContract.MetalsRateEntry.COLUMN_METAL_ID + ") ON CONFLICT REPLACE);";

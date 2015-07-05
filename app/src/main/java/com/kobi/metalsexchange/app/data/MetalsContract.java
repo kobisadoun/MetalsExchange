@@ -68,7 +68,7 @@ public class MetalsContract {
         public static final String COLUMN_METAL_ID = "metal_id";
 
         //Rate  in israeli shekel
-        public static final String COLUMN_NIS_RATE = "nis_rate";
+        public static final String COLUMN_ILS_RATE = "ils_rate";
 
         //Rate  in US dollar $
         public static final String COLUMN_USD_RATE = "usd_rate";
@@ -78,6 +78,27 @@ public class MetalsContract {
 
         //Rate  in euro €
         public static final String COLUMN_EUR_RATE = "eur_rate";
+
+        //Rate in Canada dollar
+        public static final String COLUMN_CAD_RATE = "cad_rate";
+
+        //Rate in Denmark Krone
+        public static final String COLUMN_DKK_RATE = "dkk_rate";
+
+        //Rate in Norway Krone
+        public static final String COLUMN_NOK_RATE = "nok_rate";
+
+        //Rate in Sweden Krona
+        public static final String COLUMN_SEK_RATE = "sek_rate";
+
+        //Rate in Switzerland Franc
+        public static final String COLUMN_CHF_RATE = "chf_rate";
+
+        //Rate in Jordan Dinar
+        public static final String COLUMN_JOD_RATE = "jod_rate";
+
+        //Rate in Egypt pound
+        public static final String COLUMN_EGP_RATE = "egp_rate";
 
 
         public static Uri buildMetalsUri(long id) {
