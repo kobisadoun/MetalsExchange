@@ -1,0 +1,18 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:title="@string/pref_main_currency_label"
+        android:summary=""
+        android:key="@string/pref_main_currency_key"
+        android:defaultValue="@string/pref_main_currency_usd"
+        android:entryValues="@array/pref_main_currency_values"
+        android:entries="@array/pref_main_currency_options" />
+
+    <MultiSelectListPreference
+        android:title="@string/pref_main_other_currencies_label"
+        android:summary="@string/pref_main_other_currencies_summary"
+        android:key="@string/pref_main_other_currencies_key"
+        android:defaultValue="@array/empty_array"
+        android:entryValues="@array/pref_main_currency_values"
+        android:entries="@array/pref_main_currency_options" />
+</PreferenceScreen>

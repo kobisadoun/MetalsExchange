@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 
 import com.kobi.metalsexchange.app.data.MetalsContract;
@@ -40,8 +41,35 @@ public class SettingsActivity extends PreferenceActivity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Add 'general' preferences, defined in the XML file
+
+        addPreferencesFromResource(R.xml.pref_container);
+
+        PreferenceCategory fakeHeader = new PreferenceCategory(this);
+        fakeHeader.setTitle(R.string.pref_general_header);
+        getPreferenceScreen().addPreference(fakeHeader);
         addPreferencesFromResource(R.xml.pref_general);
+
+        fakeHeader = new PreferenceCategory(this);
+        fakeHeader.setTitle(R.string.pref_currencies_header);
+        getPreferenceScreen().addPreference(fakeHeader);
+        addPreferencesFromResource(R.xml.pref_currencies);
+
+
+        fakeHeader = new PreferenceCategory(this);
+        fakeHeader.setTitle(R.string.pref_notifications_header);
+        getPreferenceScreen().addPreference(fakeHeader);
+        addPreferencesFromResource(R.xml.pref_notifications);
+
+
+        fakeHeader = new PreferenceCategory(this);
+        fakeHeader.setTitle(R.string.pref_data_sync_header);
+        getPreferenceScreen().addPreference(fakeHeader);
+        addPreferencesFromResource(R.xml.pref_data_sync);
+
+        fakeHeader = new PreferenceCategory(this);
+        fakeHeader.setTitle(R.string.pref_advanced_header);
+        getPreferenceScreen().addPreference(fakeHeader);
+        addPreferencesFromResource(R.xml.pref_advanced);
 
         // For all preferences, attach an OnPreferenceChangeListener so the UI summary can be
         // updated when the preference changes.

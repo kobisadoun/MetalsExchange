@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
 
-    <!--
-         Used in Action Bar, and in AndroidManifest to tell the device the name of this app.
-         It's to keep this short, so your launcher icon isn't displayed with "The greatest Wea"
-         or something similar.
-    -->
     <string name="app_name">שערי מתכות</string>
 
     <string name="GOLD">זהב</string>
@@ -13,87 +8,57 @@
     <string name="PLATINUM">פלטינום</string>
     <string name="PALLADIUM">פלדיום</string>
 
-
     <string name="pref_show_jewish_customs_default">true</string>
 
-    <!--
-         By convention, "action" denotes that this String will be used as the label for an Action,
-         typically from the action bar.  The ActionBar is limited real estate, so shorter is better.
-    -->
     <string name="action_settings">הגדרות</string>
     <string name="action_about">אודות</string>
     <string name="action_rate">דרג</string>
     <string name="action_share">שתף</string>
 
-    <!-- Menu label to fetch updated rates info from the server -->
     <string name="action_refresh">רענן</string>
     <string name="action_calculate">חשב</string>
     <string name="title_activity_detail">פרטים</string>
     <string name="title_activity_settings">הגדרות</string>
 
-    <!-- Strings related to Notification Enabled preference -->
-    <string name="pref_enable_notifications_label">התראות</string>
+    <string name="pref_general_header">כללי</string>
+    <string name="pref_currencies_header">מטבעות</string>
+    <string name="pref_notifications_header">התראות</string>
+    <string name="pref_data_sync_header">נתונים וסנכרון</string>
+    <string name="pref_advanced_header">מתקדם</string>
 
+    <string name="pref_enable_notifications_label">התראות</string>
     <string name="pref_enable_notifications_true">מופעל</string>
     <string name="pref_enable_notifications_false">לא מופעל</string>
 
-    <!-- Strings related to Jewish Customs Enabled preference -->
+    <string name="pref_enable_sync_label">סינכרון נתונים</string>
+    <string name="pref_enable_sync_true">מופעל</string>
+    <string name="pref_enable_sync_false">לא מופעל</string>
+
     <string name="pref_show_jewish_customs_label">הצג ערכי פדיון הבן ומחצית השקל</string>
 
-    <!-- Strings for formatting Weight-related data -->
-
-    <!-- Label for the Weight units preference [CHAR LIMIT=30] -->
     <string name="pref_units_label">יחידות משקל</string>
-
-    <!-- Label for grams option in Weight unit preference [CHAR LIMIT=25] -->
     <string name="pref_units_label_grams">גרם</string>
-
-    <!-- Label for ounce option in Weight unit preference [CHAR LIMIT=25] -->
     <string name="pref_units_label_ounce">אונקיה טרוי</string>
 
-    <!-- Strings for formatting Currency-related data -->
-
-    <!-- Label for the currency preference [CHAR LIMIT=30] -->
     <string name="pref_main_currency_label">מטבע ברירת מחדל</string>
+    <string name="pref_main_other_currencies_label">מטבעות אחרים</string>
+    <string name="pref_main_other_currencies_summary">בחר שלושה מטבעות נוספים</string>
 
-    <!-- Label for nis option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_nis">ש"ח [₪]</string>
-
-    <!-- Label for usd option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_ils">ש"ח [₪]</string>
     <string name="pref_main_currency_label_usd">דולר אמריקאי [$]</string>
-
-    <!-- Label for eur option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_eur">אירו [€]</string>
-
-    <!-- Label for gbp option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_gbp">פאונד בריטי [£]</string>
-
-    <!-- Label for CAD option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_cad">דולר קנדי [$]</string>
-
-    <!-- Label for DKK option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_dkk">כתר דני [kr]</string>
-
-    <!-- Label for NOK option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_nok">כתר נורבגי [kr]</string>
-
-    <!-- Label for SEK option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_sek">כתר שבדי [kr]</string>
-
-    <!-- Label for CHF option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_chf">פרנק שווייצרי [CHF]</string>
-
-    <!-- Label for JOD option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_jod">דינר ירדני [د.ا]</string>
-
-    <!-- Label for EGP option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_egp">פאונד מצרי [£]</string>
 
-    <!-- Language-specific constants -->
     <string name="today">היום</string>
     <string name="yesterday">אתמול</string>
 
-    <!-- Date format [CHAR LIMIT=NONE] -->
     <string name="format_full_friendly_date"><xliff:g id="month">%1$s</xliff:g>, <xliff:g id="day">%2$s</xliff:g></string>
 
     <string name="zecher_machatzit_hashekel">זכר למחצית השקל</string>
@@ -113,8 +78,6 @@
     <string name="error_no_internet_connection">אין גישה לאינטרנט</string>
     <string name="error_server_response_not_valid">תגובת שרת אינה חוקית</string>
     <string name="error_no_response_from_server">אין תגובה מהשרת</string>
-
-    <!-- Empty Rates Database -->
     <string name="empty_rates_list_startup">הנתונים בטעינה...</string>
     <!--<string name="empty_rates_list">מידע על שערי מתכות לא זמין.</string>-->
     <string name="empty_rates_list_no_network">מידע על שערי מתכות לא זמין.הרשת אינה זמינה.</string>
@@ -122,20 +85,12 @@
     <string name="empty_rates_list_server_error">מידע על שערי מתכות לא זמין.השרת אינו מחזיר נתונים תקינים.אנא בדוק אם יש גרסה חדשה לאפליקציה.</string>
     <string name="empty_rates_list_invalid">מידע על שערי מתכות לא זמין.השאילתה אינה מוכרת על ידי שרת.</string>
 
-    <!-- calculatror -->
-
 
     <string name="calculator_fragment_name">מחשבון</string>
-
     <string name="calculator_gold_purity">טוהר זהב</string>
-
     <string name="calculator_weight">משקל</string>
-
     <string name="calculator_weight_gram">משקל(גרם)</string>
-
     <string name="calculator_weight_ounce">משקל(אונקיה)</string>
-
     <string name="calculator_copy_action">העתק</string>
-
     <string name="calculator_copy_action_toast">המחיר הועתק</string>
 </resources>

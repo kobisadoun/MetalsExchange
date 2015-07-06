@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="empty_array">
+    </string-array>
+
     <string-array name="pref_units_options">
         <item>@string/pref_units_label_grams</item>
         <item>@string/pref_units_label_ounce</item>
@@ -12,16 +15,30 @@
     </string-array>
 
     <string-array name="pref_main_currency_options">
-        <item>@string/pref_main_currency_label_nis</item>
+        <item>@string/pref_main_currency_label_ils</item>
         <item>@string/pref_main_currency_label_usd</item>
         <item>@string/pref_main_currency_label_eur</item>
         <item>@string/pref_main_currency_label_gbp</item>
+        <item>@string/pref_main_currency_label_cad</item>
+        <item>@string/pref_main_currency_label_dkk</item>
+        <item>@string/pref_main_currency_label_nok</item>
+        <item>@string/pref_main_currency_label_sek</item>
+        <item>@string/pref_main_currency_label_chf</item>
+        <item>@string/pref_main_currency_label_jod</item>
+        <item>@string/pref_main_currency_label_egp</item>
     </string-array>
 
     <string-array name="pref_main_currency_values">
-        <item>@string/pref_main_currency_nis</item>
+        <item>@string/pref_main_currency_ils</item>
         <item>@string/pref_main_currency_usd</item>
         <item>@string/pref_main_currency_eur</item>
         <item>@string/pref_main_currency_gbp</item>
+        <item>@string/pref_main_currency_cad</item>
+        <item>@string/pref_main_currency_dkk</item>
+        <item>@string/pref_main_currency_nok</item>
+        <item>@string/pref_main_currency_sek</item>
+        <item>@string/pref_main_currency_chf</item>
+        <item>@string/pref_main_currency_jod</item>
+        <item>@string/pref_main_currency_egp</item>
     </string-array>
 </resources>

@@ -1,0 +1,8 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:title="@string/pref_show_jewish_customs_label"
+        android:key="@string/pref_show_jewish_customs_key"
+        android:defaultValue="@string/pref_show_jewish_customs_default" />
+
+</PreferenceScreen>

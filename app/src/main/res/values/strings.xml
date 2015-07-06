@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
 
-    <!--
-         Used in Action Bar, and in AndroidManifest to tell the device the name of this app.
-         It's to keep this short, so your launcher icon isn't displayed with "The greatest Wea"
-         or something similar.
-    -->
     <string name="app_name">Metals Exchange</string>
 
     <string name="GOLD">Gold</string>
@@ -13,133 +8,88 @@
     <string name="PLATINUM">Platinum</string>
     <string name="PALLADIUM">Palladium</string>
 
-    <!--
-         By convention, "action" denotes that this String will be used as the label for an Action,
-         typically from the action bar.  The ActionBar is limited real estate, so shorter is better.
-    -->
     <string name="action_settings">Settings</string>
     <string name="action_about">About</string>
     <string name="action_rate">Rate</string>
     <string name="action_share">Share</string>
 
-    <!-- Menu label to fetch updated rates info from the server -->
     <string name="action_refresh">Refresh</string>
     <string name="action_calculate">Calculate</string>
     <string name="title_activity_detail">Details</string>
     <string name="title_activity_settings">Settings</string>
 
-    <!-- Strings related to Notification Enabled preference -->
+    <string name="pref_general_header">General</string>
+    <string name="pref_currencies_header">Currencies</string>
+    <string name="pref_notifications_header">Notifications</string>
+    <string name="pref_data_sync_header">Data &amp; sync</string>
+    <string name="pref_advanced_header">Advanced</string>
+
+
     <string name="pref_enable_notifications_key" translatable="false">enable_notifications</string>
     <string name="pref_enable_notifications_label">Notifications</string>
 
     <string name="pref_enable_notifications_true">Enabled</string>
     <string name="pref_enable_notifications_false">Not Enabled</string>
-    <string name="pref_enable_notifications_default" translatable="false">true</string>
+    <string name="pref_enable_notifications_default" translatable="false">false</string>
 
-    <!-- Strings related to Jewish Customs Enabled preference -->
+    <string name="pref_enable_sync_key" translatable="false">enable_sync</string>
+    <string name="pref_enable_sync_label">Sync data</string>
+    <string name="pref_enable_sync_true">Enabled</string>
+    <string name="pref_enable_sync_false">Not Enabled</string>
+    <string name="pref_enable_sync_default" translatable="false">false</string>
+
     <string name="pref_show_jewish_customs_key" translatable="false">show_jewish_customs</string>
     <string name="pref_show_jewish_customs_label">Show Jewish Customs</string>
     <string name="pref_show_jewish_customs_default">false</string>
 
-    <!-- Strings for formatting Weight-related data -->
-
-    <!-- Label for the Weight units preference [CHAR LIMIT=30] -->
     <string name="pref_units_label">Weight Units</string>
-
-    <!-- Label for grams option in Weight unit preference [CHAR LIMIT=25] -->
     <string name="pref_units_label_grams">Gram</string>
-
-    <!-- Label for ounce option in Weight unit preference [CHAR LIMIT=25] -->
     <string name="pref_units_label_ounce">Troy Ounce</string>
-
-    <!-- Key name for Weight unit preference in SharedPreferences [CHAR LIMIT=NONE] -->
     <string name="pref_units_key" translatable="false">units</string>
-
-    <!-- Value in SharedPreferences for metric Weight unit option [CHAR LIMIT=NONE] -->
     <string name="pref_units_grams" translatable="false">grams</string>
-
-    <!-- Value in SharedPreferences for imperial Weight unit option [CHAR LIMIT=NONE] -->
     <string name="pref_units_ounce" translatable="false">ounce</string>
 
 
-    <!-- Strings for formatting Currency-related data -->
-
-    <!-- Label for the currency preference [CHAR LIMIT=30] -->
     <string name="pref_main_currency_label">Default Currency</string>
+    <string name="pref_main_other_currencies_label">Other Currencies</string>
+    <string name="pref_main_other_currencies_summary">Select three additional currencies</string>
 
-    <!-- Label for nis option in currency preference [CHAR LIMIT=25] -->
-    <string name="pref_main_currency_label_nis">Israel Shekel [₪]</string>
-
-    <!-- Label for usd option in currency preference [CHAR LIMIT=25] -->
+    <string name="pref_main_currency_label_ils">Israel Shekel [₪]</string>
     <string name="pref_main_currency_label_usd">US Dollar [$]</string>
-
-    <!-- Label for eur option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_eur">Euro [€]</string>
-
-    <!-- Label for gbp option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_gbp">British Pound [£]</string>
-
-    <!-- Label for CAD option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_cad">Canada Dollar [$]</string>
-
-    <!-- Label for DKK option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_dkk">Denmark Krone [kr]</string>
-
-    <!-- Label for NOK option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_nok">Norway Krone [kr]</string>
-
-    <!-- Label for SEK option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_sek">Sweden Krona [kr]</string>
-
-    <!-- Label for CHF option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_chf">Switzerland Franc [CHF]</string>
-
-    <!-- Label for JOD option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_jod">Jordanian dinar [د.ا]</string>
-
-    <!-- Label for EGP option in currency preference [CHAR LIMIT=25] -->
     <string name="pref_main_currency_label_egp">Egypt Pound [£]</string>
 
 
-
-    <!-- Key name for currency preference in SharedPreferences [CHAR LIMIT=NONE] -->
     <string name="pref_main_currency_key" translatable="false">main_currency</string>
+    <string name="pref_main_other_currencies_key" translatable="false">other_currencies</string>
 
-    <!-- Value in SharedPreferences for nis currency option [CHAR LIMIT=NONE] -->
-    <string name="pref_main_currency_nis" translatable="false">nis</string>
+    <string name="pref_main_currency_ils" translatable="false">ILS</string>
+    <string name="pref_main_currency_usd" translatable="false">USD</string>
+    <string name="pref_main_currency_eur" translatable="false">EUR</string>
+    <string name="pref_main_currency_gbp" translatable="false">GBP</string>
+    <string name="pref_main_currency_cad" translatable="false">CAD</string>
+    <string name="pref_main_currency_dkk" translatable="false">DKK</string>
+    <string name="pref_main_currency_nok" translatable="false">NOK</string>
+    <string name="pref_main_currency_sek" translatable="false">SEK</string>
+    <string name="pref_main_currency_chf" translatable="false">CHF</string>
+    <string name="pref_main_currency_jod" translatable="false">JOD</string>
+    <string name="pref_main_currency_egp" translatable="false">EGP</string>
 
-    <!-- Value in SharedPreferences for usd currency option [CHAR LIMIT=NONE] -->
-    <string name="pref_main_currency_usd" translatable="false">usd</string>
-
-    <!-- Value in SharedPreferences for eur currency option [CHAR LIMIT=NONE] -->
-    <string name="pref_main_currency_eur" translatable="false">eur</string>
-
-    <!-- Value in SharedPreferences for gbp currency option [CHAR LIMIT=NONE] -->
-    <string name="pref_main_currency_gbp" translatable="false">gbp</string>
-
-
-    <!-- Key name for storing rates status in SharedPreferences -->
     <string name="pref_rates_status_key" translatable="false">rates-status</string>
 
-
-
-
-    <!-- Language-specific constants -->
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
-
-    <!-- Date format [CHAR LIMIT=NONE] -->
     <string name="format_full_friendly_date"><xliff:g id="month">%1$s</xliff:g>, <xliff:g id="day">%2$s</xliff:g></string>
-
-    <!-- SyncAdapter related -->
-
-    <!-- please help me with what is wrong here -->
     <string name="sync_account_type" translatable="false">metalsexchange.com</string>
     <string name="content_authority" translatable="false">com.kobi.metalsexchange.app</string>
-
-    <!-- Strings related to Notification preference -->
     <string name="pref_last_notification" translatable="false">last_notification</string>
-
 
     <string name="zecher_machatzit_hashekel">Zecher L’Machatzit Hashekel</string>
     <string name="zecher_machatzit_hashekel_details">10 gr of pure silver: %1$s\nFor Machmirim add VAT.</string>
@@ -149,8 +99,6 @@
     <string name="pidyon_haben_details">100 gr of pure silver: %1$s\nFor Machmirim add VAT.</string>
     <string name="about_pidyon_haben">What is this?</string>
 
-
-    <!--<string name="about">This application was written by Kobi Sadoun as part of the final project of the Developing Android Apps course 2015.</string>-->
     <string name="about">The metals rates are taken from <a href="http://www.kitco.com/">KITCO</a></string>
     <string name="about_continue">Continue..</string>
 
@@ -160,7 +108,6 @@
     <string name="error_no_internet_connection">No Internet connection!</string>
     <string name="error_server_response_not_valid">Server response is not valid</string>
     <string name="error_no_response_from_server">No response from server</string>
-    <!-- Empty Rates Database -->
     <string name="empty_rates_list_startup">Loading data...</string>
     <!--<string name="empty_rates_list">No Rates Information Available</string>-->
     <string name="empty_rates_list_no_network">No rates information available. The network is not available.</string>
@@ -168,20 +115,12 @@
     <string name="empty_rates_list_server_error">No rates information available. The server is not returning valid data. Please check for an updated version of \'Metals Exchange\'.</string>
     <string name="empty_rates_list_invalid">No rates information available. The query is not recognized by the rates server.</string>
 
-    <!-- calculatror -->
-
 
     <string name="calculator_fragment_name">Calculator</string>
-
     <string name="calculator_gold_purity">Gold Purity</string>
-
     <string name="calculator_weight">Weight</string>
-
     <string name="calculator_weight_gram">Weight(g.)</string>
-
     <string name="calculator_weight_ounce">Weight(oz t)</string>
-
     <string name="calculator_copy_action">Copy</string>
-
     <string name="calculator_copy_action_toast">Price copied</string>
 </resources>
