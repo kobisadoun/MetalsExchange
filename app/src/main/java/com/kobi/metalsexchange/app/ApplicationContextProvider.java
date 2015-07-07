@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -17,6 +18,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Currency;
+import java.util.Locale;
 
 public class ApplicationContextProvider extends Application {
     public final String LOG_TAG = ApplicationContextProvider.class.getSimpleName();
@@ -34,7 +37,6 @@ public class ApplicationContextProvider extends Application {
         if(!prefs.contains(sContext.getString(R.string.pref_main_currency_key))){
             new CountryLocator().execute("");
         }
-
     }
 
     /**
@@ -63,54 +65,47 @@ public class ApplicationContextProvider extends Application {
 
                 // Read the input stream into a String
                 InputStream inputStream = urlConnection.getInputStream();
-                StringBuilder buffer = new StringBuilder();
                 if (inputStream == null) {
                     // Nothing to do.
                     return null;
                 }
+
                 reader = new BufferedReader(new InputStreamReader(inputStream));
 
+                StringBuilder buffer = new StringBuilder();
                 String line;
                 while ((line = reader.readLine()) != null) {
                     buffer.append(line);
                 }
+
                 if (!buffer.toString().isEmpty()) {
                     String json = buffer.toString();
                     try {
                         JSONObject  jObj = new JSONObject(json);
-                        String country = jObj.getString("country");
+//                        String country = jObj.getString("country");
                         String countryCode = jObj.getString("countryCode");
+
+                        Locale locale = null;
+                        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            locale = new Locale.Builder().setRegion(countryCode).build();
+                        }else{
+                            locale = new Locale("", countryCode);
+                        }
+
+                        Currency currency = Currency.getInstance(locale);
+                        String defaultCurrency = currency.getCurrencyCode();
 
                         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(sContext);
                         SharedPreferences.Editor spe = prefs.edit();
-                        String defaultCurrency;
-
-                        switch(countryCode){
-                            case "IL":
-                                defaultCurrency = Utility.CURRENCY_ILS;
-                                break;
-                            case "GB":
-                                defaultCurrency = Utility.CURRENCY_GBP;
-                                break;
-                            case "FR":
-                                defaultCurrency = Utility.CURRENCY_EUR;
-                                break;
-
-                            default:
-                                defaultCurrency = Utility.CURRENCY_USD;
-                        }
-
-                        if(countryCode.equalsIgnoreCase("IL")){
-                            defaultCurrency = Utility.CURRENCY_ILS;
-                        }
-
                         spe.putString(sContext.getString(R.string.pref_main_currency_key), defaultCurrency);
                         spe.commit();
 
                     } catch (JSONException e) {
                         Log.e("JSON Parser", "Error parsing data " + e.toString());
                     }
-
+                }
+                else{
+                    Log.w(LOG_TAG, "Failed to get current location of device");
                 }
             } catch (IOException e) {
                 Log.e(LOG_TAG, "Error ", e);

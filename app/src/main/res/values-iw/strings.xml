@@ -33,6 +33,12 @@
     <string name="pref_enable_sync_label">סינכרון נתונים</string>
     <string name="pref_enable_sync_true">מופעל</string>
     <string name="pref_enable_sync_false">לא מופעל</string>
+    <string name="pref_sync_frequency_label">תדירות סנכרון</string>
+    <string name="pref_sync_frequency_3H">3 שעות</string>
+    <string name="pref_sync_frequency_6H">6 שעות</string>
+    <string name="pref_sync_frequency_12H">12 שעות</string>
+    <string name="pref_sync_frequency_24H">24 שעות</string>
+
 
     <string name="pref_show_jewish_customs_label">הצג ערכי פדיון הבן ומחצית השקל</string>
 
@@ -44,17 +50,17 @@
     <string name="pref_main_other_currencies_label">מטבעות אחרים</string>
     <string name="pref_main_other_currencies_summary">בחר שלושה מטבעות נוספים</string>
 
-    <string name="pref_main_currency_label_ils">ש"ח [₪]</string>
-    <string name="pref_main_currency_label_usd">דולר אמריקאי [$]</string>
-    <string name="pref_main_currency_label_eur">אירו [€]</string>
-    <string name="pref_main_currency_label_gbp">פאונד בריטי [£]</string>
-    <string name="pref_main_currency_label_cad">דולר קנדי [$]</string>
-    <string name="pref_main_currency_label_dkk">כתר דני [kr]</string>
-    <string name="pref_main_currency_label_nok">כתר נורבגי [kr]</string>
-    <string name="pref_main_currency_label_sek">כתר שבדי [kr]</string>
-    <string name="pref_main_currency_label_chf">פרנק שווייצרי [CHF]</string>
-    <string name="pref_main_currency_label_jod">דינר ירדני [د.ا]</string>
-    <string name="pref_main_currency_label_egp">פאונד מצרי [£]</string>
+    <string name="pref_main_currency_label_ils">ש"ח</string>
+    <string name="pref_main_currency_label_usd">דולר אמריקאי</string>
+    <string name="pref_main_currency_label_eur">אירו</string>
+    <string name="pref_main_currency_label_gbp">פאונד בריטי</string>
+    <string name="pref_main_currency_label_cad">דולר קנדי</string>
+    <string name="pref_main_currency_label_dkk">כתר דני</string>
+    <string name="pref_main_currency_label_nok">כתר נורבגי</string>
+    <string name="pref_main_currency_label_sek">כתר שבדי</string>
+    <string name="pref_main_currency_label_chf">פרנק שווייצרי</string>
+    <string name="pref_main_currency_label_jod">דינר ירדני</string>
+    <string name="pref_main_currency_label_egp">פאונד מצרי</string>
 
     <string name="today">היום</string>
     <string name="yesterday">אתמול</string>

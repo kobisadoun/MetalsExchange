@@ -41,4 +41,25 @@
         <item>@string/pref_main_currency_jod</item>
         <item>@string/pref_main_currency_egp</item>
     </string-array>
+
+    <string-array name="pref_main_currency_values_default">
+        <item>@string/pref_main_currency_usd</item>
+        <item>@string/pref_main_currency_eur</item>
+        <item>@string/pref_main_currency_gbp</item>
+    </string-array>
+
+
+    <string-array name="pref_sync_frequency_titles">
+        <item>@string/pref_sync_frequency_3H</item>
+        <item>@string/pref_sync_frequency_6H</item>
+        <item>@string/pref_sync_frequency_12H</item>
+        <item>@string/pref_sync_frequency_24H</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>10600</item>
+        <item>21600</item>
+        <item>43200</item>
+        <item>86400</item>
+    </string-array>
+
 </resources>

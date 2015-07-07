@@ -27,10 +27,11 @@ import com.kobi.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
+import java.util.Set;
 
 public class Utility {
 
@@ -81,6 +82,15 @@ public class Utility {
         return prefs.getString(currency,CURRENCY_USD);
     }
 
+    public static List<String> getOtherCurrencies(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        Set<String> a = prefs.getStringSet(context.getString(R.string.pref_main_other_currencies_key), null);
+        List<String> otherCurrencies = new ArrayList();
+        for (String str: a){
+            otherCurrencies.add(str);
+        }
+        return otherCurrencies;
+    }
 
     public static int getPreferredCurrencyColumnId(String currencyId) {
         switch (currencyId) {
@@ -330,49 +340,11 @@ public class Utility {
     }
 
     public static String getFormattedCurrency(Double price, String currencyId, Context context, boolean convertIfNeeded){
-        Locale locale = null;
-        switch (currencyId) {
-            case CURRENCY_ILS:
-                locale = new Locale("iw","IL");
-                break;
-            case CURRENCY_USD:
-                locale = Locale.US;
-                break;
-            case CURRENCY_GBP:
-                locale = Locale.UK;
-                break;
-            case CURRENCY_EUR:
-                locale = Locale.FRANCE;
-                break;
-            case CURRENCY_CAD:
-                locale = Locale.CANADA;
-                break;
-            case CURRENCY_DKK:
-                locale = new Locale("da","DK");
-                break;
-            case CURRENCY_NOK:
-                locale = new Locale("no","NO");
-                break;
-            case CURRENCY_SEK:
-                locale = new Locale("sv","SE");
-                break;
-            case CURRENCY_CHF:
-                locale = new Locale("de","CH");
-                break;
-            case CURRENCY_JOD:
-                locale = new Locale("ar","JO");
-                break;
-            case CURRENCY_EGP:
-                locale = new Locale("ar","EG");
-                break;
-        }
-
-        Currency curr = Currency.getInstance(locale);
         if(convertIfNeeded && !isGrams(context)) {
             price *= GRAMS_IN_OUNCE;
         }
-        // get and print the symbol of the currency
-        String symbol = curr.getSymbol(locale);
+        Currency curr = Currency.getInstance(currencyId);
+        String symbol = curr.getSymbol();
         DecimalFormat myFormatter = new DecimalFormat("###.##");
         return symbol+myFormatter.format(price);
     }

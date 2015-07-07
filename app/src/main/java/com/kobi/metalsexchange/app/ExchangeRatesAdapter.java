@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.kobi.metalsexchange.app.data.MetalsContract;
 
+import java.text.NumberFormat;
+
 /**
  * {@link ExchangeRatesAdapter} exposes a list of metal exchange rates
  * from a {@link android.database.Cursor} to a {@link android.support.v7.widget.RecyclerView}.
@@ -122,8 +124,6 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
 //            }
         }
 
-
-
         // Read date from cursor
         long dateInMillis = mCursor.getLong(ExchangeRatesFragment.COL_RATE_DATE);
         // Find TextView and set formatted date on it
@@ -145,18 +145,28 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
         if(!mCursor.isLast() && mCursor.moveToNext()){
             double previousRateRaw = mCursor.getDouble(Utility.getPreferredCurrencyColumnId(Utility.getPreferredCurrency(mContext)));
             double rateDeltaRaw = rateRaw - previousRateRaw;
+            double rateDeltaRawPercentage = 0;
+            String rateDeltaRawPercentageStr="";
+            NumberFormat defaultFormat = NumberFormat.getPercentInstance();
+            defaultFormat.setMaximumFractionDigits(2);
+            defaultFormat.setMinimumFractionDigits(2);
             if(rateDeltaRaw < 0){
                 adapterViewHolder.deltaIconView.setImageResource(R.drawable.ic_down);
+                rateDeltaRawPercentage = rateDeltaRaw/previousRateRaw;
+                rateDeltaRawPercentage *= -1;
+
             } else if(rateDeltaRaw > 0){
                 adapterViewHolder.deltaIconView.setImageResource(R.drawable.ic_up);
+                rateDeltaRawPercentage = rateDeltaRaw/rateRaw;
             } else{
                 adapterViewHolder.deltaIconView.setImageResource(R.drawable.ic_same);
             }
+            rateDeltaRawPercentageStr = defaultFormat.format(rateDeltaRawPercentage);
 
             if(rateDeltaRaw != 0) {
-                String rateDelta = Utility.getFormattedCurrency(Math.abs(rateDeltaRaw), Utility.getPreferredCurrency(mContext), mContext, true);
+               // String rateDelta = Utility.getFormattedCurrency(Math.abs(rateDeltaRaw), Utility.getPreferredCurrency(mContext), mContext, true);
                 if (adapterViewHolder.deltaView != null) {
-                    adapterViewHolder.deltaView.setText(rateDelta);
+                    adapterViewHolder.deltaView.setText(rateDeltaRawPercentageStr);
                 }
             }
         }

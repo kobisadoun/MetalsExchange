@@ -64,7 +64,14 @@ public class DayCurrenciesPerNisXMLParser {
                         // creating new HashMap
                         Element e = (Element) nl.item(i);
                         // adding each child node to HashMap key => value
-                        rawValuesMap.put(getValue(e, KEY_CURRENCYCODE), Double.parseDouble(getValue(e, KEY_RATE)));
+                        double rate = 0;
+                        try {
+                            rate = Double.parseDouble(getValue(e, KEY_RATE));
+                        }
+                        catch (Exception e1){
+                            Log.e(LOG_TAG, "Error parsing "+getValue(e, KEY_CURRENCYCODE), e1);
+                        }
+                        rawValuesMap.put(getValue(e, KEY_CURRENCYCODE), rate);
                     }
                 }
             }

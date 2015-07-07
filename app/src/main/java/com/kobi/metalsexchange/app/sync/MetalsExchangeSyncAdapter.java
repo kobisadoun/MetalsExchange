@@ -59,8 +59,8 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
     public final String LOG_TAG = MetalsExchangeSyncAdapter.class.getSimpleName();
     // Interval at which to sync with the rate site, in seconds.
     // 60 seconds (1 minute) * 360 = 6 hours
-    public static final int SYNC_INTERVAL = 60 * 360;
-    public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
+//    public static int SYNC_INTERVAL = 60 * 360;
+//    public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
     private static final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
     private static final int EXCHANGE_RATE_NOTIFICATION_ID = 9000;
 
@@ -405,24 +405,6 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         }
     }
 
-
-
-//    private double parsePrice(String stringPrice){
-//        double doubleVal = 0;
-//        try {
-//            doubleVal = Double.parseDouble(filterNonDigitChars(stringPrice));
-//            return doubleVal;
-//        }
-//        catch (Exception e){
-//            return 0;
-//        }
-//    }
-
-//    private String filterNonDigitChars(String raw){
-//        String numberRefined= raw.replaceAll("[^0-9.]", "");
-//        return numberRefined;
-//    }
-
     public static int getPreferredCurrencyColumnId(String currencyId) {
 
         switch (currencyId) {
@@ -628,7 +610,12 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         /*
          * Since we've created an account
          */
-        MetalsExchangeSyncAdapter.configurePeriodicSync(context, SYNC_INTERVAL, SYNC_FLEXTIME);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String syncPeriod = prefs.getString(context.getString(R.string.pref_sync_frequency_key), "86400");
+        int syncInterval = Integer.valueOf(syncPeriod);
+
+        MetalsExchangeSyncAdapter.configurePeriodicSync(context, syncInterval, syncInterval / 3);
+//        MetalsExchangeSyncAdapter.configurePeriodicSync(context, SYNC_INTERVAL, SYNC_FLEXTIME);
 
         /*
          * Without calling setSyncAutomatically, our periodic sync will not be enabled.

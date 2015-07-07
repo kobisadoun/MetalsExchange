@@ -81,6 +81,7 @@ public class SettingsActivity extends PreferenceActivity
         }
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_main_currency_key)));
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_units_key)));
+        bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_sync_frequency_key)));
     }
 
     /**

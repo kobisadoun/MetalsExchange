@@ -32,6 +32,11 @@
     <string name="pref_enable_sync_label">Synchroniser des données</string>
     <string name="pref_enable_sync_true">Activé</string>
     <string name="pref_enable_sync_false">Pas activé</string>
+    <string name="pref_sync_frequency_label">fréquence de synchronisation</string>
+    <string name="pref_sync_frequency_3H">3 heures</string>
+    <string name="pref_sync_frequency_6H">6 heures</string>
+    <string name="pref_sync_frequency_12H">12 heures</string>
+    <string name="pref_sync_frequency_24H">24 heures</string>
 
 
     <string name="pref_show_jewish_customs_label">Afficher les coutumes juives</string>
@@ -45,17 +50,17 @@
     <string name="pref_main_other_currencies_label">D\'autres devises</string>
     <string name="pref_main_other_currencies_summary">Sélectionnez trois devises supplémentaires</string>
 
-    <string name="pref_main_currency_label_ils">Shekel israélien [₪]</string>
-    <string name="pref_main_currency_label_usd">Dollar américain [$]</string>
-    <string name="pref_main_currency_label_eur">Euro [€]</string>
-    <string name="pref_main_currency_label_gbp">British Pound [£]</string>
-    <string name="pref_main_currency_label_cad">Dollar canadien [$]</string>
-    <string name="pref_main_currency_label_dkk">Le Danemark Krone [kr]</string>
-    <string name="pref_main_currency_label_nok">La Norvège Krone [kr]</string>
-    <string name="pref_main_currency_label_sek">Sweden Krona [kr]</string>
-    <string name="pref_main_currency_label_chf">Franc suisse [CHF]</string>
-    <string name="pref_main_currency_label_jod">Le dinar jordanien [د.ا]</string>
-    <string name="pref_main_currency_label_egp">L\'Égypte Pound [£]</string>
+    <string name="pref_main_currency_label_ils">Shekel israélien</string>
+    <string name="pref_main_currency_label_usd">Dollar américain</string>
+    <string name="pref_main_currency_label_eur">Euro</string>
+    <string name="pref_main_currency_label_gbp">British Pound</string>
+    <string name="pref_main_currency_label_cad">Dollar canadien</string>
+    <string name="pref_main_currency_label_dkk">Le Danemark Krone</string>
+    <string name="pref_main_currency_label_nok">La Norvège Krone</string>
+    <string name="pref_main_currency_label_sek">Sweden Krona</string>
+    <string name="pref_main_currency_label_chf">Franc suisse</string>
+    <string name="pref_main_currency_label_jod">Le dinar jordanien</string>
+    <string name="pref_main_currency_label_egp">L\'Égypte Pound</string>
 
 
     <string name="today">Aujourd\'hui</string>

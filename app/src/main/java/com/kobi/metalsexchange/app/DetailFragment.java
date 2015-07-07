@@ -41,9 +41,6 @@ import android.widget.TextView;
 
 import com.kobi.metalsexchange.app.data.MetalsContract;
 
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -93,6 +90,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     private double oneGramPrice = 0;
 
     private long mDate;
+    private double mRawRate;
 
     public DetailFragment() {
         setHasOptionsMenu(true);
@@ -211,17 +209,9 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_calculate) {
-            String rateNumberRaw= mRateView.getText().toString().replaceAll("[^0-9,.]", "");
-            NumberFormat nf = NumberFormat.getInstance();
             Bundle b = new Bundle();
             b.putString("METAL_ID", Utility.getCurrentMetalId(getActivity()));
-            try {
-                Number t = nf.parse(rateNumberRaw);
-                double d = t.doubleValue();
-                b.putDouble("CURRENT_VALUE", d);
-            }catch (Exception e){
-                System.out.print("error");
-            }
+            b.putDouble("CURRENT_VALUE", mRawRate);
             //b.putDouble("CURRENT_VALUE", Double.valueOf(rateNumberRaw));
             b.putLong("CURRENT_DATE", mDate);
             Intent calculateIntent = new Intent(getActivity(), CalculateActivity.class);
@@ -290,20 +280,32 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             String preferredCurrency = Utility.getPreferredCurrency(getActivity());
             String rate = getRateForCurrency(data, preferredCurrency);
             mRateView.setText(rate);
+
+
+            mRawRate = data.getDouble(Utility.getPreferredCurrencyColumnId(preferredCurrency));
             mRateUnitView.setText("("+Utility.getWeightName(Utility.isGrams(getActivity()), getActivity())+")");
 
             oneGramPrice = data.getDouble(Utility.getPreferredCurrencyColumnId(preferredCurrency));
 
 
-            List<String> otherCurrencies = new ArrayList(Arrays.asList("ILS", "USD", "GBP", "EUR"));
+            List<String> otherCurrencies = Utility.getOtherCurrencies(getActivity());
             otherCurrencies.remove(preferredCurrency);
 
-            String otherRate1 = getRateForCurrency(data, otherCurrencies.get(0));
-            mCurrency1View.setText(otherRate1);
-            String otherRate2 = getRateForCurrency(data, otherCurrencies.get(1));
-            mCurrency2View.setText(otherRate2);
-            String otherRate3 = getRateForCurrency(data, otherCurrencies.get(2));
-            mCurrency3View.setText(otherRate3);
+            String otherRate1=null;
+            String otherRate2=null;
+            String otherRate3=null;
+            if(otherCurrencies.size() > 0){
+                otherRate1 = getRateForCurrency(data, otherCurrencies.get(0));
+                mCurrency1View.setText(otherRate1);
+            }
+            if(otherCurrencies.size() > 1) {
+                otherRate2 = getRateForCurrency(data, otherCurrencies.get(1));
+                mCurrency2View.setText(otherRate2);
+            }
+            if(otherCurrencies.size() > 2) {
+                otherRate3 = getRateForCurrency(data, otherCurrencies.get(2));
+                mCurrency3View.setText(otherRate3);
+            }
 
             String metalName = Utility.getMetalName(metalId, getActivity());
             mExchangeRate = getActivity().getString(R.string.app_name)+"("+friendlyDateText+" ["+Utility.getWeightName(Utility.isGrams(getActivity()), getActivity())+"])"+":\n"+

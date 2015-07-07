@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+
+    <string name="app_name">المعادن الثمينة</string>
+
+    <string name="GOLD">الذهب</string>
+    <string name="SILVER">فضية</string>
+    <string name="PLATINUM">بلاتين</string>
+    <string name="PALLADIUM">البلاديوم</string>
+
+    <string name="action_settings">الإعدادات</string>
+    <string name="action_about">حول</string>
+    <string name="action_rate">معدل</string>
+    <string name="action_share">حصة</string>
+
+    <string name="action_refresh">تحديث</string>
+    <string name="action_calculate">حساب</string>
+    <string name="title_activity_detail">تفاصيل</string>
+    <string name="title_activity_settings">الإعدادات</string>
+
+    <string name="pref_general_header">عام</string>
+    <string name="pref_currencies_header">العملات</string>
+    <string name="pref_notifications_header">الإخطارات</string>
+    <string name="pref_data_sync_header">البيانات وتزامن</string>
+    <string name="pref_advanced_header">متقدم</string>
+
+
+    <string name="pref_enable_notifications_label">الإخطارات</string>
+
+    <string name="pref_enable_notifications_true">تمكين</string>
+    <string name="pref_enable_notifications_false">غير مفعل</string>
+
+    <string name="pref_enable_sync_label">مزامنة البيانات</string>
+    <string name="pref_enable_sync_true">تمكين</string>
+    <string name="pref_enable_sync_false">غير مفعل</string>
+    <string name="pref_sync_frequency_label">تردد المزامنة</string>
+    <string name="pref_sync_frequency_3H">ثلاث ساعات</string>
+    <string name="pref_sync_frequency_6H">ست ساعات</string>
+    <string name="pref_sync_frequency_12H">اثنتي عشرة ساعة</string>
+    <string name="pref_sync_frequency_24H">أربع وعشرون ساعة</string>
+
+
+    <string name="pref_show_jewish_customs_label">جمرك</string>
+    <string name="pref_show_jewish_customs_default">false</string>
+
+    <string name="pref_units_label">وحدات الوزن</string>
+    <string name="pref_units_label_grams">غرام</string>
+    <string name="pref_units_label_ounce">أونصة</string>
+
+    <string name="pref_main_currency_label">الافتراضي العملات</string>
+    <string name="pref_main_other_currencies_label">عملات أخرى</string>
+    <string name="pref_main_other_currencies_summary">حدد ثلاث عملات إضافية</string>
+
+    <string name="pref_main_currency_label_ils">إسرائيل الشيكل</string>
+    <string name="pref_main_currency_label_usd">الدولار الأمريكي</string>
+    <string name="pref_main_currency_label_eur">اليورو</string>
+    <string name="pref_main_currency_label_gbp">الجنيه البريطاني</string>
+    <string name="pref_main_currency_label_cad">كندا الدولار</string>
+    <string name="pref_main_currency_label_dkk">الدنمارك كرونة</string>
+    <string name="pref_main_currency_label_nok">النرويج كرونة</string>
+    <string name="pref_main_currency_label_sek">السويد كرونة</string>
+    <string name="pref_main_currency_label_chf">سويسرا الفرنك</string>
+    <string name="pref_main_currency_label_jod">دينار أردني</string>
+    <string name="pref_main_currency_label_egp">مصر جنيه</string>
+
+
+    <string name="today">اليوم</string>
+    <string name="yesterday">أمس</string>
+    <string name="format_full_friendly_date"><xliff:g id="month">%1$s</xliff:g>, <xliff:g id="day">%2$s</xliff:g></string>
+
+    <string name="zecher_machatzit_hashekel">Zecher L’Machatzit Hashekel</string>
+    <string name="zecher_machatzit_hashekel_details">10 gr of pure silver: %1$s\nFor Machmirim add VAT.</string>
+    <string name="about_zecher_machatzit_hashekel">ما هذا؟</string>
+
+    <string name="pidyon_haben">Pidyon Haben</string>
+    <string name="pidyon_haben_details">100 gr of pure silver: %1$s\nFor Machmirim add VAT.</string>
+    <string name="about_pidyon_haben">ما هذا؟</string>
+
+    <string name="about">المعادن تؤخذ الأسعار تبدأ من <a href="http://www.kitco.com/">KITCO</a></string>
+    <string name="about_continue">تواصل ..</string>
+    <string name="copy_to_clipboard_toast">%1$s تم نسخ القيمة</string>
+
+    <!-- error messages -->
+    <string name="error_no_internet_connection">أي اتصال إنترنت !</string>
+    <string name="error_server_response_not_valid">استجابة الخادم غير صالحة</string>
+    <string name="error_no_response_from_server">أي رد من الخادم</string>
+    <string name="empty_rates_list_startup">تحميل البيانات ...</string>
+    <!--<string name="empty_rates_list">No Rates Information Available</string>-->
+    <string name="empty_rates_list_no_network">لا توجد معلومات متاحة . الشبكة غير متوفرة .</string>
+    <string name="empty_rates_list_server_down">لا توجد معلومات متاحة . الملقم لا يعودون البيانات.</string>
+    <string name="empty_rates_list_server_error">لا توجد معلومات متاحة . الملقم لا يعودون بيانات صالحة. يرجى التحقق من وجود نسخة محدثة من التطبيق.</string>
+    <string name="empty_rates_list_invalid">لا توجد معلومات متاحة . لم يتم التعرف على الاستعلام من قبل الملقم.</string>
+
+
+    <string name="calculator_fragment_name">آلة حاسبة</string>
+    <string name="calculator_gold_purity">الطهارة الذهب</string>
+    <string name="calculator_weight">الوزن</string>
+    <string name="calculator_weight_gram">الوزن ( ز)</string>
+    <string name="calculator_weight_ounce">الوزن (أونصة)</string>
+    <string name="calculator_copy_action">نسخة</string>
+    <string name="calculator_copy_action_toast">سعر نسخها</string>
+</resources>
