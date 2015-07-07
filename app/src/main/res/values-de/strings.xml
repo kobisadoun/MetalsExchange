@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+
+    <string name="app_name">Metalle Exchange</string>
+
+    <string name="GOLD">Gold</string>
+    <string name="SILVER">Silber</string>
+    <string name="PLATINUM">Platin</string>
+    <string name="PALLADIUM">Palladium</string>
+
+    <string name="action_settings">Einstellungen</string>
+    <string name="action_about">Über</string>
+    <string name="action_rate">Preis</string>
+    <string name="action_share">Aktie</string>
+
+    <string name="action_refresh">Aktualisieren</string>
+    <string name="action_calculate">Berechnen</string>
+    <string name="title_activity_detail">Details</string>
+    <string name="title_activity_settings">Einstellungen</string>
+
+    <string name="pref_general_header">Allgemein</string>
+    <string name="pref_currencies_header">Währungen</string>
+    <string name="pref_notifications_header">Benachrichtigungen</string>
+    <string name="pref_data_sync_header">Daten &amp; synchronisieren</string>
+    <string name="pref_advanced_header">Erweiterte</string>
+
+    <string name="pref_enable_notifications_label">Benachrichtigung</string>
+    <string name="pref_enable_notifications_true">Aktiviert</string>
+    <string name="pref_enable_notifications_false">Nicht aktiviert</string>
+
+
+    <string name="pref_enable_sync_label">Synchronisieren von Daten</string>
+    <string name="pref_enable_sync_true">Aktiviert</string>
+    <string name="pref_enable_sync_false">Nicht aktiviert</string>
+    <string name="pref_sync_frequency_label">Synchronisieren Frequenz</string>
+    <string name="pref_sync_frequency_3H">3 Stunden</string>
+    <string name="pref_sync_frequency_6H">6 Stunden</string>
+    <string name="pref_sync_frequency_12H">12 Stunden</string>
+    <string name="pref_sync_frequency_24H">24 Stunden</string>
+
+
+    <string name="pref_show_jewish_customs_label">Anzeigen jüdischer Bräuche</string>
+    <string name="pref_show_jewish_customs_default">false</string>
+
+    <string name="pref_units_label">Gewichtseinheiten</string>
+    <string name="pref_units_label_grams">Gramme</string>
+    <string name="pref_units_label_ounce">Troy Unze</string>
+
+    <string name="pref_main_currency_label">Standardwährung</string>
+    <string name="pref_main_other_currencies_label">Andere Währungen</string>
+    <string name="pref_main_other_currencies_summary">Wählen Sie drei zusätzliche Währungen</string>
+
+    <string name="pref_main_currency_label_ils">Israel Lot</string>
+    <string name="pref_main_currency_label_usd">Dollar américain</string>
+    <string name="pref_main_currency_label_eur">Euro</string>
+    <string name="pref_main_currency_label_gbp">Britische Pfund</string>
+    <string name="pref_main_currency_label_cad">Kanada Dollar</string>
+    <string name="pref_main_currency_label_dkk">Dänemark Krone</string>
+    <string name="pref_main_currency_label_nok">Norwegen Krone</string>
+    <string name="pref_main_currency_label_sek">Schweden Krone</string>
+    <string name="pref_main_currency_label_chf">Schweizer Franken</string>
+    <string name="pref_main_currency_label_jod">Jordanische Dinar</string>
+    <string name="pref_main_currency_label_egp">Ägypten, Pfund</string>
+
+
+    <string name="today">Heute</string>
+    <string name="yesterday">Gestern</string>
+
+    <string name="format_full_friendly_date"><xliff:g id="month">%1$s</xliff:g>, <xliff:g id="day">%2$s</xliff:g></string>
+
+    <string name="zecher_machatzit_hashekel">Zecher L’Machatzit Hashekel</string>
+    <string name="zecher_machatzit_hashekel_details">10 gr of pure silver: %1$s\nFor Machmirim add VAT.</string>
+    <string name="about_zecher_machatzit_hashekel">Was ist das?</string>
+
+    <string name="pidyon_haben">Pidyon Haben</string>
+    <string name="pidyon_haben_details">100 gr of pure silver: %1$s\nFor Machmirim add VAT.</string>
+    <string name="about_pidyon_haben">Was ist das?</string>
+
+
+    <string name="about">Die Metalle Preise werden aus <a href="http://www.kitco.com/">KITCO</a></string>
+    <string name="about_continue">Weiter..</string>
+
+    <string name="copy_to_clipboard_toast">Der Wert %1$s kopiert wurde.</string>
+
+    <!-- error messages -->
+    <string name="error_no_internet_connection">Keine Verbindung zum Internet!</string>
+    <string name="error_server_response_not_valid">Serverantwort ist nicht gültig</string>
+    <string name="error_no_response_from_server">Keine Antwort vom Server</string>
+    <string name="empty_rates_list_startup">Daten werden geladen...</string>
+    <!--<string name="empty_rates_list">Information sur les prix des métaux non disponibles.</string>-->
+    <string name="empty_rates_list_no_network">Keine Informationen verfügbar. Das Netzwerk ist nicht verfügbar.</string>
+    <string name="empty_rates_list_server_down">Keine Informationen verfügbar. Der Server ist nicht die Rückgabe von Daten.</string>
+    <string name="empty_rates_list_server_error">Keine Informationen verfügbar. Der Server ist nicht Rückkehr gültigen Daten. Bitte prüfen, ob eine aktualisierte Version der Anwendung.</string>
+    <string name="empty_rates_list_invalid">Keine Informationen verfügbar. Die Abfrage wird nicht erkannt von der Preise server.</string>
+
+    <string name="calculator_fragment_name">Taschenrechner</string>
+    <string name="calculator_gold_purity">Gold Reinheit</string>
+    <string name="calculator_weight">Gewicht</string>
+    <string name="calculator_weight_gram">Gewicht(g).</string>
+    <string name="calculator_weight_ounce">Gewicht(oz t)</string>
+    <string name="calculator_copy_action">Kopieren</string>
+    <string name="calculator_copy_action_toast">Preis kopiert.</string>
+</resources>

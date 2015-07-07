@@ -109,7 +109,7 @@
     <string name="about">The metals rates are taken from <a href="http://www.kitco.com/">KITCO</a></string>
     <string name="about_continue">Continue..</string>
 
-    <string name="copy_to_clipboard_toast">The value %1$s was copied to the clipboard</string>
+    <string name="copy_to_clipboard_toast">The value %1$s was copied</string>
 
     <!-- error messages -->
     <string name="error_no_internet_connection">No Internet connection!</string>

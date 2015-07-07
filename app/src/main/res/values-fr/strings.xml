@@ -80,7 +80,7 @@
     <string name="about">Le taux des métaux pris de <a href="http://www.kitco.com/">KITCO</a></string>
     <string name="about_continue">Continuer..</string>
 
-    <string name="copy_to_clipboard_toast">La valeur %1$s a été copiée dans le presse-papiers</string>
+    <string name="copy_to_clipboard_toast">La valeur %1$s a été copiée</string>
 
     <!-- error messages -->
     <string name="error_no_internet_connection">Pas de connexion Internet!</string>
@@ -95,7 +95,7 @@
 
     <string name="calculator_fragment_name">Calculatrice</string>
     <string name="calculator_gold_purity">Pureté de l’or</string>
-    <string name="calculator_weight">Poids(g)</string>
+    <string name="calculator_weight">Poids</string>
     <string name="calculator_weight_gram">Poids(g)</string>
     <string name="calculator_weight_ounce">Poids(oz t)</string>
     <string name="calculator_copy_action">Copier</string>
