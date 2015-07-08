@@ -524,12 +524,8 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         if (cursor.moveToFirst()) {
             newRatesForToday = true;
             // Read rate from cursor
-            String rateNIS = Utility.getFormattedCurrency( cursor.getDouble(getPreferredCurrencyColumnId(Utility.CURRENCY_ILS)), Utility.CURRENCY_ILS, context, true);
-            String rateUSD = Utility.getFormattedCurrency( cursor.getDouble(getPreferredCurrencyColumnId(Utility.CURRENCY_USD)), Utility.CURRENCY_USD, context, true);
-
-            //TODO
-
-            contentText.append(Utility.getMetalName(metalId, context)+": "+rateNIS+"/"+rateUSD+"\n");
+            String rate = Utility.getFormattedCurrency( cursor.getDouble(getPreferredCurrencyColumnId(Utility.getPreferredCurrency(context))), Utility.getPreferredCurrency(context), context, true);
+            contentText.append(Utility.getMetalName(metalId, context)+": "+rate+"\n");
         }
         cursor.close();
         return newRatesForToday;

@@ -23,7 +23,7 @@
                 android:id="@+id/detail_day_textview"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:layout_weight="3"
+                android:layout_weight="1"
                 android:textColor="@color/secondary_text"
                 android:textSize="24sp"
                 android:layout_marginBottom="@dimen/abc_list_item_padding_horizontal_material"
@@ -64,7 +64,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textSize="50sp"
+                android:textSize="45sp"
                 />
 
             <android.support.v7.widget.AppCompatTextView
@@ -74,7 +74,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 />
@@ -89,20 +89,21 @@
 
             <ImageView
                 android:id="@+id/detail_icon"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end" />
 
             <LinearLayout
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="0dp"
-                android:layout_weight="5"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
                 android:orientation="vertical"
                 android:layout_gravity="end"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
+
                 >
 
                 <android.support.v7.widget.AppCompatTextView
@@ -112,6 +113,7 @@
                     android:textColor="@color/secondary_text"
                     android:textSize="25sp"
                     android:gravity="end"
+                    android:layout_gravity="end"
                     />
 
                 <android.support.v7.widget.AppCompatTextView
@@ -122,6 +124,7 @@
                     android:textColor="@color/secondary_text"
                     android:textSize="25sp"
                     android:gravity="end"
+                    android:layout_gravity="end"
                     />
 
                 <android.support.v7.widget.AppCompatTextView
@@ -132,6 +135,7 @@
                     android:textColor="@color/secondary_text"
                     android:textSize="25sp"
                     android:gravity="end"
+                    android:layout_gravity="end"
                     />
             </LinearLayout>
         </LinearLayout>

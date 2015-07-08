@@ -36,6 +36,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.kobi.metalsexchange.app.component.DividerItemDecoration;
 import com.kobi.metalsexchange.app.data.MetalsContract;
 import com.kobi.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
 
@@ -211,6 +212,7 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
 
         View emptyView = rootView.findViewById(R.id.recyclerview_rates_empty);
         mRecyclerView.setAdapter(mExchangeRatesAdapter);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),LinearLayoutManager.VERTICAL));
 
 
         // use this setting to improve performance if you know that changes
