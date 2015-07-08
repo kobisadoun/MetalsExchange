@@ -86,8 +86,10 @@ public class Utility {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> a = prefs.getStringSet(context.getString(R.string.pref_main_other_currencies_key), null);
         List<String> otherCurrencies = new ArrayList();
-        for (String str: a){
-            otherCurrencies.add(str);
+        if(a != null) {
+            for (String str : a) {
+                otherCurrencies.add(str);
+            }
         }
         return otherCurrencies;
     }
