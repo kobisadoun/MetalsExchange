@@ -20,11 +20,11 @@
 
     <string name="pref_general_header">Allgemein</string>
     <string name="pref_currencies_header">Währungen</string>
-    <string name="pref_notifications_header">Benachrichtigungen</string>
-    <string name="pref_data_sync_header">Daten &amp; synchronisieren</string>
-    <string name="pref_advanced_header">Erweiterte</string>
+    <string name="pref_notifications_header">Mitteilungen</string>
+    <string name="pref_data_sync_header">Daten &amp; Synchronisation</string>
+    <string name="pref_advanced_header">Erweiterte Einstellungen</string>
 
-    <string name="pref_enable_notifications_label">Benachrichtigung</string>
+    <string name="pref_enable_notifications_label">Mitteilungen</string>
     <string name="pref_enable_notifications_true">Aktiviert</string>
     <string name="pref_enable_notifications_false">Nicht aktiviert</string>
 
@@ -32,35 +32,35 @@
     <string name="pref_enable_sync_label">Synchronisieren von Daten</string>
     <string name="pref_enable_sync_true">Aktiviert</string>
     <string name="pref_enable_sync_false">Nicht aktiviert</string>
-    <string name="pref_sync_frequency_label">Synchronisieren Frequenz</string>
+    <string name="pref_sync_frequency_label">Synchronisieren</string>
     <string name="pref_sync_frequency_3H">3 Stunden</string>
     <string name="pref_sync_frequency_6H">6 Stunden</string>
     <string name="pref_sync_frequency_12H">12 Stunden</string>
     <string name="pref_sync_frequency_24H">24 Stunden</string>
 
 
-    <string name="pref_show_jewish_customs_label">Anzeigen jüdischer Bräuche</string>
+    <string name="pref_show_jewish_customs_label">Anzeigen jüdischer Feiertage</string>
     <string name="pref_show_jewish_customs_default">false</string>
 
     <string name="pref_units_label">Gewichtseinheiten</string>
     <string name="pref_units_label_grams">Gramme</string>
-    <string name="pref_units_label_ounce">Troy Unze</string>
+    <string name="pref_units_label_ounce">Troy-Unze</string>
 
     <string name="pref_main_currency_label">Standardwährung</string>
     <string name="pref_main_other_currencies_label">Andere Währungen</string>
     <string name="pref_main_other_currencies_summary">Wählen Sie drei zusätzliche Währungen</string>
 
-    <string name="pref_main_currency_label_ils">Israel Lot</string>
-    <string name="pref_main_currency_label_usd">Dollar américain</string>
+    <string name="pref_main_currency_label_ils">Israelische Schekel</string>
+    <string name="pref_main_currency_label_usd">US-Dollar</string>
     <string name="pref_main_currency_label_eur">Euro</string>
-    <string name="pref_main_currency_label_gbp">Britische Pfund</string>
+    <string name="pref_main_currency_label_gbp">Pfund Sterling</string>
     <string name="pref_main_currency_label_cad">Kanada Dollar</string>
-    <string name="pref_main_currency_label_dkk">Dänemark Krone</string>
-    <string name="pref_main_currency_label_nok">Norwegen Krone</string>
-    <string name="pref_main_currency_label_sek">Schweden Krone</string>
+    <string name="pref_main_currency_label_dkk">Dänische Krone</string>
+    <string name="pref_main_currency_label_nok">Norwegische Krone</string>
+    <string name="pref_main_currency_label_sek">Schwedische Krone</string>
     <string name="pref_main_currency_label_chf">Schweizer Franken</string>
-    <string name="pref_main_currency_label_jod">Jordanische Dinar</string>
-    <string name="pref_main_currency_label_egp">Ägypten, Pfund</string>
+    <string name="pref_main_currency_label_jod">Jordanischer Dinar</string>
+    <string name="pref_main_currency_label_egp">Ägyptischer Pfund</string>
 
 
     <string name="today">Heute</string>
@@ -77,10 +77,10 @@
     <string name="about_pidyon_haben">Was ist das?</string>
 
 
-    <string name="about">Die Metalle Preise werden aus <a href="http://www.kitco.com/">KITCO</a></string>
+    <string name="about">Abfrage der Metallkurse unter <a href="http://www.kitco.com/">KITCO</a></string>
     <string name="about_continue">Weiter..</string>
 
-    <string name="copy_to_clipboard_toast">Der Wert %1$s kopiert wurde.</string>
+    <string name="copy_to_clipboard_toast">Der Wert %1$s wurde kopiert.</string>
 
     <!-- error messages -->
     <string name="error_no_internet_connection">Keine Verbindung zum Internet!</string>
@@ -89,12 +89,12 @@
     <string name="empty_rates_list_startup">Daten werden geladen...</string>
     <!--<string name="empty_rates_list">Information sur les prix des métaux non disponibles.</string>-->
     <string name="empty_rates_list_no_network">Keine Informationen verfügbar. Das Netzwerk ist nicht verfügbar.</string>
-    <string name="empty_rates_list_server_down">Keine Informationen verfügbar. Der Server ist nicht die Rückgabe von Daten.</string>
-    <string name="empty_rates_list_server_error">Keine Informationen verfügbar. Der Server ist nicht Rückkehr gültigen Daten. Bitte prüfen, ob eine aktualisierte Version der Anwendung.</string>
-    <string name="empty_rates_list_invalid">Keine Informationen verfügbar. Die Abfrage wird nicht erkannt von der Preise server.</string>
+    <string name="empty_rates_list_server_down">Keine Informationen verfügbar. Der Server liefert keine Daten.</string>
+    <string name="empty_rates_list_server_error">Keine Informationen verfügbar. Der Server liefert keine gültigen Daten. Bitte prüfen, ob aktualisierte Metallkurse vorliegen.</string>
+    <string name="empty_rates_list_invalid">Keine Informationen verfügbar. Die Abfrage wird vom Server nicht erkannt.</string>
 
     <string name="calculator_fragment_name">Taschenrechner</string>
-    <string name="calculator_gold_purity">Gold Reinheit</string>
+    <string name="calculator_gold_purity">Feinheit des Goldes</string>
     <string name="calculator_weight">Gewicht</string>
     <string name="calculator_weight_gram">Gewicht(g).</string>
     <string name="calculator_weight_ounce">Gewicht(oz t)</string>
