@@ -96,7 +96,7 @@
     <string name="calculator_fragment_name">Taschenrechner</string>
     <string name="calculator_gold_purity">Feinheit des Goldes</string>
     <string name="calculator_weight">Gewicht</string>
-    <string name="calculator_weight_gram">Gewicht(g).</string>
+    <string name="calculator_weight_gram">Gewicht(g)</string>
     <string name="calculator_weight_ounce">Gewicht(oz t)</string>
     <string name="calculator_copy_action">Kopieren</string>
     <string name="calculator_copy_action_toast">Preis kopiert.</string>
