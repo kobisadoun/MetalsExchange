@@ -21,18 +21,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.kobi.metalsexchange.app.component.SlidingTabLayout;
 import com.kobi.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
+import com.software.shell.fab.ActionButton;
 
-public class MainActivity extends AppCompatActivity implements ExchangeRatesFragment.Callback {
+public class MainActivity extends AppCompatActivity implements ExchangeRatesFragment.Callback, FABHideable {
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
     private static final String DETAILFRAGMENT_TAG = "DFTAG";
@@ -40,6 +43,19 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
 
     private String mCurrencyId;
     private boolean mGrams;
+
+    private ActionButton mFloatingActionButton;
+
+    @Override
+    public void hideOrShowFloatingActionButton(){
+        if(mFloatingActionButton != null) {
+            if (mFloatingActionButton.isHidden()) {
+                mFloatingActionButton.show();
+            } else {
+                mFloatingActionButton.hide();
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,11 +109,16 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
                     if(trendGraphFragment != null) {
                         getSupportFragmentManager().beginTransaction().remove(trendGraphFragment).commit();
                     }
+                    if(mFloatingActionButton != null) {
+                        mFloatingActionButton.hide();
+                    }
                 }
             }
         };
         slidingTabLayout.setOnPageChangeListener(pageChangeListener);
         viewPager.setCurrentItem(Utility.getTabIdxForMetal(Utility.getCurrentMetalId(this)));
+
+
         if (Utility.isTwoPanesView()) {
             // The detail container view will be present only in the large-screen layouts
             // (res/layout-sw600dp). If this view is present, then the activity should be
@@ -105,6 +126,29 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
+
+
+            mFloatingActionButton = (ActionButton) findViewById(R.id.action_button);
+            mFloatingActionButton.hide();
+            if(mFloatingActionButton != null) {
+                mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        DetailFragment df = (DetailFragment) getSupportFragmentManager().findFragmentByTag(DETAILFRAGMENT_TAG);
+                        Bundle b = new Bundle();
+                        b.putString("METAL_ID", Utility.getCurrentMetalId(MainActivity.this));
+                        b.putDouble("CURRENT_VALUE", df.getRawRate());
+                        b.putLong("CURRENT_DATE", df.getDate());
+                        FragmentManager fm = MainActivity.this.getSupportFragmentManager();
+                        CalculatorDialogFragment myDialogFragment = new CalculatorDialogFragment();
+                        myDialogFragment.setArguments(b);
+                        //myDialogFragment.getDialog().setTitle(getResources().getString(R.string.calculator_fragment_name));
+                        myDialogFragment.show(fm, "dialog_fragment");
+                    }
+                });
+            }
+
             if (savedInstanceState == null) {
                 DetailFragment detailFragment = (DetailFragment)getSupportFragmentManager().findFragmentByTag(DETAILFRAGMENT_TAG);
                 TrendGraphFragment trendGraphFragment = (TrendGraphFragment)getSupportFragmentManager().findFragmentByTag(CHARTFRAGMENT_TAG);
@@ -235,6 +279,7 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.rate_graph_container, fragmentChart, CHARTFRAGMENT_TAG)
                     .commit();
+            mFloatingActionButton.show();
         } else {
             Intent intent = new Intent(this, DetailActivity.class)
                     .setData(contentUri);

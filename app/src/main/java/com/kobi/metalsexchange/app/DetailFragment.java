@@ -96,6 +96,14 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         setHasOptionsMenu(true);
     }
 
+    public double getRawRate() {
+        return mRawRate;
+    }
+
+    public long getDate() {
+        return mDate;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -204,21 +212,6 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_calculate) {
-            Bundle b = new Bundle();
-            b.putString("METAL_ID", Utility.getCurrentMetalId(getActivity()));
-            b.putDouble("CURRENT_VALUE", mRawRate);
-            //b.putDouble("CURRENT_VALUE", Double.valueOf(rateNumberRaw));
-            b.putLong("CURRENT_DATE", mDate);
-            Intent calculateIntent = new Intent(getActivity(), CalculateActivity.class);
-            calculateIntent.putExtras(b);
-            startActivity(calculateIntent);
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 

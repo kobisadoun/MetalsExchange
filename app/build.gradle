@@ -29,4 +29,5 @@ dependencies {
     compile 'com.android.support:support-annotations:22.2.0'
     compile 'com.android.support:recyclerview-v7:22.2.0'
     compile 'com.android.support:gridlayout-v7:22.2.0'
+    compile 'com.github.shell-software:fab:1.1.2'
 }

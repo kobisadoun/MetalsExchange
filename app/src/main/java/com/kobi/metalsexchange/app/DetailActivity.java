@@ -21,11 +21,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.kobi.metalsexchange.app.data.MetalsContract;
+import com.software.shell.fab.ActionButton;
 
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements FABHideable {
+
+    private ActionButton mFloatingActionButton;
+
+    @Override
+    public void hideOrShowFloatingActionButton(){
+        if(mFloatingActionButton.isHidden()) {
+            mFloatingActionButton.show();
+        }else{
+            mFloatingActionButton.hide();
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +49,24 @@ public class DetailActivity extends AppCompatActivity {
         // Creating The Toolbar and setting it as the Toolbar for the activity
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        mFloatingActionButton = (ActionButton) findViewById(R.id.action_button);
+        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DetailFragment df = (DetailFragment)getSupportFragmentManager().findFragmentByTag(DetailFragment.class.getSimpleName());
+                Bundle b = new Bundle();
+                b.putString("METAL_ID", Utility.getCurrentMetalId(DetailActivity.this));
+                b.putDouble("CURRENT_VALUE", df.getRawRate());
+                b.putLong("CURRENT_DATE", df.getDate());
+                Intent calculateIntent = new Intent(DetailActivity.this, CalculateActivity.class);
+                calculateIntent.putExtras(b);
+                startActivity(calculateIntent);
+            }
+        });
 
         String metalId = MetalsContract.MetalsRateEntry.getMetalIdFromUri(getIntent().getData());
+
         setTitle(Utility.getMetalName(metalId, this));
       //  getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_HOME_AS_UP);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -52,7 +82,7 @@ public class DetailActivity extends AppCompatActivity {
             fragment.setArguments(arguments);
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.rate_detail_container, fragment)
+                    .add(R.id.rate_detail_container, fragment, DetailFragment.class.getSimpleName())
                     .commit();
 
 

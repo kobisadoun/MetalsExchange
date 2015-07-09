@@ -55,28 +55,52 @@
                 android:background="@android:color/white" />
         </LinearLayout>
 
-        <LinearLayout
-            android:gravity="center_vertical"
-            android:layout_gravity="start"
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:fab="http://schemas.android.com/apk/res-auto"
+            android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
+            >
 
-            <FrameLayout
-                android:id="@+id/rate_detail_container"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_gravity="start"
+                android:layout_height="match_parent"
                 android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <FrameLayout
+                    android:id="@+id/rate_detail_container"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    />
+
+                <FrameLayout
+                    android:id="@+id/rate_graph_container"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:minHeight="250dp" />
+
+            </LinearLayout>
+
+            <com.software.shell.fab.ActionButton
+                android:id="@+id/action_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="@dimen/fab_margin"
+                android:layout_marginBottom="@dimen/fab_margin"
+                fab:button_color="@color/primary"
+                fab:button_colorPressed="@color/primary_dark"
+                fab:image="@drawable/ic_calculator"
+                fab:show_animation="@anim/fab_roll_from_down"
+                fab:hide_animation="@anim/fab_roll_to_down"
                 />
-
-            <FrameLayout
-                android:id="@+id/rate_graph_container"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:minHeight="250dp" />
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

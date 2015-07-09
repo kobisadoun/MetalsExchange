@@ -1,41 +1,63 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center_vertical"
-    android:layout_gravity="start"
-    android:layout_height="wrap_content"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="@android:color/white"
+    android:layout_height="match_parent"
     >
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tool_bar"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:gravity="center_vertical"
+        android:layout_gravity="start"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:background="@color/primary"
-        android:elevation="0dp"
-        android:scaleType="center"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tool_bar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/primary"
+            android:elevation="0dp"
+            android:scaleType="center"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            />
+
+        <FrameLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/rate_detail_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context="com.kobi.metalsexchange.app.DetailActivity"
+            tools:ignore="MergeRootFrame" />
+
+        <FrameLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/rate_graph_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:minHeight="150dp"
+            tools:context="com.kobi.metalsexchange.app.DetailActivity"
+            tools:ignore="MergeRootFrame" />
+
+    </LinearLayout>
+
+    <com.software.shell.fab.ActionButton
+        android:id="@+id/action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        fab:button_color="@color/primary"
+        fab:button_colorPressed="@color/primary_dark"
+        fab:image="@drawable/ic_calculator"
+        fab:show_animation="@anim/fab_roll_from_down"
+        fab:hide_animation="@anim/fab_roll_to_down"
         />
-
-    <FrameLayout
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/rate_detail_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context="com.kobi.metalsexchange.app.DetailActivity"
-        tools:ignore="MergeRootFrame" />
-
-    <FrameLayout
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/rate_graph_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:minHeight="150dp"
-        tools:context="com.kobi.metalsexchange.app.DetailActivity"
-        tools:ignore="MergeRootFrame" />
-
-</LinearLayout>
-
+</RelativeLayout>

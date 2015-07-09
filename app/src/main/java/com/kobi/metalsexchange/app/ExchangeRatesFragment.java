@@ -21,7 +21,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -126,62 +125,6 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-//        if (id == R.id.action_refresh) {
-//            updateRates();
-//            return true;
-//        }
-        if (id == R.id.action_calculate) {
-            ExchangeRatesAdapter adapter = (ExchangeRatesAdapter)mRecyclerView.getAdapter();
-            int position = mPosition;
-            if(position != RecyclerView.NO_POSITION) {
-                adapter.getCursor().moveToPosition(position);
-                // Read date from cursor
-                long dateInMillis = adapter.getCursor().getLong(ExchangeRatesFragment.COL_RATE_DATE);
-                double rateRaw = adapter.getCursor().getDouble(Utility.getPreferredCurrencyColumnId(Utility.getPreferredCurrency(getActivity())));
-
-                Bundle b = new Bundle();
-                b.putString("METAL_ID", Utility.getCurrentMetalId(getActivity()));
-                b.putDouble("CURRENT_VALUE", rateRaw);
-                b.putLong("CURRENT_DATE", dateInMillis);
-
-
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                CalculatorDialogFragment myDialogFragment = new CalculatorDialogFragment();
-                myDialogFragment.setArguments(b);
-                //myDialogFragment.getDialog().setTitle(getResources().getString(R.string.calculator_fragment_name));
-                myDialogFragment.show(fm, "dialog_fragment");
-            }
-
-//            ArrayList<HashMap<String,Object>> items =new ArrayList<HashMap<String,Object>>();
-//            final PackageManager pm = getActivity().getPackageManager();
-//            List<PackageInfo> packs = pm.getInstalledPackages(0);
-//            for (PackageInfo pi : packs) {
-//                if( pi.packageName.toString().toLowerCase().contains("calcul")){
-//                    HashMap<String, Object> map = new HashMap<String, Object>();
-//                    map.put("appName", pi.applicationInfo.loadLabel(pm));
-//                    map.put("packageName", pi.packageName);
-//                    items.add(map);
-//                }
-//            }
-//            if(items.size()>=1){
-//                String packageName = (String) items.get(0).get("packageName");
-//                Intent i = pm.getLaunchIntentForPackage(packageName);
-//                if (i != null)
-//                    startActivity(i);
-//            }
-//            else{
-//                // Application not found
-//            }
-//
-//
-//
-
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 

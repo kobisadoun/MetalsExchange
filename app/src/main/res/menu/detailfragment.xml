@@ -6,9 +6,4 @@
         android:title="@string/action_share"
         app:showAsAction="always"
         app:actionProviderClass="android.support.v7.widget.ShareActionProvider" />
-
-    <item android:id="@+id/action_calculate"
-        android:title="@string/action_calculate"
-        android:icon="@drawable/ic_calculator"
-        app:showAsAction="always" />
 </menu>

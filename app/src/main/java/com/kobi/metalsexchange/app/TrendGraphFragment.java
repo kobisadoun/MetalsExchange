@@ -247,7 +247,7 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
             mChart.setData(data);
             mChart.getLegend().setEnabled(false);   // Hide the legend
 
-            mChart.animateX(1500);
+            mChart.animateX(500);
 
             mChart.highlightValue(xAxisHighlighted, 0);
            // mChart.setHighlightLineWidth(15f);
@@ -305,6 +305,7 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
 
     @Override
     public void onChartSingleTapped(MotionEvent me) {
+        ((FABHideable)getActivity()).hideOrShowFloatingActionButton();
         Log.i("SingleTap", "Chart single-tapped.");
     }
 
