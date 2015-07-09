@@ -7,7 +7,7 @@ public enum WeightUnitEnum {
     private int resourceId;
     private boolean isGrams;
 
-    private WeightUnitEnum(int resourceId, boolean grams){
+    WeightUnitEnum(int resourceId, boolean grams){
         this.resourceId = resourceId;
         this.isGrams = grams;
     }

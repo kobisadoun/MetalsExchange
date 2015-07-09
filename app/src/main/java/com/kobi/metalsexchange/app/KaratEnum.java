@@ -1,24 +1,24 @@
 package com.kobi.metalsexchange.app;
 
 public enum KaratEnum {
-    K_24("24 K", 1d),
-    K_22("22 K", 22f/24f),
-    K_18("18 K", 18f/24f),
-    K_14("14 K", 14f/24f),
-    K_10("10 K", 10f/24f),
-    K_9("9 K", 9f/24f),
-    K_8("8 K", 8f/24f);
+    K_24(R.string.karat_enum_24, 1d),
+    K_22(R.string.karat_enum_22, 22f/24f),
+    K_18(R.string.karat_enum_18, 18f/24f),
+    K_14(R.string.karat_enum_14, 14f/24f),
+    K_10(R.string.karat_enum_10, 10f/24f),
+    K_9(R.string.karat_enum_9, 9f/24f),
+    K_8(R.string.karat_enum_8, 8f/24f);
 
-    private String displayString;
+    private int resourceId;
     private double factor;
 
-    private KaratEnum(String displayString, double factor){
-        this.displayString = displayString;
+    KaratEnum(int resourceId, double factor){
+        this.resourceId = resourceId;
         this.factor = factor;
     }
 
     @Override public String toString(){
-        return displayString;
+        return ApplicationContextProvider.getContext().getString(resourceId);
     }
 
     public double getFactor(){

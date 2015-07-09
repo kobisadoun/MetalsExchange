@@ -99,4 +99,12 @@
     <string name="calculator_weight_ounce">الوزن (أونصة)</string>
     <string name="calculator_copy_action">نسخة</string>
     <string name="calculator_copy_action_toast">سعر نسخها</string>
+
+    <string name="karat_enum_24">٢٤ قيراط</string>
+    <string name="karat_enum_22">٢٢ قيراط</string>
+    <string name="karat_enum_18">١٨ قيراط</string>
+    <string name="karat_enum_14">١٤ قيراط</string>
+    <string name="karat_enum_10">١٠ قيراط</string>
+    <string name="karat_enum_9">٩ قيراط</string>
+    <string name="karat_enum_8">٨ قيراط</string>
 </resources>

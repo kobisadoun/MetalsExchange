@@ -130,4 +130,13 @@
     <string name="calculator_weight_ounce">Weight(oz t)</string>
     <string name="calculator_copy_action">Copy</string>
     <string name="calculator_copy_action_toast">Price copied</string>
+
+
+    <string name="karat_enum_24">24 Karat</string>
+    <string name="karat_enum_22">22 Karat</string>
+    <string name="karat_enum_18">18 Karat</string>
+    <string name="karat_enum_14">14 Karat</string>
+    <string name="karat_enum_10">10 Karat</string>
+    <string name="karat_enum_9">9 Karat</string>
+    <string name="karat_enum_8">8 Karat</string>
 </resources>
