@@ -61,10 +61,10 @@ public class SettingsActivity extends PreferenceActivity
         addPreferencesFromResource(R.xml.pref_notifications);
 
 
-        fakeHeader = new PreferenceCategory(this);
-        fakeHeader.setTitle(R.string.pref_data_sync_header);
-        getPreferenceScreen().addPreference(fakeHeader);
-        addPreferencesFromResource(R.xml.pref_data_sync);
+//        fakeHeader = new PreferenceCategory(this);
+//        fakeHeader.setTitle(R.string.pref_data_sync_header);
+//        getPreferenceScreen().addPreference(fakeHeader);
+//        addPreferencesFromResource(R.xml.pref_data_sync);
 
         fakeHeader = new PreferenceCategory(this);
         fakeHeader.setTitle(R.string.pref_advanced_header);
@@ -81,7 +81,43 @@ public class SettingsActivity extends PreferenceActivity
         }
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_main_currency_key)));
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_units_key)));
-        bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_sync_frequency_key)));
+//        bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_sync_frequency_key)));
+//
+//        Preference syncEnabledPref = (Preference) findPreference(getString(R.string.pref_enable_sync_key));
+//        syncEnabledPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+//            public boolean onPreferenceChange(Preference preference, Object value) {
+//                boolean syncEnabled = Boolean.valueOf( value.toString());
+//
+//                Account account = MetalsExchangeSyncAdapter.getSyncAccount(SettingsActivity.this);
+//                if(!syncEnabled) {
+//                    ContentResolver.cancelSync(account, SettingsActivity.this.getString(R.string.content_authority));
+//                    ContentResolver.setSyncAutomatically(account, SettingsActivity.this.getString(R.string.content_authority), false);
+//                }
+//                else{
+//                    ContentResolver.setSyncAutomatically(account, SettingsActivity.this.getString(R.string.content_authority), true);
+//                    MetalsExchangeSyncAdapter.syncImmediately(SettingsActivity.this, false);
+//                }
+//                return true;
+//            }
+//        });
+//
+//
+//        Preference syncFrequencyPref = (Preference) findPreference(getString(R.string.pref_sync_frequency_key));
+//        syncFrequencyPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+//            public boolean onPreferenceChange(Preference preference, Object value) {
+//                int syncInterval = Integer.valueOf((String) value);
+//                MetalsExchangeSyncAdapter.configurePeriodicSync(SettingsActivity.this, syncInterval, syncInterval / 3);
+//
+//                // For list preferences, look up the correct display value in
+//                // the preference's 'entries' list (since they have separate labels/values).
+//                ListPreference listPreference = (ListPreference) preference;
+//                int prefIndex = listPreference.findIndexOfValue((String) value);
+//                if (prefIndex >= 0) {
+//                    preference.setSummary(listPreference.getEntries()[prefIndex]);
+//                }
+//                return true;
+//            }
+//        });
     }
 
     /**

@@ -55,16 +55,36 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         />
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/list_item_rate_textview"
+    <LinearLayout
+        android:layout_gravity="end"
+        android:gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="end"
+        android:orientation="vertical"
         android:paddingRight="20dp"
         android:paddingEnd="20dp"
-        android:gravity="center_vertical"
-        android:textSize="20sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        android:textColor="@color/primary_text"/>
+        >
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/list_item_rate_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/primary_text"/>
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/list_item_rate_unit_textview"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="sans-serif"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@color/secondary_text"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -25,7 +25,7 @@ import android.widget.Toast;
 
 import com.kobi.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
 
-import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -341,14 +341,14 @@ public class Utility {
         return -1;
     }
 
-    public static String getFormattedCurrency(Double price, String currencyId, Context context, boolean convertIfNeeded){
+    public static String getFormattedCurrency(Double price, String currencyId, Context context, boolean convertIfNeeded/*, boolean appendWeightUnit*/){
         if(convertIfNeeded && !isGrams(context)) {
             price *= GRAMS_IN_OUNCE;
         }
         Currency curr = Currency.getInstance(currencyId);
-        String symbol = curr.getSymbol();
-        DecimalFormat myFormatter = new DecimalFormat("###.##");
-        return symbol+myFormatter.format(price);
+        NumberFormat defaultFormat = NumberFormat.getCurrencyInstance();
+        defaultFormat.setCurrency(curr);
+        return defaultFormat.format(price);
     }
 
     public static List<String> getAllMetalIds(){

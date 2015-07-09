@@ -41,6 +41,8 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
         public final TextView dateView;
         public final TextView deltaView;
         public final TextView rateView;
+        public final TextView rateUnitView;
+
 
         public RatesAdapterViewHolder(View view) {
             super(view);
@@ -50,6 +52,7 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
             dateView = (TextView) view.findViewById(R.id.list_item_date_textview);
             deltaView = (TextView) view.findViewById(R.id.list_item_delta_textview);
             rateView = (TextView) view.findViewById(R.id.list_item_rate_textview);
+            rateUnitView = (TextView) view.findViewById(R.id.list_item_rate_unit_textview);
             if(refreshTodayView != null) {
                 refreshTodayView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -140,6 +143,7 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
         double rateRaw = mCursor.getDouble(Utility.getPreferredCurrencyColumnId(Utility.getPreferredCurrency(mContext)));
         String rate = Utility.getFormattedCurrency( rateRaw, Utility.getPreferredCurrency(mContext), mContext, true);
         adapterViewHolder.rateView.setText(rate);
+        adapterViewHolder.rateUnitView.setText("("+Utility.getWeightName(Utility.isGrams(mContext), mContext)+")");
 
         //in order to calculate the delta we should get the cursor location for one before
         if(!mCursor.isLast() && mCursor.moveToNext()){

@@ -39,6 +39,20 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
              />
 
+        <android.support.v7.widget.AppCompatTextView
+            android:fontFamily="sans-serif-light"
+            android:id="@+id/list_item_rate_unit_textview"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/primary_text"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            />
+
 
         <LinearLayout
             android:layout_width="match_parent"
