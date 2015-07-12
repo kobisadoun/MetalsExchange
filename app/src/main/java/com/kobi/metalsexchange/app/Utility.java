@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Currency;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -84,8 +85,10 @@ public class Utility {
 
     public static List<String> getOtherCurrencies(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Set<String> a = prefs.getStringSet(context.getString(R.string.pref_main_other_currencies_key), null);
-        List<String> otherCurrencies = new ArrayList();
+        Set<String> defaultSet = new HashSet<>(Arrays.asList(context.getResources().getStringArray(R.array.pref_main_currency_values_default)));
+
+        Set<String> a = prefs.getStringSet(context.getString(R.string.pref_main_other_currencies_key), defaultSet);
+        List<String> otherCurrencies = new ArrayList<>();
         if(a != null) {
             for (String str : a) {
                 otherCurrencies.add(str);
@@ -155,7 +158,7 @@ public class Utility {
 
     public static boolean isGrams(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString(context.getString(R.string.pref_units_key),
+        return prefs == null || prefs.getString(context.getString(R.string.pref_units_key),
                 context.getString(R.string.pref_units_grams))
                 .equals(context.getString(R.string.pref_units_grams));
     }
