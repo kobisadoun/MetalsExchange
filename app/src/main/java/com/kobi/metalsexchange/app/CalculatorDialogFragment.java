@@ -15,7 +15,7 @@ public class CalculatorDialogFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_calculate, container);
         Bundle arguments = getArguments();
-        calculateFragmentViewHelper = new CalculateFragmentViewHelper(rootView, arguments, getActivity());
+        calculateFragmentViewHelper = new CalculateFragmentViewHelper(rootView, arguments, getActivity(), null);
         rootView.setPadding(24,24,24,24);
         getDialog().setTitle(getResources().getString(R.string.calculator_fragment_name));
         return rootView;

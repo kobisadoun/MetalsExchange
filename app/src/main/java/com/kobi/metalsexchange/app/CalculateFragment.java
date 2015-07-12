@@ -32,7 +32,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-public class CalculateFragment extends Fragment {
+public class CalculateFragment extends Fragment implements CalculateFragmentViewHelper.CalculateListener {
 
     private static final String LOG_TAG = CalculateFragment.class.getSimpleName();
     private ShareActionProvider mShareActionProvider;
@@ -43,16 +43,19 @@ public class CalculateFragment extends Fragment {
     }
 
     @Override
+    public void priceCalculated(String calcResult){
+        if (mShareActionProvider != null) {
+            mShareActionProvider.setShareIntent(createShareExchangeRatesIntent(calcResult));
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         Bundle arguments = getArguments();
         View rootView = inflater.inflate(R.layout.fragment_calculate, container, false);
-        calculateFragmentViewHelper = new CalculateFragmentViewHelper(rootView, arguments, getActivity());
-        // If onCreateOptionsMenu has already happened, we need to update the share intent now.
-        if (mShareActionProvider != null) {
-            mShareActionProvider.setShareIntent(createShareExchangeRatesIntent());
-        }
+        calculateFragmentViewHelper = new CalculateFragmentViewHelper(rootView, arguments, getActivity(), this);
         return rootView;
     }
 
@@ -67,10 +70,17 @@ public class CalculateFragment extends Fragment {
         // Get the provider and hold onto it to set/change the share intent.
         mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
 
-        // If onLoadFinished happens before this, we can go ahead and set the share intent now.
-        if (calculateFragmentViewHelper.getExchangeSharePrice() != null) {
-            mShareActionProvider.setShareIntent(createShareExchangeRatesIntent());
+        if(mShareActionProvider != null) {
+            mShareActionProvider.setShareIntent(createShareExchangeRatesIntent(""));
         }
+    }
+
+    private Intent createShareExchangeRatesIntent(String calcResult) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, calcResult);
+        return shareIntent;
     }
 
     @Override
@@ -91,14 +101,6 @@ public class CalculateFragment extends Fragment {
             toast.show();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private Intent createShareExchangeRatesIntent() {
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, calculateFragmentViewHelper.getExchangeSharePrice());
-        return shareIntent;
     }
 
     @Override

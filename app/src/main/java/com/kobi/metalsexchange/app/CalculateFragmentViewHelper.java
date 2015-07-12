@@ -29,7 +29,6 @@ import android.widget.TextView;
 
 public class CalculateFragmentViewHelper  {
 
-    private String mExchangePrice;
     private double mPriceResult;
 
     private ImageView mIconView;
@@ -47,8 +46,14 @@ public class CalculateFragmentViewHelper  {
     private double mMetalPrice;
     private long mDate;
 
-    public CalculateFragmentViewHelper(View rootView, Bundle arguments, final Context context) {
+    private CalculateListener mCalculateListener;
 
+    public interface CalculateListener{
+        void priceCalculated(String calcResult);
+    }
+
+    public CalculateFragmentViewHelper(View rootView, Bundle arguments, final Context context, CalculateListener calculateListener) {
+        this.mCalculateListener = calculateListener;
         if (arguments != null) {
             mMetalId = arguments.getString("METAL_ID");
             mMetalPrice = arguments.getDouble("CURRENT_VALUE");
@@ -139,6 +144,7 @@ public class CalculateFragmentViewHelper  {
     }
 
     private void calculate(Context context){
+        String exchangePrice;
         //WeightUnitEnum unitEnum = (WeightUnitEnum)mWeightSpinner.getSelectedItem();
         double weight = 0;
         try {
@@ -146,8 +152,6 @@ public class CalculateFragmentViewHelper  {
         }
         catch (Exception e){
             metalPriceTextview.setText("");
-            mExchangePrice = "";
-            return;
         }
 
         double factor = 1;
@@ -172,17 +176,17 @@ public class CalculateFragmentViewHelper  {
 
         //generate the share text
         String metalName = Utility.getMetalName(mMetalId, context);
-        mExchangePrice = context.getString(R.string.app_name)+"("+mFriendlyDateView.getText()+")"+":\n"+
+        exchangePrice = context.getString(R.string.app_name)+"("+mFriendlyDateView.getText()+")"+":\n"+
                 "------"+metalName+"----"+"\n"+
                 context.getString(R.string.calculator_weight) + " [" +Utility.getWeightName(Utility.isGrams(context), context)+"]" +"\n"+
                 weight+"\n"+
                 "================"+"\n"+
                 priceString+"\n"+
                 "================";
-    }
 
-    public String getExchangeSharePrice(){
-        return mExchangePrice;
+        if(mCalculateListener != null){
+            mCalculateListener.priceCalculated(exchangePrice);
+        }
     }
 
     public double getPriceResult(){

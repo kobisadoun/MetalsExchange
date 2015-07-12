@@ -217,7 +217,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
     private Intent createShareExchangeRatesIntent() {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, mExchangeRate);
         return shareIntent;
@@ -304,9 +304,9 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             mExchangeRate = getActivity().getString(R.string.app_name)+"("+friendlyDateText+" ["+Utility.getWeightName(Utility.isGrams(getActivity()), getActivity())+"])"+":\n"+
                     "------"+metalName+"----"+"\n"+
                     rate +"\n"+
-                    otherRate1 +"\n"+
-                    otherRate2 +"\n"+
-                    otherRate3;
+                    (otherRate1 != null ? otherRate1 +"\n" : "") +
+                    (otherRate2 != null ? otherRate2 +"\n" : "") +
+                    (otherRate3 != null ? otherRate1: "");
 
             // If onCreateOptionsMenu has already happened, we need to update the share intent now.
             if (mShareActionProvider != null) {
