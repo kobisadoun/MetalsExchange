@@ -38,8 +38,12 @@
             android:id="@+id/rate_graph_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:minHeight="150dp"
+            android:paddingStart="16dp"
+            android:paddingLeft="16dp"
+            android:paddingEnd="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="10dp"
+            android:minHeight="140dp"
             tools:context="com.kobi.metalsexchange.app.DetailActivity"
             tools:ignore="MergeRootFrame" />
 
