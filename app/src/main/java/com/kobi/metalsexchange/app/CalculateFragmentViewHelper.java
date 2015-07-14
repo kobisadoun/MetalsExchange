@@ -16,7 +16,9 @@
 package com.kobi.metalsexchange.app;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -84,19 +86,26 @@ public class CalculateFragmentViewHelper  {
             }
         });
 
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         mGoldPurityTextView = (TextView) rootView.findViewById(R.id.gold_purity_textview);
         mGoldPuritySpinner = (Spinner) rootView.findViewById(R.id.gold_purity_spinner);
-        mGoldPuritySpinner.setAdapter(new ArrayAdapter<KaratEnum>(context, android.R.layout.simple_spinner_dropdown_item, KaratEnum.values()));
+        mGoldPuritySpinner.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, KaratEnum.values()));
         mGoldPuritySpinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     public void onItemSelected(
                             AdapterView<?> parent, View view, int position, long id) {
                         calculate(context);
+
+                        SharedPreferences.Editor spe = sp.edit();
+                        spe.putInt("mGoldPuritySpinner_postion", mGoldPuritySpinner.getSelectedItemPosition());
+                        spe.apply();
                     }
 
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
                 });
+
+        mGoldPuritySpinner.setSelection(sp.getInt("mGoldPuritySpinner_postion",0));
 
 //        mWeightSpinner = (Spinner) rootView.findViewById(R.id.weight_unit_spinner);
 //        mWeightSpinner.setAdapter(new ArrayAdapter<WeightUnitEnum>(getActivity(), android.R.layout.simple_spinner_dropdown_item, WeightUnitEnum.values()));

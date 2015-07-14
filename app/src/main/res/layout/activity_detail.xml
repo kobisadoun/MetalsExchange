@@ -30,6 +30,7 @@
             android:id="@+id/rate_detail_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
             tools:context="com.kobi.metalsexchange.app.DetailActivity"
             tools:ignore="MergeRootFrame" />
 
