@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+
+    <string name="app_name">Borsa metalli</string>
+
+    <string name="GOLD">oro</string>
+    <string name="SILVER">argento</string>
+    <string name="PLATINUM">platino</string>
+    <string name="PALLADIUM">palladio</string>
+
+    <string name="action_settings">Impostazioni</string>
+    <string name="action_about">di</string>
+    <string name="action_rate">tasso</string>
+    <string name="action_share">quota</string>
+
+    <string name="action_refresh">rinfrescare</string>
+    <string name="action_calculate">calcolare</string>
+    <string name="title_activity_detail">Dettagli</string>
+    <string name="title_activity_settings">Impostazioni</string>
+
+    <string name="pref_general_header">generale</string>
+    <string name="pref_currencies_header">Valute</string>
+    <string name="pref_notifications_header">Notifiche</string>
+    <string name="pref_data_sync_header">dati e sincronizzazione</string>
+    <string name="pref_advanced_header">avanzato</string>
+
+
+    <string name="pref_enable_notifications_label">Notifiche</string>
+
+    <string name="pref_enable_notifications_true">Abilitato</string>
+    <string name="pref_enable_notifications_false">Non abilitato</string>
+
+    <string name="pref_enable_sync_label">sincronizzazione dati</string>
+    <string name="pref_enable_sync_true">Abilitato</string>
+    <string name="pref_enable_sync_false">Non abilitato</string>
+    <string name="pref_history_business_days_label">Dimensione massima storia (giorni lavorativi)</string>
+    <string name="pref_sync_frequency_label">frequenza di sincronizzazione</string>
+    <string name="pref_sync_frequency_3H">3 ore</string>
+    <string name="pref_sync_frequency_6H">6 ore</string>
+    <string name="pref_sync_frequency_12H">12 ore</string>
+    <string name="pref_sync_frequency_24H">24 ore</string>
+
+
+    <string name="pref_show_jewish_customs_label">Mostra ebraico doganale</string>
+
+    <string name="pref_units_label">unità di peso</string>
+    <string name="pref_units_label_grams">grammo</string>
+    <string name="pref_units_label_ounce">Troy Ounce</string>
+
+    <string name="pref_main_currency_label">valuta predefinita</string>
+    <string name="pref_main_other_currencies_label">Altre Valute</string>
+    <string name="pref_main_other_currencies_summary">Selezionare un massimo di 3 monete aggiuntive</string>
+
+    <string name="pref_main_currency_label_ils">Israele Shekel</string>
+    <string name="pref_main_currency_label_usd">dollaro statunitense</string>
+    <string name="pref_main_currency_label_eur">euro</string>
+    <string name="pref_main_currency_label_gbp">Sterlina Inglese</string>
+    <string name="pref_main_currency_label_cad">Dollaro canadese</string>
+    <string name="pref_main_currency_label_dkk">Denmark Krone</string>
+    <string name="pref_main_currency_label_nok">Corone Norvegesi</string>
+    <string name="pref_main_currency_label_sek">Corona svedese</string>
+    <string name="pref_main_currency_label_chf">Svizzera Franc</string>
+    <string name="pref_main_currency_label_jod">dinaro giordano</string>
+    <string name="pref_main_currency_label_egp">Egitto Pound</string>
+
+    <string name="today">oggi</string>
+    <string name="yesterday">ieri</string>
+    <string name="format_full_friendly_date"><xliff:g id="month">%1$s</xliff:g>, <xliff:g id="day">%2$s</xliff:g></string>
+
+    <string name="zecher_machatzit_hashekel">Zecher L’Machatzit Hashekel</string>
+    <string name="zecher_machatzit_hashekel_details">10 gr of pure silver: %1$s\nFor Machmirim add VAT.</string>
+    <string name="about_zecher_machatzit_hashekel">Cos\'è questo?</string>
+
+    <string name="pidyon_haben">Pidyon Haben</string>
+    <string name="pidyon_haben_details">100 gr of pure silver: %1$s\nFor Machmirim add VAT.</string>
+    <string name="about_pidyon_haben">Cos\'è questo?</string>
+
+    <string name="about">The metals rates are taken from <a href="http://www.kitco.com/">KITCO</a></string>
+    <string name="about_continue">continuare..</string>
+
+    <string name="copy_to_clipboard_toast">Il valore %1$s è stata copiata</string>
+
+    <!-- error messages -->
+    <string name="error_no_internet_connection">Nessuna connessione a Internet !</string>
+    <string name="error_server_response_not_valid">Risposta del server non è valido</string>
+    <string name="error_no_response_from_server">Nessuna risposta dal server</string>
+    <string name="empty_rates_list_startup">Caricamento dati...</string>
+    <!--<string name="empty_rates_list">No Rates Information Available</string>-->
+    <string name="empty_rates_list_no_network">Nessuna informazione disponibile . La rete non è disponibile.</string>
+    <string name="empty_rates_list_server_down">Nessuna informazione disponibile . Il server non restituisce dati.</string>
+    <string name="empty_rates_list_server_error">Nessuna informazione disponibile . Il server non restituisce dati validi . Si prega di verificare la presenza di una versione aggiornata dell'applicazione.</string>
+    <string name="empty_rates_list_invalid">Nessuna informazione disponibile . La query non viene riconosciuto dal server .</string>
+
+
+    <string name="calculator_fragment_name">calcolatrice</string>
+    <string name="calculator_gold_purity">Purezza oro</string>
+    <string name="calculator_weight">peso</string>
+    <string name="calculator_weight_gram">peso(g.)</string>
+    <string name="calculator_weight_ounce">peso(oz t)</string>
+    <string name="calculator_copy_action">copia</string>
+    <string name="calculator_copy_action_toast">Prezzo copiato</string>
+
+
+    <string name="karat_enum_24">24 carato</string>
+    <string name="karat_enum_22">22 carato</string>
+    <string name="karat_enum_18">18 carato</string>
+    <string name="karat_enum_14">14 carato</string>
+    <string name="karat_enum_10">10 carato</string>
+    <string name="karat_enum_9">9 carato</string>
+    <string name="karat_enum_8">8 carato</string>
+</resources>
