@@ -32,6 +32,7 @@
     <string name="pref_enable_sync_label">Synchroniser des données</string>
     <string name="pref_enable_sync_true">Activé</string>
     <string name="pref_enable_sync_false">Pas activé</string>
+    <string name="pref_history_business_days_label">Historique maximum Size (jours ouvrables)</string>
     <string name="pref_sync_frequency_label">fréquence de synchronisation</string>
     <string name="pref_sync_frequency_3H">3 heures</string>
     <string name="pref_sync_frequency_6H">6 heures</string>
@@ -48,7 +49,7 @@
 
     <string name="pref_main_currency_label">Devise par défaut</string>
     <string name="pref_main_other_currencies_label">D\'autres devises</string>
-    <string name="pref_main_other_currencies_summary">Sélectionnez trois devises supplémentaires</string>
+    <string name="pref_main_other_currencies_summary">Choisissez jusqu\'à trois devises supplémentaires</string>
 
     <string name="pref_main_currency_label_ils">Shekel israélien</string>
     <string name="pref_main_currency_label_usd">Dollar américain</string>

@@ -426,4 +426,10 @@ public class Utility {
         setSyncAllAvailableDataOfThisYear(c, false);
     }
 
+    static public int getHistoryCount(Context c){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c);
+        int historyCount = prefs.getInt(c.getString(R.string.pref_history_business_days_key), 60);
+        return historyCount;
+    }
+
 }

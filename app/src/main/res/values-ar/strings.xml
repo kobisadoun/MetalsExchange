@@ -33,6 +33,7 @@
     <string name="pref_enable_sync_label">مزامنة البيانات</string>
     <string name="pref_enable_sync_true">تمكين</string>
     <string name="pref_enable_sync_false">غير مفعل</string>
+    <string name="pref_history_business_days_label">حجم التاريخ (يوم عمل)</string>
     <string name="pref_sync_frequency_label">تردد المزامنة</string>
     <string name="pref_sync_frequency_3H">ثلاث ساعات</string>
     <string name="pref_sync_frequency_6H">ست ساعات</string>
@@ -49,7 +50,7 @@
 
     <string name="pref_main_currency_label">الافتراضي العملات</string>
     <string name="pref_main_other_currencies_label">عملات أخرى</string>
-    <string name="pref_main_other_currencies_summary">حدد ثلاث عملات إضافية</string>
+    <string name="pref_main_other_currencies_summary">اختيار ما يصل إلى ثلاث عملات إضافية</string>
 
     <string name="pref_main_currency_label_ils">إسرائيل الشيكل</string>
     <string name="pref_main_currency_label_usd">الدولار الأمريكي</string>

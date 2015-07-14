@@ -1,19 +1,24 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <CheckBoxPreference
-        android:key="@string/pref_enable_sync_key"
-        android:title="@string/pref_enable_sync_label"
-        android:summaryOff="@string/pref_enable_sync_false"
-        android:summaryOn="@string/pref_enable_sync_true"
-        android:defaultValue="@string/pref_enable_sync_default" />
+    <!--<CheckBoxPreference-->
+        <!--android:key="@string/pref_enable_sync_key"-->
+        <!--android:title="@string/pref_enable_sync_label"-->
+        <!--android:summaryOff="@string/pref_enable_sync_false"-->
+        <!--android:summaryOn="@string/pref_enable_sync_true"-->
+        <!--android:defaultValue="@string/pref_enable_sync_default" />-->
 
-    <ListPreference
-        android:key="@string/pref_sync_frequency_key"
-        android:title="@string/pref_sync_frequency_label"
-        android:entries="@array/pref_sync_frequency_titles"
-        android:entryValues="@array/pref_sync_frequency_values"
-        android:defaultValue="86400"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null" />
+    <!--<ListPreference-->
+        <!--android:key="@string/pref_sync_frequency_key"-->
+        <!--android:title="@string/pref_sync_frequency_label"-->
+        <!--android:entries="@array/pref_sync_frequency_titles"-->
+        <!--android:entryValues="@array/pref_sync_frequency_values"-->
+        <!--android:defaultValue="86400"-->
+        <!--android:negativeButtonText="@null"-->
+        <!--android:positiveButtonText="@null" />-->
+
+    <com.kobi.metalsexchange.app.component.NumberPickerPreference
+        android:key="@string/pref_history_business_days_key"
+        android:title="@string/pref_history_business_days_label"
+        android:defaultValue="60" />
 
 </PreferenceScreen>

@@ -265,8 +265,11 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         rows.next();//we skip the header
         rows.next();//we skip the header
 
+        boolean skipUpdate = false;
+
         int rowCount = 0;
-        while (rows.hasNext() && rowCount <= 60){
+        Date oldestDay = null;
+        while (rows.hasNext() && rowCount <= Utility.getHistoryCount(getContext())){
             Element row = rows.next();
             Elements select = row.select("td");
             if(select.size()<8){//empty row
@@ -279,60 +282,70 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             Date convertedDate;
             try{
                 convertedDate = dateFormat.parse(date);
+                oldestDay = convertedDate;
             }
             catch (Exception e){
                 continue;
             }
-            SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyyMMdd");
-            String dateStringAsArg = dateFormat1.format(convertedDate);
 
-            DayCurrenciesPerNisXMLParser lastDayCurrenciesXMLParser = new DayCurrenciesPerNisXMLParser(getContext(), dateStringAsArg);
-            HashMap<String, HashMap<String, Double>> currenciesMap = lastDayCurrenciesXMLParser.getCurrenciesPerNIS();
-            while(currenciesMap == null){
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(convertedDate);
-                cal.add(Calendar.DATE, -1);
-                convertedDate = cal.getTime();
-                dateStringAsArg = dateFormat1.format(convertedDate);
-                lastDayCurrenciesXMLParser = new DayCurrenciesPerNisXMLParser(getContext(), dateStringAsArg);
-                currenciesMap = lastDayCurrenciesXMLParser.getCurrenciesPerNIS();
+
+            if(!skipUpdate) {
+                SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyyMMdd");
+                String dateStringAsArg = dateFormat1.format(convertedDate);
+
+                DayCurrenciesPerNisXMLParser lastDayCurrenciesXMLParser = new DayCurrenciesPerNisXMLParser(getContext(), dateStringAsArg);
+                HashMap<String, HashMap<String, Double>> currenciesMap = lastDayCurrenciesXMLParser.getCurrenciesPerNIS();
+                while (currenciesMap == null) {
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(convertedDate);
+                    cal.add(Calendar.DATE, -1);
+                    convertedDate = cal.getTime();
+                    dateStringAsArg = dateFormat1.format(convertedDate);
+                    lastDayCurrenciesXMLParser = new DayCurrenciesPerNisXMLParser(getContext(), dateStringAsArg);
+                    currenciesMap = lastDayCurrenciesXMLParser.getCurrenciesPerNIS();
+                }
+
+                //Gold
+                String goldUSDam = values.next().text();
+                String goldUSDpm = values.next().text();
+                String goldUSD = goldUSDpm.equals("-") ? goldUSDam : goldUSDpm;
+
+                //Silver
+                String silverUSD = values.next().text();
+
+                //Platinum
+                String platinumUSDam = values.next().text();
+                String platinumUSDpm = values.next().text();
+                String platinumUSD = platinumUSDpm.equals("-") ? platinumUSDam : platinumUSDpm;
+
+                //Palladium
+                String palladiumUSDam = values.next().text();
+                String palladiumUSDpm = values.next().text();
+                String palladiumUSD = palladiumUSDpm.equals("-") ? palladiumUSDam : palladiumUSDpm;
+
+                HashMap<String, Double> map = currenciesMap.get(date);
+                if (!syncAllDataOfCurrentYear && map == null) {
+                    map = currenciesMap.values().iterator().next();
+                }
+
+                fillMetalRatesValues(convertedDate, Utility.GOLD, goldUSD, map);
+                fillMetalRatesValues(convertedDate, Utility.SILVER, silverUSD, map);
+                fillMetalRatesValues(convertedDate, Utility.PLATINUM, platinumUSD, map);
+                fillMetalRatesValues(convertedDate, Utility.PALLADIUM, palladiumUSD, map);
             }
-
-            //Gold
-            String goldUSDam = values.next().text();
-            String goldUSDpm = values.next().text();
-            String goldUSD = goldUSDpm.equals("-") ? goldUSDam : goldUSDpm;
-
-            //Silver
-            String silverUSD = values.next().text();
-
-            //Platinum
-            String platinumUSDam = values.next().text();
-            String platinumUSDpm = values.next().text();
-            String platinumUSD = platinumUSDpm.equals("-") ? platinumUSDam : platinumUSDpm;
-
-            //Palladium
-            String palladiumUSDam = values.next().text();
-            String palladiumUSDpm = values.next().text();
-            String palladiumUSD = palladiumUSDpm.equals("-") ? palladiumUSDam : palladiumUSDpm;
-
-            HashMap<String, Double> map = currenciesMap.get(date);
-            if(!syncAllDataOfCurrentYear && map == null){
-                map = currenciesMap.values().iterator().next();
-            }
-
-            fillMetalRatesValues(convertedDate, Utility.GOLD, goldUSD, map);
-            fillMetalRatesValues(convertedDate, Utility.SILVER, silverUSD, map);
-            fillMetalRatesValues(convertedDate, Utility.PLATINUM, platinumUSD, map);
-            fillMetalRatesValues(convertedDate, Utility.PALLADIUM, palladiumUSD, map);
-
 
             //we break after first row incase weak refresh
             if(!syncAllDataOfCurrentYear){
-                break;
+                skipUpdate = true;
             }
             rowCount++;
         }
+
+//            // delete old data so we don't build up an endless history
+        getContext().getContentResolver().delete(MetalsContract.MetalsRateEntry.CONTENT_URI,
+                MetalsContract.MetalsRateEntry.COLUMN_DATE + " <= ?",
+                new String[]{Long.toString(oldestDay.getTime())});
+
     }
 
     private void fillMetalRatesValues(Date convertedDate, String metalQuery, String metalUSD, HashMap<String, Double> currenciesMap){
@@ -379,18 +392,6 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             ContentValues[] cvArray = new ContentValues[cVVector.size()];
             cVVector.toArray(cvArray);
             getContext().getContentResolver().bulkInsert(MetalsContract.MetalsRateEntry.CONTENT_URI, cvArray);
-
-
-            Time dayTime = new Time();
-            dayTime.setToNow();
-
-            // we start at the day returned by local time. Otherwise this is a mess.
-            int julianStartDay = Time.getJulianDay(System.currentTimeMillis(), dayTime.gmtoff);
-
-            // delete old data so we don't build up an endless history
-            getContext().getContentResolver().delete(MetalsContract.MetalsRateEntry.CONTENT_URI,
-                    MetalsContract.MetalsRateEntry.COLUMN_DATE + " <= ?",
-                    new String[] {Long.toString(dayTime.setJulianDay(julianStartDay-60))});
         }
     }
 
