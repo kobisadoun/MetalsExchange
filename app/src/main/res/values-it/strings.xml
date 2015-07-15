@@ -88,7 +88,7 @@
     <!--<string name="empty_rates_list">No Rates Information Available</string>-->
     <string name="empty_rates_list_no_network">Nessuna informazione disponibile . La rete non è disponibile.</string>
     <string name="empty_rates_list_server_down">Nessuna informazione disponibile . Il server non restituisce dati.</string>
-    <string name="empty_rates_list_server_error">Nessuna informazione disponibile . Il server non restituisce dati validi . Si prega di verificare la presenza di una versione aggiornata dell'applicazione.</string>
+    <string name="empty_rates_list_server_error">Nessuna informazione disponibile . Il server non restituisce dati validi . Si prega di verificare la presenza di una versione aggiornata dell\'applicazione.</string>
     <string name="empty_rates_list_invalid">Nessuna informazione disponibile . La query non viene riconosciuto dal server .</string>
 
 
