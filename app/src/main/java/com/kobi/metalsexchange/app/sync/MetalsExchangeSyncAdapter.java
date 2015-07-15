@@ -219,6 +219,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         Iterator<Element> rows = table.select("tr").iterator();
         rows.next();//we skip the header
 
+        Vector<ContentValues> cVVector = new Vector<>();
         int metalIdIdx = 0;
         while (rows.hasNext()){
             Iterator<Element> values = rows.next().select("td").iterator();
@@ -247,9 +248,17 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
                 currenciesMap = lastDayCurrenciesXMLParser.getCurrenciesPerNIS();
             }
 
-            fillMetalRatesValues(convertedDate, Utility.getMetalIdForTabPosition(metalIdIdx), metalPriceUSD, currenciesMap.values().iterator().next());
+            fillMetalRatesValues(cVVector, convertedDate, Utility.getMetalIdForTabPosition(metalIdIdx), metalPriceUSD, currenciesMap.values().iterator().next());
             metalIdIdx++;
         }
+        // Insert the new rate information into the database
+        // add to database
+        if ( cVVector.size() > 0 ) {
+            ContentValues[] cvArray = new ContentValues[cVVector.size()];
+            cVVector.toArray(cvArray);
+            getContext().getContentResolver().bulkInsert(MetalsContract.MetalsRateEntry.CONTENT_URI, cvArray);
+        }
+
     }
 
     private void getHistoryRates(String ratesStr){
@@ -269,6 +278,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
 
         int rowCount = 0;
         Date oldestDay = null;
+        Vector<ContentValues> cVVector = new Vector<>();
         while (rows.hasNext() && rowCount <= Utility.getHistoryCount(getContext())){
             Element row = rows.next();
             Elements select = row.select("td");
@@ -328,10 +338,10 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
                     map = currenciesMap.values().iterator().next();
                 }
 
-                fillMetalRatesValues(convertedDate, Utility.GOLD, goldUSD, map);
-                fillMetalRatesValues(convertedDate, Utility.SILVER, silverUSD, map);
-                fillMetalRatesValues(convertedDate, Utility.PLATINUM, platinumUSD, map);
-                fillMetalRatesValues(convertedDate, Utility.PALLADIUM, palladiumUSD, map);
+                fillMetalRatesValues(cVVector, convertedDate, Utility.GOLD, goldUSD, map);
+                fillMetalRatesValues(cVVector, convertedDate, Utility.SILVER, silverUSD, map);
+                fillMetalRatesValues(cVVector, convertedDate, Utility.PLATINUM, platinumUSD, map);
+                fillMetalRatesValues(cVVector, convertedDate, Utility.PALLADIUM, palladiumUSD, map);
             }
 
             //we break after first row incase weak refresh
@@ -341,6 +351,14 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             rowCount++;
         }
 
+        // Insert the new rate information into the database
+        // add to database
+        if ( cVVector.size() > 0 ) {
+            ContentValues[] cvArray = new ContentValues[cVVector.size()];
+            cVVector.toArray(cvArray);
+            getContext().getContentResolver().bulkInsert(MetalsContract.MetalsRateEntry.CONTENT_URI, cvArray);
+        }
+
 //            // delete old data so we don't build up an endless history
         getContext().getContentResolver().delete(MetalsContract.MetalsRateEntry.CONTENT_URI,
                 MetalsContract.MetalsRateEntry.COLUMN_DATE + " <= ?",
@@ -348,7 +366,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
 
     }
 
-    private void fillMetalRatesValues(Date convertedDate, String metalQuery, String metalUSD, HashMap<String, Double> currenciesMap){
+    private void fillMetalRatesValues(Vector<ContentValues> cVVector, Date convertedDate, String metalQuery, String metalUSD, HashMap<String, Double> currenciesMap){
         if(metalUSD.equals("-") || currenciesMap == null){
             return;
         }
@@ -384,15 +402,8 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_JOD_RATE, jodVal);
         metalRatesValues.put(MetalsContract.MetalsRateEntry.COLUMN_EGP_RATE, egpVal);
 
-        Vector<ContentValues> cVVector = new Vector<>();
+
         cVVector.add(metalRatesValues);
-        // Insert the new rate information into the database
-        // add to database
-        if ( cVVector.size() > 0 ) {
-            ContentValues[] cvArray = new ContentValues[cVVector.size()];
-            cVVector.toArray(cvArray);
-            getContext().getContentResolver().bulkInsert(MetalsContract.MetalsRateEntry.CONTENT_URI, cvArray);
-        }
     }
 
     private Double convertDollarPriceToOtherCurrency(double usd, String currencyCode, HashMap<String, Double> currenciesMap){
