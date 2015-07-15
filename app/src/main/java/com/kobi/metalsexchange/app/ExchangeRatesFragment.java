@@ -141,6 +141,7 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                mPosition = RecyclerView.NO_POSITION;
                 updateRates();
                 //mSwipeRefreshLayout.setRefreshing(false);
             }
@@ -177,6 +178,7 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
             @Override
             public void onRefreshCurrent() {
                 if(Utility.isNetworkAvailable(getActivity())) {
+                    mPosition = RecyclerView.NO_POSITION;
                     mSwipeRefreshLayout.setRefreshing(true);
                     MetalsExchangeSyncAdapter.syncImmediately(getActivity(), true);
                 }
