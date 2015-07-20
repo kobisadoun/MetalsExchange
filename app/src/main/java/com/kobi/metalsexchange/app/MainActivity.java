@@ -58,6 +58,20 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
     }
 
     @Override
+    public void hideFloatingActionButton(){
+        if(mFloatingActionButton != null) {
+            mFloatingActionButton.hide();
+        }
+    }
+
+    @Override
+    public void showFloatingActionButton(){
+        if(mFloatingActionButton != null) {
+            mFloatingActionButton.show();
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCurrencyId = Utility.getPreferredCurrency(this);

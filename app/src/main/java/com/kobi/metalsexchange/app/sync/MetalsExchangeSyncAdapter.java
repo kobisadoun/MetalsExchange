@@ -342,6 +342,14 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
                 fillMetalRatesValues(cVVector, convertedDate, Utility.SILVER, silverUSD, map);
                 fillMetalRatesValues(cVVector, convertedDate, Utility.PLATINUM, platinumUSD, map);
                 fillMetalRatesValues(cVVector, convertedDate, Utility.PALLADIUM, palladiumUSD, map);
+
+                // Insert the new rate information into the database
+                // add to database
+                if ( cVVector.size() > 0 ) {
+                    ContentValues[] cvArray = new ContentValues[cVVector.size()];
+                    cVVector.toArray(cvArray);
+                    getContext().getContentResolver().bulkInsert(MetalsContract.MetalsRateEntry.CONTENT_URI, cvArray);
+                }
             }
 
             //we break after first row incase weak refresh
@@ -349,14 +357,6 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
                 skipUpdate = true;
             }
             rowCount++;
-        }
-
-        // Insert the new rate information into the database
-        // add to database
-        if ( cVVector.size() > 0 ) {
-            ContentValues[] cvArray = new ContentValues[cVVector.size()];
-            cVVector.toArray(cvArray);
-            getContext().getContentResolver().bulkInsert(MetalsContract.MetalsRateEntry.CONTENT_URI, cvArray);
         }
 
 //            // delete old data so we don't build up an endless history

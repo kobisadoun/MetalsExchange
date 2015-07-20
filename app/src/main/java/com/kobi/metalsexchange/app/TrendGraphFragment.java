@@ -14,8 +14,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.kobi.metalsexchange.app.data.MetalsContract;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -24,6 +24,7 @@ import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.Highlight;
 import com.github.mikephil.charting.utils.ValueFormatter;
+import com.kobi.metalsexchange.app.data.MetalsContract;
 
 import java.util.ArrayList;
 
@@ -109,6 +110,13 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
         mChart.setScaleXEnabled(true);
         mChart.setScaleYEnabled(true);
 
+        mChart.setDrawGridBackground(true);
+        mChart.setDrawBorders(true);
+        mChart.setBorderColor(getResources().getColor(R.color.primary_dark));
+
+
+       mChart.setMaxVisibleValueCount(45);
+
         // if disabled, scaling can be done on x- and y-axis separately
         mChart.setPinchZoom(true);
 
@@ -186,23 +194,22 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
             // mChart.setVisibleXRange(20);
             // create a dataset and give it a type
             LineDataSet set1 = new LineDataSet(yVals, "");
-            set1.setFillAlpha(110);
-            set1.setFillColor(Color.RED);
-
             // set the line to be drawn like this "- - - - - -"
             set1.enableDashedLine(10f, 5f, 0f);
 //            set1.setColor(Color.GRAY);
 //            set1.setCircleColor(Color.BLACK);
-            set1.setColor(Color.BLACK);
-            set1.setCircleColor(getResources().getColor(R.color.primary_dark));
-            set1.setLineWidth(2f);
-            set1.setCircleSize(3f);
-            set1.setDrawCircleHole(false);
+            set1.setColor(getResources().getColor(R.color.primary_dark));
+            set1.setCircleColor(getResources().getColor(R.color.primary));
+            set1.setLineWidth(1f);
+            set1.setCircleSize(1f);
             set1.setValueTextSize(9f);
-            set1.setFillAlpha(65);
-            set1.setFillColor(Color.BLACK);
-            //set1.setDrawCubic(true);
+           // set1.setFillAlpha(65);
+            //set1.setFillColor(Color.BLACK);
+            set1.setDrawCubic(true);
             set1.setHighLightColor(Color.RED);
+            set1.setDrawFilled(true);
+            set1.setFillColor(getResources().getColor(R.color.primary_light));
+            set1.setFillAlpha(110);
             // set1.setShader(new LinearGradient(0, 0, 0, mChart.getHeight(),
             // Color.BLACK, Color.WHITE, Shader.TileMode.MIRROR));
 
@@ -224,6 +231,9 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
 //        ll2.setLabelPosition(LimitLine.LimitLabelPosition.POS_RIGHT);
 //        ll2.setTextSize(10f);
 
+            XAxis xAxis = mChart.getXAxis();
+            xAxis.setAvoidFirstLastClipping(true);
+
             YAxis leftAxis = mChart.getAxisLeft();
             leftAxis.setAxisMaxValue(maxVal*1.005f);
             leftAxis.setStartAtZero(false);
@@ -242,12 +252,11 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
 
             mChart.getAxisRight().setEnabled(false);
             mChart.getXAxis().setAvoidFirstLastClipping(true);
-            mChart.getXAxis().setAdjustXLabels(true);
             // set data
             mChart.setData(data);
             mChart.getLegend().setEnabled(false);   // Hide the legend
 
-            mChart.animateX(500);
+            mChart.animateX(1200);
 
             mChart.highlightValue(xAxisHighlighted, 0);
            // mChart.setHighlightLineWidth(15f);
@@ -306,23 +315,29 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onChartSingleTapped(MotionEvent me) {
         ((FABHideable)getActivity()).hideOrShowFloatingActionButton();
-        Log.i("SingleTap", "Chart single-tapped.");
     }
 
     @Override
     public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
-        Log.i("Fling", "Chart flinged. VeloX: " + velocityX + ", VeloY: " + velocityY);
     }
 
     @Override
     public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-        Log.i("Entry selected", e.toString());
-        // Log.i("", "low: " + mChart.getLowestVisibleXIndex() + ", high: " + mChart.getHighestVisibleXIndex());
     }
 
     @Override
     public void onNothingSelected() {
-        Log.i("Nothing selected", "Nothing selected.");
+        ((FABHideable)getActivity()).hideFloatingActionButton();
     }
 
+
+    @Override
+    public void onChartTranslate(MotionEvent me, float dX, float dY) {
+
+    }
+
+    @Override
+    public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
+        ((FABHideable)getActivity()).hideFloatingActionButton();
+    }
 }

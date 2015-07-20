@@ -33,6 +33,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -113,10 +114,21 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             mUri = arguments.getParcelable(DetailFragment.DETAIL_URI);
         }
 
+        View.OnTouchListener touchListner = new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                ((FABHideable)getActivity()).showFloatingActionButton();
+                return false;
+            }
+        };
+
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
         mIconView = (ImageView) rootView.findViewById(R.id.detail_icon);
+        mIconView.setOnTouchListener(touchListner);
+
         mFriendlyDateView = (TextView) rootView.findViewById(R.id.detail_day_textview);
         mRateView = (TextView) rootView.findViewById(R.id.detail_rate_textview);
+        mRateView.setOnTouchListener(touchListner);
         mRateUnitView = (TextView) rootView.findViewById(R.id.detail_rate_unit_textview);
 
         //mDeltaView = (TextView) rootView.findViewById(R.id.detail_delta_textview);

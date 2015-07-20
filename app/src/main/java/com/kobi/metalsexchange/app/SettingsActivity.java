@@ -213,6 +213,7 @@ public class SettingsActivity extends PreferenceActivity  {
                 // For other preferences, set the summary to the value's simple string representation.
                 preference.setSummary(stringValue);
             }
+            getActivity().getApplicationContext().getContentResolver().notifyChange(MetalsContract.MetalsRateEntry.CONTENT_URI, null);
 
             return true;
         }

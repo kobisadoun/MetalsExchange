@@ -131,7 +131,7 @@ public class CalculateFragmentViewHelper  {
 //        mWeightSpinner.setSelection(spinnerPosition);
 
 
-        String rate = Utility.getFormattedCurrency(mMetalPrice, Utility.getPreferredCurrency(context),context, false);
+        String rate = Utility.getFormattedCurrency(mMetalPrice, Utility.getPreferredCurrency(context),context, true);
         mRateView.setText(rate);
         mRateUnitView.setText("("+Utility.getWeightName(Utility.isGrams(context), context)+")");
         if(Utility.isGrams(context)){
@@ -180,7 +180,7 @@ public class CalculateFragmentViewHelper  {
 //        }
 
         mPriceResult *= factor;
-        String priceString = Utility.getFormattedCurrency(mPriceResult, Utility.getPreferredCurrency(context), context, false);
+        String priceString = Utility.getFormattedCurrency(mPriceResult, Utility.getPreferredCurrency(context), context, true);
         metalPriceTextview.setText(priceString);
 
         //generate the share text

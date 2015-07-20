@@ -94,6 +94,18 @@
             app:columnCount="2"
             >
 
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/metal_price_textview"
+                android:layout_marginTop="@dimen/abc_list_item_padding_horizontal_material"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/white"
+                app:layout_columnSpan="2"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textSize="30sp"
+                android:background="@drawable/back"/>
+
 
             <android.support.v7.widget.AppCompatTextView
                 app:layout_columnWeight="1"
@@ -155,20 +167,6 @@
                 app:layout_rowWeight="1"
                 android:width = "200sp"
                 style="@android:style/Widget.Holo.Light.EditText"/>
-
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/metal_price_textview"
-                android:layout_marginTop="@dimen/abc_list_item_padding_horizontal_material"
-                android:gravity="center_horizontal"
-                android:textColor="@android:color/white"
-                app:layout_columnSpan="2"
-                app:layout_columnWeight="1"
-                app:layout_gravity="fill_horizontal"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textSize="30sp"
-                android:background="@drawable/back"/>
-
 
 
         </android.support.v7.widget.GridLayout>

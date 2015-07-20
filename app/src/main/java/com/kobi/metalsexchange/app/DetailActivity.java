@@ -33,13 +33,37 @@ public class DetailActivity extends AppCompatActivity implements FABHideable {
 
     @Override
     public void hideOrShowFloatingActionButton(){
-        if(mFloatingActionButton.isHidden()) {
-            mFloatingActionButton.show();
-        }else{
+        if(mFloatingActionButton != null) {
+            if (mFloatingActionButton.isHidden()) {
+                mFloatingActionButton.show();
+            } else {
+                mFloatingActionButton.hide();
+            }
+        }
+    }
+
+    @Override
+    public void hideFloatingActionButton(){
+        if(mFloatingActionButton != null) {
             mFloatingActionButton.hide();
         }
     }
 
+    @Override
+    public void showFloatingActionButton(){
+        if(mFloatingActionButton != null) {
+            mFloatingActionButton.show();
+        }
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(mFloatingActionButton != null) {
+            mFloatingActionButton.playShowAnimation();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
