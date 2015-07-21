@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,7 +34,7 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
      * Cache of the children views for a rates list item.
      */
     public class RatesAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public final ImageButton refreshTodayView;
+//        public final ImageButton refreshTodayView;
         public final ImageView iconView;
         public final ImageView deltaIconView;
         public final TextView dateView;
@@ -47,20 +46,20 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
         public RatesAdapterViewHolder(View view) {
             super(view);
             iconView = (ImageView) view.findViewById(R.id.list_item_icon);
-            refreshTodayView = (ImageButton) view.findViewById(R.id.list_item_today_refresh);
+//            refreshTodayView = (ImageButton) view.findViewById(R.id.list_item_today_refresh);
             deltaIconView = (ImageView) view.findViewById(R.id.list_item_delta_icon);
             dateView = (TextView) view.findViewById(R.id.list_item_date_textview);
             deltaView = (TextView) view.findViewById(R.id.list_item_delta_textview);
             rateView = (TextView) view.findViewById(R.id.list_item_rate_textview);
             rateUnitView = (TextView) view.findViewById(R.id.list_item_rate_unit_textview);
-            if(refreshTodayView != null) {
-                refreshTodayView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mClickHandler.onRefreshCurrent();
-                    }
-                });
-            }
+//            if(refreshTodayView != null) {
+//                refreshTodayView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        mClickHandler.onRefreshCurrent();
+//                    }
+//                });
+//            }
             view.setOnClickListener(this);
         }
 
