@@ -5,7 +5,7 @@
 
     <string name="GOLD">זהב</string>
     <string name="SILVER">כסף</string>
-    <string name="PLATINUM">פלטינום</string>
+    <string name="PLATINUM">פלטינה</string>
     <string name="PALLADIUM">פלדיום</string>
 
     <string name="pref_show_jewish_customs_default">true</string>
@@ -54,14 +54,14 @@
     <string name="pref_main_currency_label_ils">שקל חדש (₪)</string>
     <string name="pref_main_currency_label_usd">דולר אמריקאי</string>
     <string name="pref_main_currency_label_eur">אירו</string>
-    <string name="pref_main_currency_label_gbp">פאונד בריטי</string>
+    <string name="pref_main_currency_label_gbp">לירה אנגלית</string>
     <string name="pref_main_currency_label_cad">דולר קנדי</string>
     <string name="pref_main_currency_label_dkk">כתר דני</string>
     <string name="pref_main_currency_label_nok">כתר נורבגי</string>
     <string name="pref_main_currency_label_sek">כתר שבדי</string>
     <string name="pref_main_currency_label_chf">פרנק שווייצרי</string>
     <string name="pref_main_currency_label_jod">דינר ירדני</string>
-    <string name="pref_main_currency_label_egp">פאונד מצרי</string>
+    <string name="pref_main_currency_label_egp">לירה מצרית</string>
 
     <string name="today">היום</string>
     <string name="yesterday">אתמול</string>
