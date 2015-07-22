@@ -166,12 +166,12 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
             }
             rateDeltaRawPercentageStr = defaultFormat.format(rateDeltaRawPercentage);
 
-            if(rateDeltaRaw != 0) {
+          //  if(rateDeltaRaw != 0) {
                // String rateDelta = Utility.getFormattedCurrency(Math.abs(rateDeltaRaw), Utility.getPreferredCurrency(mContext), mContext, true);
                 if (adapterViewHolder.deltaView != null) {
                     adapterViewHolder.deltaView.setText(rateDeltaRawPercentageStr);
                 }
-            }
+          //  }
         }
 
     }

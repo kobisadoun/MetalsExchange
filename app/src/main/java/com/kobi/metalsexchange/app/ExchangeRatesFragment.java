@@ -17,6 +17,7 @@ package com.kobi.metalsexchange.app;
 
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -145,8 +146,8 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.activity_main_swipe_refresh_layout);
-        mSwipeRefreshLayout.setColorSchemeColors(R.color.primary_dark, R.color.primary_light, R.color.primary);
-        //mSwipeRefreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.CYAN);
+       // mSwipeRefreshLayout.setColorSchemeColors(R.color.primary_dark, R.color.primary_light, R.color.primary);
+        mSwipeRefreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.CYAN);
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
