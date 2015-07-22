@@ -195,7 +195,7 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
             // create a dataset and give it a type
             LineDataSet set1 = new LineDataSet(yVals, "");
             // set the line to be drawn like this "- - - - - -"
-            set1.enableDashedLine(10f, 5f, 0f);
+            //set1.enableDashedLine(10f, 5f, 0f);
 //            set1.setColor(Color.GRAY);
 //            set1.setCircleColor(Color.BLACK);
             set1.setColor(getResources().getColor(R.color.primary_dark));
