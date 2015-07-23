@@ -344,6 +344,20 @@ public class Utility {
         return -1;
     }
 
+    public static int getColorResourceForMetal(String metalId) {
+        switch (metalId) {
+            case GOLD:
+                return R.color.gold;
+            case SILVER:
+                return R.color.silver;
+            case PLATINUM:
+                return R.color.platinum;
+            case PALLADIUM:
+                return R.color.palladium;
+        }
+        return -1;
+    }
+
     public static String getFormattedCurrency(Double price, String currencyId, Context context, boolean convertIfNeeded/*, boolean appendWeightUnit*/){
         if(convertIfNeeded && !isGrams(context)) {
             price *= GRAMS_IN_OUNCE;

@@ -208,7 +208,8 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
             set1.setDrawCubic(true);
             set1.setHighLightColor(Color.RED);
             set1.setDrawFilled(true);
-            set1.setFillColor(getResources().getColor(R.color.primary_light));
+//            set1.setFillColor(getResources().getColor(R.color.primary_light));
+            set1.setFillColor(getResources().getColor(Utility.getColorResourceForMetal(Utility.getCurrentMetalId(getActivity()))));
             set1.setFillAlpha(110);
             // set1.setShader(new LinearGradient(0, 0, 0, mChart.getHeight(),
             // Color.BLACK, Color.WHITE, Shader.TileMode.MIRROR));

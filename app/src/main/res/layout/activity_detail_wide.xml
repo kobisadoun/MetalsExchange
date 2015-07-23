@@ -68,7 +68,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"
-        fab:button_color="@color/primary"
+        fab:button_color="@color/accent"
         fab:button_colorPressed="@color/primary_dark"
         fab:image="@drawable/ic_calculator"
         fab:show_animation="@anim/fab_roll_from_down"
