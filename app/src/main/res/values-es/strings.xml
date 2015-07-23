@@ -5,12 +5,12 @@
 
     <string name="GOLD">Oro</string>
     <string name="SILVER">Plata</string>
-    <string name="PLATINUM">Platinum</string>
-    <string name="PALLADIUM">El paladio</string>
+    <string name="PLATINUM">Platino</string>
+    <string name="PALLADIUM">Paladio</string>
 
     <string name="action_settings">Ajustes</string>
     <string name="action_about">Acerca de</string>
-    <string name="action_rate">Tasa</string>
+    <string name="action_rate">Cotización</string>
     <string name="action_share">Compartir</string>
 
     <string name="action_refresh">Actualizar</string>
@@ -19,13 +19,13 @@
     <string name="title_activity_settings">Ajustes</string>
 
     <string name="pref_general_header">General</string>
-    <string name="pref_currencies_header">Monedas</string>
-    <string name="pref_notifications_header">Las notificaciones</string>
-    <string name="pref_data_sync_header">Datos y sincronizar</string>
+    <string name="pref_currencies_header">Divisas</string>
+    <string name="pref_notifications_header">Notificaciones</string>
+    <string name="pref_data_sync_header">Datos y sincronización</string>
     <string name="pref_advanced_header">Avanzada</string>
 
 
-    <string name="pref_enable_notifications_label">Las notificaciones</string>
+    <string name="pref_enable_notifications_label">Notificaciones</string>
 
     <string name="pref_enable_notifications_true">Activada</string>
     <string name="pref_enable_notifications_false">No habilitado</string>
@@ -33,7 +33,7 @@
     <string name="pref_enable_sync_label">Sincronizar los datos</string>
     <string name="pref_enable_sync_true">Activada</string>
     <string name="pref_enable_sync_false">No habilitado</string>
-    <string name="pref_history_business_days_label">Máximo tamaño de la historia (Días laborables)</string>
+    <string name="pref_history_business_days_label">Máximo tamaño del historial (Días laborables)</string>
     <string name="pref_sync_frequency_label">Frecuencia de sincronización</string>
     <string name="pref_sync_frequency_3H">3 Horas</string>
     <string name="pref_sync_frequency_6H">6 Horas</string>
@@ -43,35 +43,35 @@
     <string name="pref_show_jewish_customs_label">Mostrar costumbres judías</string>
 
     <string name="pref_units_label">Unidades de peso</string>
-    <string name="pref_units_label_grams">Gram</string>
+    <string name="pref_units_label_grams">Gramo</string>
     <string name="pref_units_label_ounce">Onza Troy</string>
 
     <string name="pref_main_currency_label">Divisa predeterminada</string>
-    <string name="pref_main_other_currencies_label">Otras monedas</string>
-    <string name="pref_main_other_currencies_summary">Seleccione un máximo de 3 monedas adicionales</string>
+    <string name="pref_main_other_currencies_label">Otras divisas</string>
+    <string name="pref_main_other_currencies_summary">Seleccione un máximo de 3 divisas adicionales</string>
 
     <string name="pref_main_currency_label_ils">SHEQEL ISRAELÍ</string>
     <string name="pref_main_currency_label_usd">Dólar estadounidense</string>
     <string name="pref_main_currency_label_eur">Euro</string>
-    <string name="pref_main_currency_label_gbp">Libra británica</string>
-    <string name="pref_main_currency_label_cad">Canadá Dólar</string>
-    <string name="pref_main_currency_label_dkk">Dinamarca corona</string>
+    <string name="pref_main_currency_label_gbp">Libra esterlina</string>
+    <string name="pref_main_currency_label_cad">Dólar canadiense</string>
+    <string name="pref_main_currency_label_dkk">Corona danesa</string>
     <string name="pref_main_currency_label_nok">Corona noruega</string>
     <string name="pref_main_currency_label_sek">Corona sueca</string>
-    <string name="pref_main_currency_label_chf">Franco Suiza</string>
-    <string name="pref_main_currency_label_jod">Dinar Jordano</string>
-    <string name="pref_main_currency_label_egp">Egipto Libra</string>
+    <string name="pref_main_currency_label_chf">Franco suizo</string>
+    <string name="pref_main_currency_label_jod">Dinar jordano</string>
+    <string name="pref_main_currency_label_egp">Libra egipcia</string>
 
     <string name="today">Hoy</string>
     <string name="yesterday">Ayer</string>
     <string name="format_full_friendly_date"><xliff:g id="month">%1$s</xliff:g>, <xliff:g id="day">%2$s</xliff:g></string>
 
     <string name="zecher_machatzit_hashekel">Zecher L’Machatzit Hashekel</string>
-    <string name="zecher_machatzit_hashekel_details">10 gr of pure silver: %1$s\nFor Machmirim add VAT.</string>
+    <string name="zecher_machatzit_hashekel_details">10 gr de plata pura: %1$s\nFor Machmirim add VAT.</string>
     <string name="about_zecher_machatzit_hashekel">¿Qué es esto?</string>
 
     <string name="pidyon_haben">Pidyon Haben</string>
-    <string name="pidyon_haben_details">100 gr of pure silver: %1$s\nFor Machmirim add VAT.</string>
+    <string name="pidyon_haben_details">100 gr de plata pura: %1$s\nFor Machmirim add VAT.</string>
     <string name="about_pidyon_haben">¿Qué es esto?</string>
 
     <string name="about">Los precios de los metales se han tomado de <a href="http://www.kitco.com/">KITCO</a></string>
@@ -80,19 +80,19 @@
     <string name="copy_to_clipboard_toast">El valor %1$s se ha copiado</string>
 
     <!-- error messages -->
-    <string name="error_no_internet_connection">No hay conexión a Internet!</string>
-    <string name="error_server_response_not_valid">Respuesta del servidor no es válido</string>
+    <string name="error_no_internet_connection">No hay conexión a Internet</string>
+    <string name="error_server_response_not_valid">Respuesta del servidor no válida</string>
     <string name="error_no_response_from_server">No hay respuesta del servidor</string>
-    <string name="empty_rates_list_startup">Cargando datos...</string>
+    <string name="empty_rates_list_startup">No hay información sobre cotizaciones disponible</string>
     <!--<string name="empty_rates_list">No Rates Information Available</string>-->
     <string name="empty_rates_list_no_network">No se dispone de información. La red no está disponible.</string>
-    <string name="empty_rates_list_server_down">No se dispone de información. El servidor no es devolución de datos.</string>
-    <string name="empty_rates_list_server_error">No se dispone de información. El servidor no está devolviendo datos válidos. Por favor, verificar si hay una versión actualizada de la aplicación.</string>
-    <string name="empty_rates_list_invalid">No se dispone de información. La consulta no es reconocida por el servidor.</string>
+    <string name="empty_rates_list_server_down">No se dispone de información. El servidor no está proporcionando datos.</string>
+    <string name="empty_rates_list_server_error">No se dispone de información. El servidor no está proporcionando datos válidos. Por favor, verificar si hay una versión actualizada de la aplicación.</string>
+    <string name="empty_rates_list_invalid">No se dispone de información. El servidor de cotizaciones no reconoce la consulta.</string>
 
 
     <string name="calculator_fragment_name">Calculadora</string>
-    <string name="calculator_gold_purity">Oro pureza</string>
+    <string name="calculator_gold_purity">Pureza del oro</string>
     <string name="calculator_weight">Peso</string>
     <string name="calculator_weight_gram">Peso(g.)</string>
     <string name="calculator_weight_ounce">Peso(oz t)</string>

@@ -13,27 +13,27 @@
     <string name="action_rate">Noter</string>
     <string name="action_share">Partager</string>
 
-    <string name="action_refresh">Rafraîchir</string>
+    <string name="action_refresh">Actualiser</string>
     <string name="action_calculate">Calculer</string>
     <string name="title_activity_detail">Détails</string>
     <string name="title_activity_settings">Paramètres</string>
 
     <string name="pref_general_header">Général</string>
-    <string name="pref_currencies_header">Monnaies</string>
-    <string name="pref_notifications_header">Notification</string>
+    <string name="pref_currencies_header">Devises</string>
+    <string name="pref_notifications_header">Notifications</string>
     <string name="pref_data_sync_header">Données &amp; sync</string>
-    <string name="pref_advanced_header">Advanced</string>
+    <string name="pref_advanced_header">Avancé</string>
 
-    <string name="pref_enable_notifications_label">Notification</string>
-    <string name="pref_enable_notifications_true">Activé</string>
-    <string name="pref_enable_notifications_false">Pas activé</string>
+    <string name="pref_enable_notifications_label">Notifications</string>
+    <string name="pref_enable_notifications_true">Activées</string>
+    <string name="pref_enable_notifications_false">Désactivées</string>
 
 
-    <string name="pref_enable_sync_label">Synchroniser des données</string>
+    <string name="pref_enable_sync_label">Synchroniser les données</string>
     <string name="pref_enable_sync_true">Activé</string>
-    <string name="pref_enable_sync_false">Pas activé</string>
-    <string name="pref_history_business_days_label">Historique maximum Size (jours ouvrables)</string>
-    <string name="pref_sync_frequency_label">fréquence de synchronisation</string>
+    <string name="pref_enable_sync_false">Désactivé</string>
+    <string name="pref_history_business_days_label">Durée maximale de l\'historique (en jours ouvrables)</string>
+    <string name="pref_sync_frequency_label">Fréquence de synchronisation</string>
     <string name="pref_sync_frequency_3H">3 heures</string>
     <string name="pref_sync_frequency_6H">6 heures</string>
     <string name="pref_sync_frequency_12H">12 heures</string>
@@ -45,41 +45,41 @@
 
     <string name="pref_units_label">Unités de poids</string>
     <string name="pref_units_label_grams">Gramme</string>
-    <string name="pref_units_label_ounce">Troy Ounce</string>
+    <string name="pref_units_label_ounce">Once troy</string>
 
     <string name="pref_main_currency_label">Devise par défaut</string>
-    <string name="pref_main_other_currencies_label">D\'autres devises</string>
-    <string name="pref_main_other_currencies_summary">Choisissez jusqu\'à trois devises supplémentaires</string>
+    <string name="pref_main_other_currencies_label">Autres devises</string>
+    <string name="pref_main_other_currencies_summary">Sélectionnez 3 autres devises au maximum</string>
 
     <string name="pref_main_currency_label_ils">Shekel israélien</string>
     <string name="pref_main_currency_label_usd">Dollar américain</string>
     <string name="pref_main_currency_label_eur">Euro</string>
-    <string name="pref_main_currency_label_gbp">British Pound</string>
+    <string name="pref_main_currency_label_gbp">Livre britannique</string>
     <string name="pref_main_currency_label_cad">Dollar canadien</string>
-    <string name="pref_main_currency_label_dkk">Le Danemark Krone</string>
-    <string name="pref_main_currency_label_nok">La Norvège Krone</string>
-    <string name="pref_main_currency_label_sek">Sweden Krona</string>
+    <string name="pref_main_currency_label_dkk">Couronne danoise</string>
+    <string name="pref_main_currency_label_nok">Couronne norvégienne</string>
+    <string name="pref_main_currency_label_sek">Couronne suédoise</string>
     <string name="pref_main_currency_label_chf">Franc suisse</string>
-    <string name="pref_main_currency_label_jod">Le dinar jordanien</string>
-    <string name="pref_main_currency_label_egp">L\'Égypte Pound</string>
+    <string name="pref_main_currency_label_jod">Dinar jordanien</string>
+    <string name="pref_main_currency_label_egp">Livre égyptienne</string>
 
 
-    <string name="today">Aujourd\'hui</string>
+    <string name="today">Aujourd\\hui</string>
     <string name="yesterday">Hier</string>
 
     <string name="format_full_friendly_date"><xliff:g id="month">%1$s</xliff:g>, <xliff:g id="day">%2$s</xliff:g></string>
 
     <string name="zecher_machatzit_hashekel">Zeher L’Mahatzit Hashekel</string>
-    <string name="zecher_machatzit_hashekel_details">10 gr d\'argent pur: %1$s\nPour Mahmirim ajouter la TVA.</string>
+    <string name="zecher_machatzit_hashekel_details">10 g d\'argent pur: %1$s\nPour Machmirim, ajouter la TVA.</string>
     <string name="about_zecher_machatzit_hashekel">Qu\'est-ce que c\'est?</string>
 
     <string name="pidyon_haben">Pidyon Haben</string>
-    <string name="pidyon_haben_details">10 gr d\'argent pur: %1$s\nPour Mahmirim ajouter la TVA.</string>
+    <string name="pidyon_haben_details">100 g d\'argent pur: %1$s\nPour Machmirim, ajouter la TVA.</string>
     <string name="about_pidyon_haben">Qu\'est-ce que c\'est?</string>
 
 
-    <string name="about">Le taux des métaux pris de <a href="http://www.kitco.com/">KITCO</a></string>
-    <string name="about_continue">Continuer..</string>
+    <string name="about">Le prix des métaux provient de <a href="http://www.kitco.com/">KITCO</a></string>
+    <string name="about_continue">Continuer...</string>
 
     <string name="copy_to_clipboard_toast">La valeur %1$s a été copiée</string>
 
@@ -87,12 +87,12 @@
     <string name="error_no_internet_connection">Pas de connexion Internet!</string>
     <string name="error_server_response_not_valid">La réponse du serveur est pas valable</string>
     <string name="error_no_response_from_server">Pas de réponse du serveur</string>
-    <string name="empty_rates_list_startup">Chargement des données ...</string>
-    <!--<string name="empty_rates_list">Information sur les prix des métaux non disponibles.</string>-->
-    <string name="empty_rates_list_no_network">Information sur les prix des métaux non disponibles. Le réseau n\'est pas disponible.</string>
-    <string name="empty_rates_list_server_down">Information sur les prix des métaux non disponibles. Le serveur ne retourne pas les données.</string>
-    <string name="empty_rates_list_server_error">Information subler les prix des métaux non disponis. Le serveur ne retourne pas de données valides. S\'il vous plaît vérifier la version mise à jour \'Les Prix Des Métaux\'.</string>
-    <string name="empty_rates_list_invalid">Information sur les prix des métaux non disponibles. La requête n\'est pas reconnue par le serveur.</string>
+    <string name="empty_rates_list_startup">Chargement des données...</string>
+    <!--<string name="empty_rates_list">Informations sur le prix non disponibles.</string>-->
+    <string name="empty_rates_list_no_network">Informations sur le prix non disponibles. Le réseau n\'est pas disponible.</string>
+    <string name="empty_rates_list_server_down">Informations sur le prix non disponibles. Le serveur ne renvoie aucune donnée.</string>
+    <string name="empty_rates_list_server_error">Informations sur le prix non disponibles. Le serveur ne renvoie pas de données valides. Veuillez rechercher une version mise à jour du "Prix des métaux"\'.</string>
+    <string name="empty_rates_list_invalid">Information sur le prix non disponibles. La requête n\'est pas reconnue par le serveur.</string>
 
     <string name="calculator_fragment_name">Calculatrice</string>
     <string name="calculator_gold_purity">Pureté de l’or</string>
@@ -100,13 +100,13 @@
     <string name="calculator_weight_gram">Poids(g)</string>
     <string name="calculator_weight_ounce">Poids(oz t)</string>
     <string name="calculator_copy_action">Copier</string>
-    <string name="calculator_copy_action_toast">Price copié</string>
+    <string name="calculator_copy_action_toast">Prix copié</string>
 
-    <string name="karat_enum_24">24 karat</string>
-    <string name="karat_enum_22">22 karat</string>
-    <string name="karat_enum_18">18 karat</string>
-    <string name="karat_enum_14">14 karat</string>
-    <string name="karat_enum_10">10 karat</string>
-    <string name="karat_enum_9">9 karat</string>
-    <string name="karat_enum_8">8 karat</string>
+    <string name="karat_enum_24">24 carats</string>
+    <string name="karat_enum_22">22 carats</string>
+    <string name="karat_enum_18">18 carats</string>
+    <string name="karat_enum_14">14 carats</string>
+    <string name="karat_enum_10">10 carats</string>
+    <string name="karat_enum_9">9 carats</string>
+    <string name="karat_enum_8">8 carats</string>
 </resources>

@@ -29,13 +29,13 @@
     <string name="pref_enable_notifications_label">Notifications</string>
 
     <string name="pref_enable_notifications_true">Enabled</string>
-    <string name="pref_enable_notifications_false">Not Enabled</string>
+    <string name="pref_enable_notifications_false">Disabled</string>
     <string name="pref_enable_notifications_default" translatable="false">false</string>
 
     <string name="pref_enable_sync_key" translatable="false">enable_sync</string>
     <string name="pref_enable_sync_label">Sync data</string>
     <string name="pref_enable_sync_true">Enabled</string>
-    <string name="pref_enable_sync_false">Not Enabled</string>
+    <string name="pref_enable_sync_false">Disabled</string>
     <string name="pref_enable_sync_default" translatable="false">false</string>
     <string name="pref_sync_frequency_key" translatable="false">sync_frequency</string>
     <string name="pref_history_business_days_key" translatable="false">sync_history_business_days</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
 
-    <string name="app_name">Metalle Exchange</string>
+    <string name="app_name">Metallbörse</string>
 
     <string name="GOLD">Gold</string>
     <string name="SILVER">Silber</string>
@@ -44,24 +44,24 @@
     <string name="pref_show_jewish_customs_default">false</string>
 
     <string name="pref_units_label">Gewichtseinheiten</string>
-    <string name="pref_units_label_grams">Gramme</string>
+    <string name="pref_units_label_grams">Gramm</string>
     <string name="pref_units_label_ounce">Troy-Unze</string>
 
-    <string name="pref_main_currency_label">Standardwährung</string>
+    <string name="pref_main_currency_label">Feinunze</string>
     <string name="pref_main_other_currencies_label">Andere Währungen</string>
-    <string name="pref_main_other_currencies_summary">Wählen Sie maximal drei zusätzliche Währungen</string>
+    <string name="pref_main_other_currencies_summary">Wählen Sie maximal drei zusätzliche Währungen aus</string>
 
     <string name="pref_main_currency_label_ils">Israelische Schekel</string>
     <string name="pref_main_currency_label_usd">US-Dollar</string>
     <string name="pref_main_currency_label_eur">Euro</string>
     <string name="pref_main_currency_label_gbp">Pfund Sterling</string>
-    <string name="pref_main_currency_label_cad">Kanada Dollar</string>
+    <string name="pref_main_currency_label_cad">Kanadischer Dollar</string>
     <string name="pref_main_currency_label_dkk">Dänische Krone</string>
     <string name="pref_main_currency_label_nok">Norwegische Krone</string>
     <string name="pref_main_currency_label_sek">Schwedische Krone</string>
     <string name="pref_main_currency_label_chf">Schweizer Franken</string>
     <string name="pref_main_currency_label_jod">Jordanischer Dinar</string>
-    <string name="pref_main_currency_label_egp">Ägyptischer Pfund</string>
+    <string name="pref_main_currency_label_egp">Ägyptisches Pfund</string>
 
 
     <string name="today">Heute</string>
@@ -79,7 +79,7 @@
 
 
     <string name="about">Abfrage der Metallkurse unter <a href="http://www.kitco.com/">KITCO</a></string>
-    <string name="about_continue">Weiter..</string>
+    <string name="about_continue">Weiter...</string>
 
     <string name="copy_to_clipboard_toast">Der Wert %1$s wurde kopiert.</string>
 
@@ -88,7 +88,7 @@
     <string name="error_server_response_not_valid">Serverantwort ist nicht gültig</string>
     <string name="error_no_response_from_server">Keine Antwort vom Server</string>
     <string name="empty_rates_list_startup">Daten werden geladen...</string>
-    <!--<string name="empty_rates_list">Information sur les prix des métaux non disponibles.</string>-->
+    <!--<string name="empty_rates_list">Metallkurse nicht verfügbar</string>-->
     <string name="empty_rates_list_no_network">Keine Informationen verfügbar. Das Netzwerk ist nicht verfügbar.</string>
     <string name="empty_rates_list_server_down">Keine Informationen verfügbar. Der Server liefert keine Daten.</string>
     <string name="empty_rates_list_server_error">Keine Informationen verfügbar. Der Server liefert keine gültigen Daten. Bitte prüfen, ob aktualisierte Metallkurse vorliegen.</string>
