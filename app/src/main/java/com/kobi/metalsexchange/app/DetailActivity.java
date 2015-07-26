@@ -16,6 +16,8 @@
 package com.kobi.metalsexchange.app;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.kobi.metalsexchange.app.component.RoundImage;
 import com.kobi.metalsexchange.app.data.MetalsContract;
 import com.software.shell.fab.ActionButton;
 
@@ -94,7 +97,10 @@ public class DetailActivity extends AppCompatActivity implements FABHideable {
         setTitle(Utility.getMetalName(metalId, this));
       //  getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_HOME_AS_UP);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setIcon(Utility.getIconResourceForMetal(metalId));
+
+        Bitmap bm = BitmapFactory.decodeResource(getResources(),Utility.getIconResourceForMetal(metalId));
+        RoundImage roundedImage = new RoundImage(bm);
+        getSupportActionBar().setIcon(roundedImage);
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.

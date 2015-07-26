@@ -17,6 +17,8 @@
 package com.kobi.metalsexchange.app.component;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.view.ViewPager;
@@ -216,7 +218,13 @@ public class SlidingTabLayout extends HorizontalScrollView {
             }
 
             tabTextView.setText(adapter.getPageTitle(i).toString());
-            tabIconView.setImageResource(adapter.getPageIcon(i));
+
+
+            Bitmap bm = BitmapFactory.decodeResource(getResources(), adapter.getPageIcon(i));
+            RoundImage roundedImage = new RoundImage(bm);
+            tabIconView.setImageDrawable(roundedImage);
+
+           // tabIconView.setImageResource(adapter.getPageIcon(i));
             //tabTitleView.setBackgroundColor(getContext().getResources().getColor(R.color.primary));
             //tabTitleView.setBackground(getResources().getDrawable(R.drawable.touch_selector));
             tabView.setOnClickListener(tabClickListener);

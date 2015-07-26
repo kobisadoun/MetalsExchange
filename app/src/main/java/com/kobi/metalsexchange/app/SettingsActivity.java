@@ -21,6 +21,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
@@ -107,6 +108,16 @@ public class SettingsActivity extends PreferenceActivity  {
 
             bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_main_currency_key)));
             bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_units_key)));
+
+            CheckBoxPreference jewishCustomsPref = (CheckBoxPreference)findPreference(getString(R.string.pref_show_jewish_customs_key));
+            jewishCustomsPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object value) {
+                    getActivity().getApplicationContext().getContentResolver().notifyChange(MetalsContract.MetalsRateEntry.CONTENT_URI, null);
+                    return true;
+                }
+            });
+
+
 
             NumberPickerPreference historyCountPreference =  (NumberPickerPreference)findPreference(getString(R.string.pref_history_business_days_key));
             historyCountPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {

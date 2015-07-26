@@ -20,7 +20,7 @@ import java.text.NumberFormat;
 public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdapter.RatesAdapterViewHolder> {
 
     private static final int VIEW_TYPE_TODAY = 0;
-    private static final int VIEW_TYPE_FUTURE_DAY = 1;
+    private static final int VIEW_TYPE_PAST_DAY = 1;
 
     // Flag to determine if we want to use a separate view for "today".
     private boolean mUseTodayLayout = true;
@@ -94,7 +94,7 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
                     layoutId = R.layout.list_item_rate_today;
                     break;
                 }
-                case VIEW_TYPE_FUTURE_DAY: {
+                case VIEW_TYPE_PAST_DAY: {
                     layoutId = R.layout.list_item_rate;
                     break;
                 }
@@ -119,7 +119,7 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
                 adapterViewHolder.iconView.setImageResource(Utility.getArtResourceForMetal(mMetalId));
                 break;
             }
-//            case VIEW_TYPE_FUTURE_DAY: {
+//            case VIEW_TYPE_PAST_DAY: {
 //                viewHolder.iconView.setImageResource(Utility.getIconResourceForCurrency(
 //                        Utility.getPreferredCurrency(context)));
 //                break;
@@ -153,17 +153,35 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
             NumberFormat defaultFormat = NumberFormat.getPercentInstance();
             defaultFormat.setMaximumFractionDigits(2);
             defaultFormat.setMinimumFractionDigits(2);
+            int imageIconResourceId = 0;
+            int imageArtResourceId = 0;
             if(rateDeltaRaw < 0){
-                adapterViewHolder.deltaIconView.setImageResource(R.drawable.ic_down);
+                imageIconResourceId = R.drawable.ic_down;
+                imageArtResourceId = R.drawable.art_down;
                 rateDeltaRawPercentage = rateDeltaRaw/previousRateRaw;
                 rateDeltaRawPercentage *= -1;
 
             } else if(rateDeltaRaw > 0){
-                adapterViewHolder.deltaIconView.setImageResource(R.drawable.ic_up);
+                imageIconResourceId = R.drawable.ic_up;
+                imageArtResourceId = R.drawable.art_down;
                 rateDeltaRawPercentage = rateDeltaRaw/rateRaw;
             } else{
-                adapterViewHolder.deltaIconView.setImageResource(R.drawable.ic_same);
+                imageIconResourceId = R.drawable.ic_same;
+                imageArtResourceId = R.drawable.art_down;
             }
+
+            switch (viewType) {
+                case VIEW_TYPE_TODAY: {
+                    adapterViewHolder.deltaIconView.setImageResource(imageArtResourceId);
+                    break;
+                }
+                case VIEW_TYPE_PAST_DAY: {
+                    adapterViewHolder.deltaIconView.setImageResource(imageIconResourceId);
+                    break;
+                }
+            }
+
+
             rateDeltaRawPercentageStr = defaultFormat.format(rateDeltaRawPercentage);
 
           //  if(rateDeltaRaw != 0) {
@@ -182,7 +200,7 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
 
     @Override
     public int getItemViewType(int position) {
-        return (position == 0 && mUseTodayLayout) ? VIEW_TYPE_TODAY : VIEW_TYPE_FUTURE_DAY;
+        return (position == 0 && mUseTodayLayout) ? VIEW_TYPE_TODAY : VIEW_TYPE_PAST_DAY;
     }
 
     @Override
