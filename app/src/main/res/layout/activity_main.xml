@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:background="@color/primary"
-        android:elevation="0dp"
+        android:elevation="2dp"
         android:scaleType="center"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         xmlns:android="http://schemas.android.com/apk/res/android"
