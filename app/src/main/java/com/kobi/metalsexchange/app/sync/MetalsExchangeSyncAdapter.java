@@ -201,6 +201,10 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
                 }
             });
         }finally {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+            SharedPreferences.Editor spe = prefs.edit();
+            spe.putLong("LAST_UPDATED", System.currentTimeMillis());
+            spe.apply();
             if (urlConnection != null) {
                 urlConnection.disconnect();
             }
@@ -236,6 +240,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             catch (Exception e){
                 continue;
             }
+
             String metalPriceUSD = values.next().text();
             //---------------------------------------------------
             SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyyMMdd");

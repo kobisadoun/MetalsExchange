@@ -67,6 +67,7 @@
     <string name="yesterday">אתמול</string>
 
     <string name="format_full_friendly_date"><xliff:g id="month">%1$s</xliff:g>, <xliff:g id="day">%2$s</xliff:g></string>
+    <string name="format_full_friendly_time">עודכן לאחרונה: <xliff:g id="date">%1$s</xliff:g>, <xliff:g id="hour">%2$s</xliff:g></string>
 
     <string name="zecher_machatzit_hashekel">זכר למחצית השקל</string>
     <string name="zecher_machatzit_hashekel_details">ערך לפי 10 גרם כסף טהור: %1$s\n למחמירים הוסף מס ערך מוסף</string>

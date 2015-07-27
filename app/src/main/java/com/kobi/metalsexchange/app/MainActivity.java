@@ -19,8 +19,10 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -35,7 +37,7 @@ import com.kobi.metalsexchange.app.component.SlidingTabLayout;
 import com.kobi.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
 import com.software.shell.fab.ActionButton;
 
-public class MainActivity extends AppCompatActivity implements ExchangeRatesFragment.Callback, FABHideable {
+public class MainActivity extends AppCompatActivity implements ExchangeRatesFragment.Callback, FABHideable, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
     private static final String DETAILFRAGMENT_TAG = "DFTAG";
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
     private boolean mGrams;
 
     private ActionButton mFloatingActionButton;
+    private TextView mLastUpdatedTextView;
 
     @Override
     public void hideOrShowFloatingActionButton(){
@@ -132,7 +135,8 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
         slidingTabLayout.setOnPageChangeListener(pageChangeListener);
         viewPager.setCurrentItem(Utility.getTabIdxForMetal(Utility.getCurrentMetalId(this)));
 
-
+        mLastUpdatedTextView = (TextView) findViewById(R.id.last_updated_textview);
+        updateTheLastUpdatedTime();
         if (Utility.isTwoPanesView()) {
             // The detail container view will be present only in the large-screen layouts
             // (res/layout-sw600dp). If this view is present, then the activity should be
@@ -177,6 +181,21 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
             getSupportActionBar().setElevation(0f);
         }
         MetalsExchangeSyncAdapter.initializeSyncAdapter(this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+        if(key.equals("LAST_UPDATED")) {
+            updateTheLastUpdatedTime();
+        }
+    }
+
+    private void updateTheLastUpdatedTime(){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        long lastUpdatedVal = prefs.getLong("LAST_UPDATED", 0);
+        if(lastUpdatedVal > 0) {
+            mLastUpdatedTextView.setText(Utility.getFriendlyDayTimeString(this, lastUpdatedVal));
+        }
     }
 
     @Override
@@ -243,10 +262,23 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
         outState.putString("last_selected_metal", metalId);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        pref.unregisterOnSharedPreferenceChangeListener(this);
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        pref.registerOnSharedPreferenceChangeListener(this);
+        long lastUpdated = pref.getLong("LAST_UPDATED", 0);
+
+
         String currencyId = Utility.getPreferredCurrency(this);
         boolean grams = Utility.isGrams(this);
         if (currencyId != null && !currencyId.equals(mCurrencyId) ||

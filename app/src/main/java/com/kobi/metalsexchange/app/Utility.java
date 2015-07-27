@@ -226,6 +226,39 @@ public class Utility {
         }
     }
 
+    public static String getFriendlyDayTimeString(Context context, long dateInMillis) {
+        Time time = new Time();
+        time.setToNow();
+        long currentTime = System.currentTimeMillis();
+        int julianDay = Time.getJulianDay(dateInMillis, time.gmtoff);
+        int currentJulianDay = Time.getJulianDay(currentTime, time.gmtoff);
+        long yesterdayTime = System.currentTimeMillis()-  1000 * 60 * 60 * 24;
+        int yesterdayJulianDay = Time.getJulianDay(yesterdayTime, time.gmtoff);
+
+
+        // If the date we're building the String for is today's date, the format
+        // is "Today, June 24"
+        if (julianDay == currentJulianDay) {
+            String today = context.getString(R.string.today);
+            int formatId = R.string.format_full_friendly_time;
+            return String.format(context.getString(
+                    formatId,
+                    today,
+                    getFormattedDayWithTime(context, dateInMillis)));
+        } else if (julianDay == yesterdayJulianDay) {
+            String yesterday = context.getString(R.string.yesterday);
+            int formatId = R.string.format_full_friendly_time;
+            return String.format(context.getString(
+                    formatId,
+                    yesterday,
+                    getFormattedDayWithTime(context, dateInMillis)));
+        } else {
+            // Otherwise, use the form "Mon Jun 3"
+            SimpleDateFormat shortenedDateFormat = new SimpleDateFormat("EEE MMM dd");
+            return shortenedDateFormat.format(dateInMillis);
+        }
+    }
+
     /**
      * Converts db date format to the format "Month day", e.g "June 24".
      * @param context Context to use for resource localization
@@ -246,6 +279,15 @@ public class Utility {
         SimpleDateFormat monthDayFormat = new SimpleDateFormat("dd/MM/yy");
         String shortDate = monthDayFormat.format(dateInMillis);
         return shortDate;
+    }
+
+    public static String getFormattedDayWithTime(Context context, long dateInMillis ) {
+        Time time = new Time();
+        time.setToNow();
+        SimpleDateFormat dbDateFormat = new SimpleDateFormat(Utility.DATE_FORMAT);
+        SimpleDateFormat monthDayFormat = new SimpleDateFormat("HH:mm:ss");
+        String monthDayString = monthDayFormat.format(dateInMillis);
+        return monthDayString;
     }
 
     public static int getTabIdxForMetal(String metalId) {

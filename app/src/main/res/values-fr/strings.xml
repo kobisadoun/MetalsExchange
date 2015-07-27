@@ -68,6 +68,7 @@
     <string name="yesterday">Hier</string>
 
     <string name="format_full_friendly_date"><xliff:g id="month">%1$s</xliff:g>, <xliff:g id="day">%2$s</xliff:g></string>
+    <string name="format_full_friendly_time">Dernière mise à jour: <xliff:g id="date">%1$s</xliff:g>, <xliff:g id="hour">%2$s</xliff:g></string>
 
     <string name="zecher_machatzit_hashekel">Zeher L’Mahatzit Hashekel</string>
     <string name="zecher_machatzit_hashekel_details">10 g d\'argent pur: %1$s\nPour Machmirim, ajouter la TVA.</string>
