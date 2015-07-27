@@ -53,6 +53,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.TimeZone;
 import java.util.Vector;
 
 public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
@@ -227,6 +228,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             //date value
             String date = values.next().text();
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+            dateFormat.setTimeZone(TimeZone.getTimeZone("America/New_York"));
             Date convertedDate;
             try{
                 convertedDate = dateFormat.parse(date);

@@ -163,11 +163,11 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
 
             } else if(rateDeltaRaw > 0){
                 imageIconResourceId = R.drawable.ic_up;
-                imageArtResourceId = R.drawable.art_down;
+                imageArtResourceId = R.drawable.art_up;
                 rateDeltaRawPercentage = rateDeltaRaw/rateRaw;
             } else{
                 imageIconResourceId = R.drawable.ic_same;
-                imageArtResourceId = R.drawable.art_down;
+                imageArtResourceId = R.drawable.art_same;
             }
 
             switch (viewType) {
