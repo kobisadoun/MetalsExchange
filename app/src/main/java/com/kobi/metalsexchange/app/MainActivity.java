@@ -17,7 +17,6 @@ package com.kobi.metalsexchange.app;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -27,7 +26,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -217,24 +215,24 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
-        else if (id == R.id.action_about) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.app_name)
-                    .setIcon(R.drawable.ic_gold)
-                    .setMessage(R.string.about)
-                    .setCancelable(true)
-                    .setNegativeButton(R.string.about_continue, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.dismiss();
-                        }
-                    });
-
-            AlertDialog welcomeAlert = builder.create();
-            welcomeAlert.show();
-            // Make the textview clickable. Must be called after show()
-            ((TextView)welcomeAlert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-            return true;
-        }
+//        else if (id == R.id.action_about) {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setTitle(R.string.app_name)
+//                    .setIcon(R.drawable.ic_gold)
+//                    .setMessage(R.string.about)
+//                    .setCancelable(true)
+//                    .setNegativeButton(R.string.about_continue, new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int id) {
+//                            dialog.dismiss();
+//                        }
+//                    });
+//
+//            AlertDialog welcomeAlert = builder.create();
+//            welcomeAlert.show();
+//            // Make the textview clickable. Must be called after show()
+//            ((TextView)welcomeAlert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+//            return true;
+//        }
         else if (id == R.id.action_rate) {
             Uri uri = Uri.parse("market://details?id=" + getPackageName());
             Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
