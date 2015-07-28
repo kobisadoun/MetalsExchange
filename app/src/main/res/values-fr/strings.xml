@@ -64,7 +64,7 @@
     <string name="pref_main_currency_label_egp">Livre égyptienne</string>
 
 
-    <string name="today">Aujourd\\hui</string>
+    <string name="today">Aujourd\'hui</string>
     <string name="yesterday">Hier</string>
 
     <string name="format_full_friendly_date"><xliff:g id="month">%1$s</xliff:g>, <xliff:g id="day">%2$s</xliff:g></string>
