@@ -51,6 +51,5 @@
         android:textColor="@color/primary_light"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:background="@color/primary"
-        android:text="kobi"
-        />
+                />
 </LinearLayout>

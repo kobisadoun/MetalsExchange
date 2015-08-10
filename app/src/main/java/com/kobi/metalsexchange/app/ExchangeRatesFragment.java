@@ -15,6 +15,7 @@
  */
 package com.kobi.metalsexchange.app;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -34,6 +35,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kobi.metalsexchange.app.component.DividerItemDecoration;
@@ -51,6 +55,11 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
     private int mPosition = RecyclerView.NO_POSITION;
 
     private static final String SELECTED_KEY = "selected_position";
+
+    private MenuItem refreshItem;
+    private LayoutInflater inflater;
+    private ImageView refreshImageView;
+    private Animation rotation;
 
     private static final int RATES_LOADER = 0;
     private static final String[] RATES_COLUMNS = {
@@ -117,6 +126,11 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
         mMetalId = getArguments().getString(METAL_ID);
         // Add this line in order for this fragment to handle menu events.
         setHasOptionsMenu(true);
+        /* Attach a rotating ImageView to the refresh item as an ActionView */
+        inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        refreshImageView = (ImageView) inflater.inflate(R.layout.refresh_action_view, null);
+        rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.clockwise_refresh);
+        rotation.setRepeatCount(Animation.INFINITE);
     }
 
     @Override
@@ -129,9 +143,12 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
 
         int id = item.getItemId();
         if (id == R.id.action_refresh) {
+            refreshItem = item;
             if(Utility.isNetworkAvailable(getActivity())) {
                 mPosition = RecyclerView.NO_POSITION;
-                mSwipeRefreshLayout.setRefreshing(true);
+                //mSwipeRefreshLayout.setRefreshing(true);
+                refreshImageView.startAnimation(rotation);
+                refreshItem.setActionView(refreshImageView);
                 MetalsExchangeSyncAdapter.syncImmediately(getActivity(), true);
             }
             return true;
@@ -297,6 +314,14 @@ public class ExchangeRatesFragment extends Fragment implements LoaderManager.Loa
         }
         updateEmptyView();
         mSwipeRefreshLayout.setRefreshing(false);
+        completeRefresh();
+    }
+
+    public void completeRefresh() {
+        if (refreshItem != null && refreshItem.getActionView() != null) {
+            refreshItem.getActionView().clearAnimation();
+            refreshItem.setActionView(null);
+        }
     }
 
     private void onCurrencyOrWeightChanged() {

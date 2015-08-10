@@ -17,10 +17,8 @@
 package com.kobi.metalsexchange.app.component;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
-import android.os.Build;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.SparseArray;
@@ -30,11 +28,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.kobi.metalsexchange.app.ExchangeRatesFragmentPagerAdapter;
+import com.kobi.metalsexchange.app.R;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
@@ -158,7 +155,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
         mViewPager = viewPager;
         if (viewPager != null) {
-            viewPager.setOnPageChangeListener(new InternalViewPagerListener());
+            viewPager.addOnPageChangeListener(new InternalViewPagerListener());
             populateTabStrip();
         }
     }
@@ -173,7 +170,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TAB_VIEW_TEXT_SIZE_SP);
         textView.setTypeface(Typeface.DEFAULT_BOLD);
         textView.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
 
         TypedValue outValue = new TypedValue();
         getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
@@ -187,7 +184,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
         return textView;
     }
 
-    private void populateTabStrip() {
+
+    /*OLD with icons
+    * private void populateTabStrip() {
         final ExchangeRatesFragmentPagerAdapter adapter = (ExchangeRatesFragmentPagerAdapter)mViewPager.getAdapter();
         final View.OnClickListener tabClickListener = new TabClickListener();
 
@@ -245,6 +244,55 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabTextView.setTextSize(12);
             }
 
+        }
+    }
+    *
+    * */
+
+
+    private void populateTabStrip() {
+        final PagerAdapter adapter = mViewPager.getAdapter();
+        final View.OnClickListener tabClickListener = new TabClickListener();
+
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View tabView = null;
+            TextView tabTitleView = null;
+
+            if (mTabViewLayoutId != 0) {
+                // If there is a custom tab view layout id set, try and inflate it
+                tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip,
+                        false);
+                tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
+            }
+
+            if (tabView == null) {
+                tabView = createDefaultTabView(getContext());
+            }
+
+            if (tabTitleView == null && TextView.class.isInstance(tabView)) {
+                tabTitleView = (TextView) tabView;
+            }
+
+            if (mDistributeEvenly) {
+                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) tabView.getLayoutParams();
+                lp.width = 0;
+                lp.weight = 1;
+            }
+
+            tabTitleView.setText(adapter.getPageTitle(i));
+            tabView.setOnClickListener(tabClickListener);
+            String desc = mContentDescriptions.get(i, null);
+            if (desc != null) {
+                tabView.setContentDescription(desc);
+            }
+
+            mTabStrip.addView(tabView);
+            if (i == mViewPager.getCurrentItem()) {
+                tabView.setSelected(true);
+            }
+
+            tabTitleView.setTextColor(getResources().getColorStateList(R.color.selector));
+            tabTitleView.setTextSize(13);
         }
     }
 

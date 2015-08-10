@@ -93,13 +93,13 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
         // Give the SlidingTabLayout the ViewPager
         SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
         // Set custom tab layout
-        slidingTabLayout.setCustomTabView(R.layout.custom_tab, 0);
+        // /*with icon*/ slidingTabLayout.setCustomTabView(R.layout.custom_tab, 0);
         // Center the tabs in the layout
-        slidingTabLayout.setDistributeEvenly(true);
+        slidingTabLayout.setDistributeEvenly(false);
 
-        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.primary));
-
-        // Customize tab color
+//        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.primary));
+//
+//        // Customize tab color
         slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {

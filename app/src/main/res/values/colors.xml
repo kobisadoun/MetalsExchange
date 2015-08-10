@@ -21,6 +21,8 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
 
+    <color name="tabsScrollColor">#B6B6B6</color>
+
     <color name="white">#FFFFFF</color>
     <color name="grey">#cccccc</color>
     <color name="grey_700">#646464</color>

@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-public class ExchangeRatesFragmentPagerAdapter extends FragmentPagerAdapter {
+public class ExchangeRatesFragmentPagerAdapter extends FragmentPagerAdapter /*FragmentStatePagerAdapter*/ {
     private Context context;
 
     public ExchangeRatesFragmentPagerAdapter(FragmentManager fm, Context context) {
