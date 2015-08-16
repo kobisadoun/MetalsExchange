@@ -18,7 +18,7 @@
     <string name="title_activity_detail">تفاصيل</string>
     <string name="title_activity_settings">الإعدادات</string>
 
-    <string name="pref_general_header">عام</string>
+    <string name="pref_weight_header">الوزن</string>
     <string name="pref_currencies_header">العملات</string>
     <string name="pref_notifications_header">الإشعارات</string>
     <string name="pref_data_sync_header">البيانات وتزامن</string>
@@ -47,6 +47,12 @@
     <string name="pref_units_label">وحدات الوزن</string>
     <string name="pref_units_label_grams">غرام</string>
     <string name="pref_units_label_ounce">أونصة</string>
+    <string name="pref_units_label_grain">Grain</string>
+    <string name="pref_units_label_baht">Baht</string>
+    <string name="pref_units_label_pennyweight">Pennyweight</string>
+    <string name="pref_units_label_tola">Tola</string>
+    <string name="pref_units_label_dram">Dram</string>
+    <string name="pref_units_buy_weight_units_label">شراء وحدات الوزن</string>
 
     <string name="pref_main_buy_currencies_label">شراء عملات</string>
     <string name="pref_main_currency_label">العملة الافتراضية</string>
@@ -100,6 +106,11 @@
     <string name="calculator_weight">الوزن</string>
     <string name="calculator_weight_gram">الوزن (غ)</string>
     <string name="calculator_weight_ounce">الوزن (أونصة)</string>
+    <string name="calculator_weight_grain">الوزن(gr)</string>
+    <string name="calculator_weight_baht">الوزن(฿)</string>
+    <string name="calculator_weight_pennyweight">الوزن(dwt)</string>
+    <string name="calculator_weight_tola">الوزن(tola)</string>
+    <string name="calculator_weight_dram">الوزن(dr)</string>
     <string name="calculator_copy_action">نسخة</string>
     <string name="calculator_copy_action_toast">نسخ السعر</string>
 

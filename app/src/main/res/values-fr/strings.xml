@@ -18,7 +18,7 @@
     <string name="title_activity_detail">Détails</string>
     <string name="title_activity_settings">Paramètres</string>
 
-    <string name="pref_general_header">Général</string>
+    <string name="pref_weight_header">Poids</string>
     <string name="pref_currencies_header">Devises</string>
     <string name="pref_notifications_header">Notifications</string>
     <string name="pref_data_sync_header">Données &amp; sync</string>
@@ -46,6 +46,12 @@
     <string name="pref_units_label">Unités de poids</string>
     <string name="pref_units_label_grams">Gramme</string>
     <string name="pref_units_label_ounce">Once troy</string>
+    <string name="pref_units_label_grain">Grain</string>
+    <string name="pref_units_label_baht">Baht</string>
+    <string name="pref_units_label_pennyweight">Pennyweight</string>
+    <string name="pref_units_label_tola">Tola</string>
+    <string name="pref_units_label_dram">Dram</string>
+    <string name="pref_units_buy_weight_units_label">Acheter des unités de poids</string>
 
     <string name="pref_main_buy_currencies_label">Acheter des devises</string>
     <string name="pref_main_currency_label">Devise par défaut</string>
@@ -101,6 +107,11 @@
     <string name="calculator_weight">Poids</string>
     <string name="calculator_weight_gram">Poids(g)</string>
     <string name="calculator_weight_ounce">Poids(oz t)</string>
+    <string name="calculator_weight_grain">Poids(gr)</string>
+    <string name="calculator_weight_baht">Poids(฿)</string>
+    <string name="calculator_weight_pennyweight">Poids(dwt)</string>
+    <string name="calculator_weight_tola">Poids(tola)</string>
+    <string name="calculator_weight_dram">Poids(dr)</string>
     <string name="calculator_copy_action">Copier</string>
     <string name="calculator_copy_action_toast">Prix copié</string>
 

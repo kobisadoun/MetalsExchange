@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
     private static final String CHARTFRAGMENT_TAG = "CFTAG";
 
     private String mCurrencyId;
-    private boolean mGrams;
+    private String mWeightUnitId;
 
     private ActionButton mFloatingActionButton;
     private TextView mLastUpdatedTextView;
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCurrencyId = Utility.getPreferredCurrency(this);
-        mGrams = Utility.isGrams(this);
+        mWeightUnitId = Utility.getPreferredWeightUnit(this);
         setContentView(R.layout.activity_main);
 
         // Creating The Toolbar and setting it as the Toolbar for the activity
@@ -278,9 +278,9 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
 
 
         String currencyId = Utility.getPreferredCurrency(this);
-        boolean grams = Utility.isGrams(this);
+        String weightUnitId = Utility.getPreferredWeightUnit(this);
         if (currencyId != null && !currencyId.equals(mCurrencyId) ||
-               grams != mGrams) {
+                !weightUnitId.equals(mWeightUnitId)) {
 //            ExchangeRatesFragment ff = (ExchangeRatesFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_rates);
 //            if ( null != ff ) {
 //                ff.onCurrencyOrWeightChanged();
@@ -294,7 +294,7 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
                 dgf.onCurrencyOrWeightChanged();
             }
             mCurrencyId = currencyId;
-            mGrams = grams;
+            mWeightUnitId = weightUnitId;
         }
     }
 

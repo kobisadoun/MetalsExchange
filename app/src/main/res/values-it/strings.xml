@@ -18,7 +18,7 @@
     <string name="title_activity_detail">Dettagli</string>
     <string name="title_activity_settings">Impostazioni</string>
 
-    <string name="pref_general_header">generale</string>
+    <string name="pref_weight_header">peso</string>
     <string name="pref_currencies_header">Valute</string>
     <string name="pref_notifications_header">Notifiche</string>
     <string name="pref_data_sync_header">dati e sincronizzazione</string>
@@ -46,6 +46,12 @@
     <string name="pref_units_label">unità di peso</string>
     <string name="pref_units_label_grams">grammo</string>
     <string name="pref_units_label_ounce">oncia troy</string>
+    <string name="pref_units_label_grain">Grain</string>
+    <string name="pref_units_label_baht">Baht</string>
+    <string name="pref_units_label_pennyweight">Pennyweight</string>
+    <string name="pref_units_label_tola">Tola</string>
+    <string name="pref_units_label_dram">Dram</string>
+    <string name="pref_units_buy_weight_units_label">Acquista unità di peso</string>
 
     <string name="pref_main_buy_currencies_label">Acquista valute</string>
     <string name="pref_main_currency_label">valuta predefinita</string>
@@ -97,8 +103,13 @@
     <string name="calculator_fragment_name">calcolatrice</string>
     <string name="calculator_gold_purity">Purezza oro</string>
     <string name="calculator_weight">peso</string>
-    <string name="calculator_weight_gram">peso(g.)</string>
+    <string name="calculator_weight_gram">peso(g)</string>
     <string name="calculator_weight_ounce">peso(oz t)</string>
+    <string name="calculator_weight_grain">peso(gr)</string>
+    <string name="calculator_weight_baht">peso(฿)</string>
+    <string name="calculator_weight_pennyweight">peso(dwt)</string>
+    <string name="calculator_weight_tola">peso(tola)</string>
+    <string name="calculator_weight_dram">peso(dr)</string>
     <string name="calculator_copy_action">copia</string>
     <string name="calculator_copy_action_toast">Prezzo copiato</string>
 

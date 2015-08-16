@@ -61,7 +61,20 @@ public class Utility {
     public final static int PLATINUM_IDX = 2;
     public final static int PALLADIUM_IDX = 3;
 
-    public final static double GRAMS_IN_OUNCE = 31.1034768;//troy ounce
+    public final static String WEIGHT_GRAM = "GRAM";
+    public final static String WEIGHT_OUNCE = "OUNCE";
+    public final static String WEIGHT_GRAIN = "GRAIN";
+    public final static String WEIGHT_BAHT = "BAHT";
+    public final static String WEIGHT_PENNYWEIGHT = "PENNYWEIGHT";
+    public final static String WEIGHT_TOLA = "TOLA";
+    public final static String WEIGHT_DRAM = "DRAM";
+
+    public final static double GRAMS_IN_OUNCE = 31.1034768;//troy ounce (oz t)
+    public final static double GRAMS_IN_GRAIN = 0.064798918;//Grain (gr)
+    public final static double GRAMS_IN_BAHT = 15.244;//Baht (?)
+    public final static double GRAMS_IN_PENNYWEIGHT = 1.55517384;//Pennyweight (dwt)
+    public final static double GRAMS_IN_TOLA = 11.6638;//Tola (tola)
+    public final static double GRAMS_IN_DRAM = 1.7718451953134;//dr
 
     private static boolean TWO_PANE;
 
@@ -184,11 +197,9 @@ public class Utility {
         return -1;
     }
 
-    public static boolean isGrams(Context context) {
+    public static String getPreferredWeightUnit(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs == null || prefs.getString(context.getString(R.string.pref_units_key),
-                context.getString(R.string.pref_units_grams))
-                .equals(context.getString(R.string.pref_units_grams));
+        return  prefs.getString(context.getString(R.string.pref_units_key), context.getString(R.string.pref_units_grams));
     }
 
     public static boolean isTwoPanesView(){
@@ -347,11 +358,24 @@ public class Utility {
         return -1;
     }
 
-    public static String getWeightName(boolean isGrams, Context context) {
-        if(isGrams){
+    public static String getWeightName(Context context) {
+        String weightUnitKey = getPreferredWeightUnit(context);
+        if(weightUnitKey.equals(context.getString(R.string.pref_units_grams))){
             return context.getString(R.string.pref_units_label_grams);
+        } else if(weightUnitKey.equals(context.getString(R.string.pref_units_ounce))){
+            return context.getString(R.string.pref_units_label_ounce);
+        } else if(weightUnitKey.equals(context.getString(R.string.pref_units_grain))){
+            return context.getString(R.string.pref_units_label_grain);
+        } else if(weightUnitKey.equals(context.getString(R.string.pref_units_baht))){
+            return context.getString(R.string.pref_units_label_baht);
+        } else if(weightUnitKey.equals(context.getString(R.string.pref_units_pennyweight))){
+            return context.getString(R.string.pref_units_label_pennyweight);
+        } else if(weightUnitKey.equals(context.getString(R.string.pref_units_tola))){
+            return context.getString(R.string.pref_units_label_tola);
+        } else if(weightUnitKey.equals(context.getString(R.string.pref_units_dram))){
+            return context.getString(R.string.pref_units_label_dram);
         }
-        return context.getString(R.string.pref_units_label_ounce);
+        return "";
     }
 
 
@@ -429,8 +453,22 @@ public class Utility {
     }
 
     public static String getFormattedCurrency(Double price, String currencyId, Context context, boolean convertIfNeeded/*, boolean appendWeightUnit*/){
-        if(convertIfNeeded && !isGrams(context)) {
-            price *= GRAMS_IN_OUNCE;
+        if(convertIfNeeded){
+            String weightUnitKey = getPreferredWeightUnit(context);
+            if(weightUnitKey.equals(context.getString(R.string.pref_units_ounce))){
+                price *= GRAMS_IN_OUNCE;
+            } else if(weightUnitKey.equals(context.getString(R.string.pref_units_grain))){
+                price *= GRAMS_IN_GRAIN;
+            } else if(weightUnitKey.equals(context.getString(R.string.pref_units_baht))){
+                price *= GRAMS_IN_BAHT;
+            } else if(weightUnitKey.equals(context.getString(R.string.pref_units_pennyweight))){
+                price *= GRAMS_IN_PENNYWEIGHT;
+            } else if(weightUnitKey.equals(context.getString(R.string.pref_units_tola))){
+                price *= GRAMS_IN_TOLA;
+            } else if(weightUnitKey.equals(context.getString(R.string.pref_units_dram))){
+                price *= GRAMS_IN_DRAM;
+            }
+
         }
         Currency curr = Currency.getInstance(currencyId);
         NumberFormat defaultFormat = NumberFormat.getCurrencyInstance();
@@ -514,6 +552,89 @@ public class Utility {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c);
         int historyCount = prefs.getInt(c.getString(R.string.pref_history_business_days_key), 60);
         return historyCount;
+    }
+
+
+    static public CharSequence[] getAvailableCurrenciesEntries(Context c){
+        CharSequence[] entries = {
+                c.getResources().getString(R.string.pref_main_currency_label_ils),
+                c.getResources().getString(R.string.pref_main_currency_label_usd),
+                c.getResources().getString(R.string.pref_main_currency_label_eur),
+                c.getResources().getString(R.string.pref_main_currency_label_gbp)
+        };
+        return entries;
+    }
+
+    static public CharSequence[] getAvailableCurrenciesValues(Context c){
+        CharSequence[] entryValues = {
+                c.getResources().getString(R.string.pref_main_currency_ils),
+                c.getResources().getString(R.string.pref_main_currency_usd),
+                c.getResources().getString(R.string.pref_main_currency_eur),
+                c.getResources().getString(R.string.pref_main_currency_gbp)
+        };
+        return entryValues;
+    }
+
+    static public CharSequence[] getAvailableCurrenciesEntries1(Context c){
+        CharSequence[] entries = {
+                c.getResources().getString(R.string.pref_main_currency_label_ils),
+                c.getResources().getString(R.string.pref_main_currency_label_usd),
+                c.getResources().getString(R.string.pref_main_currency_label_eur),
+                c.getResources().getString(R.string.pref_main_currency_label_cad),
+                c.getResources().getString(R.string.pref_main_currency_label_gbp)
+        };
+        return entries;
+    }
+
+    static public CharSequence[] getAvailableCurrenciesValues1(Context c){
+        CharSequence[] entryValues = {
+                c.getResources().getString(R.string.pref_main_currency_ils),
+                c.getResources().getString(R.string.pref_main_currency_usd),
+                c.getResources().getString(R.string.pref_main_currency_eur),
+                c.getResources().getString(R.string.pref_main_currency_cad),
+                c.getResources().getString(R.string.pref_main_currency_gbp)
+        };
+        return entryValues;
+    }
+
+
+    static public CharSequence[] getAvailableWeightUnitsEntries(Context c){
+        CharSequence[] entries = {
+                c.getResources().getString(R.string.pref_units_label_grams),
+                c.getResources().getString(R.string.pref_units_label_ounce),
+                c.getResources().getString(R.string.pref_units_label_grain)
+
+        };
+        return entries;
+    }
+
+    static public CharSequence[] getAvailableWeightUnitsValues(Context c){
+        CharSequence[] entryValues = {
+                c.getResources().getString(R.string.pref_units_grams),
+                c.getResources().getString(R.string.pref_units_ounce),
+                c.getResources().getString(R.string.pref_units_grain)
+        };
+        return entryValues;
+    }
+
+    static public CharSequence[] getAvailableWeightUnitsEntries1(Context c){
+        CharSequence[] entries = {
+                c.getResources().getString(R.string.pref_units_label_grams),
+                c.getResources().getString(R.string.pref_units_label_ounce),
+                c.getResources().getString(R.string.pref_units_label_grain),
+                c.getResources().getString(R.string.pref_units_label_baht)
+        };
+        return entries;
+    }
+
+    static public CharSequence[] getAvailableWeightUnitsValues1(Context c){
+        CharSequence[] entryValues = {
+                c.getResources().getString(R.string.pref_units_grams),
+                c.getResources().getString(R.string.pref_units_ounce),
+                c.getResources().getString(R.string.pref_units_grain),
+                c.getResources().getString(R.string.pref_units_baht)
+        };
+        return entryValues;
     }
 
 }

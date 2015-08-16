@@ -7,11 +7,21 @@
     <string-array name="pref_units_options">
         <item>@string/pref_units_label_grams</item>
         <item>@string/pref_units_label_ounce</item>
+        <item>@string/pref_units_label_grain</item>
+        <item>@string/pref_units_label_baht</item>
+        <item>@string/pref_units_label_pennyweight</item>
+        <item>@string/pref_units_label_tola</item>
+        <item>@string/pref_units_label_dram</item>
     </string-array>
 
     <string-array name="pref_units_values">
         <item>@string/pref_units_grams</item>
         <item>@string/pref_units_ounce</item>
+        <item>@string/pref_units_grain</item>
+        <item>@string/pref_units_baht</item>
+        <item>@string/pref_units_pennyweight</item>
+        <item>@string/pref_units_tola</item>
+        <item>@string/pref_units_dram</item>
     </string-array>
 
     <string-array name="pref_main_currency_options">

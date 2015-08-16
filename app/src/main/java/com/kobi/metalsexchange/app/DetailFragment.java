@@ -288,7 +288,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
 
             mRawRate = data.getDouble(Utility.getPreferredCurrencyColumnId(preferredCurrency));
-            mRateUnitView.setText("("+Utility.getWeightName(Utility.isGrams(getActivity()), getActivity())+")");
+            mRateUnitView.setText("("+Utility.getWeightName(getActivity())+")");
 
             oneGramPrice = data.getDouble(Utility.getPreferredCurrencyColumnId(preferredCurrency));
 
@@ -313,7 +313,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             }
 
             String metalName = Utility.getMetalName(metalId, getActivity());
-            mExchangeRate = getActivity().getString(R.string.app_name)+"("+friendlyDateText+" ["+Utility.getWeightName(Utility.isGrams(getActivity()), getActivity())+"])"+":\n"+
+            mExchangeRate = getActivity().getString(R.string.app_name)+"("+friendlyDateText+" ["+Utility.getWeightName(getActivity())+"])"+":\n"+
                     "------"+metalName+"----"+"\n"+
                     rate +"\n"+
                     (otherRate1 != null ? otherRate1 +"\n" : "") +

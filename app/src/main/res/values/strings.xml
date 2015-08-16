@@ -18,7 +18,7 @@
     <string name="title_activity_detail">Details</string>
     <string name="title_activity_settings">Settings</string>
 
-    <string name="pref_general_header">General</string>
+    <string name="pref_weight_header">Weight</string>
     <string name="pref_currencies_header">Currencies</string>
     <string name="pref_notifications_header">Notifications</string>
     <string name="pref_data_sync_header">Data &amp; sync</string>
@@ -54,9 +54,21 @@
     <string name="pref_units_label">Weight Units</string>
     <string name="pref_units_label_grams">Gram</string>
     <string name="pref_units_label_ounce">Troy Ounce</string>
+    <string name="pref_units_label_grain">Grain</string>
+    <string name="pref_units_label_baht">Baht</string>
+    <string name="pref_units_label_pennyweight">Pennyweight</string>
+    <string name="pref_units_label_tola">Tola</string>
+    <string name="pref_units_label_dram">Dram</string>
+
     <string name="pref_units_key" translatable="false">units</string>
     <string name="pref_units_grams" translatable="false">grams</string>
     <string name="pref_units_ounce" translatable="false">ounce</string>
+    <string name="pref_units_grain" translatable="false">grain</string>
+    <string name="pref_units_baht" translatable="false">baht</string>
+    <string name="pref_units_pennyweight" translatable="false">pennyweight</string>
+    <string name="pref_units_tola" translatable="false">tola</string>
+    <string name="pref_units_dram" translatable="false">dram</string>
+    <string name="pref_units_buy_weight_units_label">Buy Weight Units</string>
 
 
     <string name="pref_main_buy_currencies_label">Buy Currencies</string>
@@ -130,8 +142,13 @@
     <string name="calculator_fragment_name">Calculator</string>
     <string name="calculator_gold_purity">Gold Purity</string>
     <string name="calculator_weight">Weight</string>
-    <string name="calculator_weight_gram">Weight(g.)</string>
+    <string name="calculator_weight_gram">Weight(g)</string>
     <string name="calculator_weight_ounce">Weight(oz t)</string>
+    <string name="calculator_weight_grain">Weight(gr)</string>
+    <string name="calculator_weight_baht">Weight(฿)</string>
+    <string name="calculator_weight_pennyweight">Weight(dwt)</string>
+    <string name="calculator_weight_tola">Weight(tola)</string>
+    <string name="calculator_weight_dram">Weight(dr)</string>
     <string name="calculator_copy_action">Copy</string>
     <string name="calculator_copy_action_toast">Price copied</string>
 

@@ -20,7 +20,7 @@
     <string name="title_activity_detail">פרטים</string>
     <string name="title_activity_settings">הגדרות</string>
 
-    <string name="pref_general_header">כללי</string>
+    <string name="pref_weight_header">משקל</string>
     <string name="pref_currencies_header">מטבעות</string>
     <string name="pref_notifications_header">התראות</string>
     <string name="pref_data_sync_header">נתונים וסנכרון</string>
@@ -46,8 +46,14 @@
     <string name="pref_units_label">יחידות משקל</string>
     <string name="pref_units_label_grams">גרם</string>
     <string name="pref_units_label_ounce">אונקיה טרוי</string>
+    <string name="pref_units_label_grain">גריין</string>
+    <string name="pref_units_label_baht">באט</string>
+    <string name="pref_units_label_pennyweight">Pennyweight</string>
+    <string name="pref_units_label_tola">טולה</string>
+    <string name="pref_units_label_dram">דרהם</string>
+    <string name="pref_units_buy_weight_units_label">קנה יחידות משקל</string>
 
-    <string name="pref_main_buy_currencies_label">רכוש מטבעות</string>
+    <string name="pref_main_buy_currencies_label">קנה מטבעות נוספים</string>
     <string name="pref_main_currency_label">מטבע ברירת מחדל</string>
     <string name="pref_main_other_currencies_label">מטבעות אחרים</string>
     <string name="pref_main_other_currencies_summary">בחר מקסימום 3 מטבעות נוספים</string>
@@ -100,6 +106,11 @@
     <string name="calculator_weight">משקל</string>
     <string name="calculator_weight_gram">משקל(גרם)</string>
     <string name="calculator_weight_ounce">משקל(אונקיה)</string>
+    <string name="calculator_weight_grain">משקל(גריין)</string>
+    <string name="calculator_weight_baht">משקל(฿)</string>
+    <string name="calculator_weight_pennyweight">משקל(dwt)</string>
+    <string name="calculator_weight_tola">משקל(טולה)</string>
+    <string name="calculator_weight_dram">משקל(דרהם)</string>
     <string name="calculator_copy_action">העתק</string>
     <string name="calculator_copy_action_toast">המחיר הועתק</string>
 

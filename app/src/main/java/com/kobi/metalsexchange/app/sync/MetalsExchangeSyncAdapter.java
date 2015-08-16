@@ -479,7 +479,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
             StringBuilder contentText = new StringBuilder();
             if (normalizeDate(System.currentTimeMillis()) > lastJulianDaySync) {
                 String dateStr = Utility.getFriendlyDayString(context, System.currentTimeMillis()-DAY_IN_MILLIS);
-                contentText.append(dateStr+" ["+Utility.getWeightName(Utility.isGrams(context), context)+"]"+":\n");
+                contentText.append(dateStr+" ["+Utility.getWeightName(context)+"]"+":\n");
                 // Last sync was more than 1 day ago, let's send a notification with the rates.
                 boolean newRatesForToday = appendMetalRatesToNotification(Utility.GOLD, contentText, context);
                 newRatesForToday |= appendMetalRatesToNotification(Utility.SILVER, contentText, context);

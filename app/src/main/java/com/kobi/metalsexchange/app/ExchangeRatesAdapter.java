@@ -142,7 +142,7 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
         double rateRaw = mCursor.getDouble(Utility.getPreferredCurrencyColumnId(Utility.getPreferredCurrency(mContext)));
         String rate = Utility.getFormattedCurrency( rateRaw, Utility.getPreferredCurrency(mContext), mContext, true);
         adapterViewHolder.rateView.setText(rate);
-        adapterViewHolder.rateUnitView.setText("("+Utility.getWeightName(Utility.isGrams(mContext), mContext)+")");
+        adapterViewHolder.rateUnitView.setText("("+Utility.getWeightName(mContext)+")");
 
         //in order to calculate the delta we should get the cursor location for one before
         if(!mCursor.isLast() && mCursor.moveToNext()){

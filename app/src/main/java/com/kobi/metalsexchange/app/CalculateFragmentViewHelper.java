@@ -133,12 +133,23 @@ public class CalculateFragmentViewHelper  {
 
         String rate = Utility.getFormattedCurrency(mMetalPrice, Utility.getPreferredCurrency(context),context, true);
         mRateView.setText(rate);
-        mRateUnitView.setText("("+Utility.getWeightName(Utility.isGrams(context), context)+")");
-        if(Utility.isGrams(context)){
+        mRateUnitView.setText("("+Utility.getWeightName(context)+")");
+
+        String weightUnitKey = Utility.getPreferredWeightUnit(context);
+        if(weightUnitKey.equals(context.getString(R.string.pref_units_grams))){
             mWeightTextView.setText(context.getResources().getString(R.string.calculator_weight_gram));
-        }
-        else{
+        } else if(weightUnitKey.equals(context.getString(R.string.pref_units_ounce))){
             mWeightTextView.setText(context.getResources().getString(R.string.calculator_weight_ounce));
+        } else if(weightUnitKey.equals(context.getString(R.string.pref_units_grain))){
+            mWeightTextView.setText(context.getResources().getString(R.string.calculator_weight_grain));
+        } else if(weightUnitKey.equals(context.getString(R.string.pref_units_baht))){
+            mWeightTextView.setText(context.getResources().getString(R.string.calculator_weight_baht));
+        } else if(weightUnitKey.equals(context.getString(R.string.pref_units_pennyweight))){
+            mWeightTextView.setText(context.getResources().getString(R.string.calculator_weight_pennyweight));
+        } else if(weightUnitKey.equals(context.getString(R.string.pref_units_tola))){
+            mWeightTextView.setText(context.getResources().getString(R.string.calculator_weight_tola));
+        } else if(weightUnitKey.equals(context.getString(R.string.pref_units_dram))){
+            mWeightTextView.setText(context.getResources().getString(R.string.calculator_weight_dram));
         }
 
 
@@ -187,7 +198,7 @@ public class CalculateFragmentViewHelper  {
         String metalName = Utility.getMetalName(mMetalId, context);
         exchangePrice = context.getString(R.string.app_name)+"("+mFriendlyDateView.getText()+")"+":\n"+
                 "------"+metalName+"----"+"\n"+
-                context.getString(R.string.calculator_weight) + " [" +Utility.getWeightName(Utility.isGrams(context), context)+"]" +"\n"+
+                context.getString(R.string.calculator_weight) + " [" +Utility.getWeightName(context)+"]" +"\n"+
                 weight+"\n"+
                 "================"+"\n"+
                 priceString+"\n"+

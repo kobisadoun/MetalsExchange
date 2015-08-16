@@ -18,7 +18,7 @@
     <string name="title_activity_detail">Detalles</string>
     <string name="title_activity_settings">Ajustes</string>
 
-    <string name="pref_general_header">General</string>
+    <string name="pref_weight_header">Peso</string>
     <string name="pref_currencies_header">Divisas</string>
     <string name="pref_notifications_header">Notificaciones</string>
     <string name="pref_data_sync_header">Datos y sincronización</string>
@@ -45,6 +45,7 @@
     <string name="pref_units_label">Unidades de peso</string>
     <string name="pref_units_label_grams">Gramo</string>
     <string name="pref_units_label_ounce">Onza Troy</string>
+    <string name="pref_units_buy_weight_units_label">Comprar unidades de peso</string>
 
     <string name="pref_main_buy_currencies_label">Comprar divisas</string>
     <string name="pref_main_currency_label">Divisa predeterminada</string>
@@ -96,7 +97,7 @@
     <string name="calculator_fragment_name">Calculadora</string>
     <string name="calculator_gold_purity">Pureza del oro</string>
     <string name="calculator_weight">Peso</string>
-    <string name="calculator_weight_gram">Peso(g.)</string>
+    <string name="calculator_weight_gram">Peso(g)</string>
     <string name="calculator_weight_ounce">Peso(oz t)</string>
     <string name="calculator_copy_action">Copia</string>
     <string name="calculator_copy_action_toast">Precio copia</string>

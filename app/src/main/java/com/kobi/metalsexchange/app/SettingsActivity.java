@@ -76,29 +76,18 @@ public class SettingsActivity extends PreferenceActivity  {
             addPreferencesFromResource(R.xml.pref_container);
 
             PreferenceCategory fakeHeader = new PreferenceCategory(getActivity());
-            fakeHeader.setTitle(R.string.pref_general_header);
+            fakeHeader.setTitle(R.string.pref_weight_header);
             getPreferenceScreen().addPreference(fakeHeader);
-            addPreferencesFromResource(R.xml.pref_general);
-
-            fakeHeader = new PreferenceCategory(getActivity());
-            fakeHeader.setTitle(R.string.pref_currencies_header);
-            getPreferenceScreen().addPreference(fakeHeader);
-            addPreferencesFromResource(R.xml.pref_currencies);
+            addPreferencesFromResource(R.xml.pref_weight);
 
 
-            final MultiSelectListPreference otherCurrenciesPreference = (MultiSelectListPreference) findPreference(getString(R.string.pref_main_other_currencies_key));
-            otherCurrenciesPreference.setEntries(getAvailableCurrenciesEntries());
+            final ListPreference weightUnitPreference = (ListPreference) findPreference(getString(R.string.pref_units_key));
+            weightUnitPreference.setEntries(Utility.getAvailableWeightUnitsEntries(getActivity()));
             //lp.setDefaultValue("1");
-            otherCurrenciesPreference.setEntryValues(getAvailableCurrenciesValues());
+            weightUnitPreference.setEntryValues(Utility.getAvailableWeightUnitsValues(getActivity()));
 
-            final ListPreference mainCurrencyPreference = (ListPreference) findPreference(getString(R.string.pref_main_currency_key));
-            mainCurrencyPreference.setEntries(getAvailableCurrenciesEntries());
-            //lp.setDefaultValue("1");
-            mainCurrencyPreference.setEntryValues(getAvailableCurrenciesValues());
-
-
-            Preference button = (Preference)findPreference("buy_currencies");
-            button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            Preference buyWeightUnitssButton = (Preference)findPreference("buy_weight_units");
+            buyWeightUnitssButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -107,13 +96,50 @@ public class SettingsActivity extends PreferenceActivity  {
 
                     AlertDialog welcomeAlert = builder.create();
                     welcomeAlert.show();
-                    mainCurrencyPreference.setEntries(getAvailableCurrenciesEntries1());
+                    weightUnitPreference.setEntries(Utility.getAvailableWeightUnitsEntries1(getActivity()));
                     //lp.setDefaultValue("1");
-                    mainCurrencyPreference.setEntryValues(getAvailableCurrenciesValues1());
+                    weightUnitPreference.setEntryValues(Utility.getAvailableWeightUnitsValues1(getActivity()));
 
-                    otherCurrenciesPreference.setEntries(getAvailableCurrenciesEntries1());
+
+                    return true;
+                }
+            });
+
+
+            fakeHeader = new PreferenceCategory(getActivity());
+            fakeHeader.setTitle(R.string.pref_currencies_header);
+            getPreferenceScreen().addPreference(fakeHeader);
+            addPreferencesFromResource(R.xml.pref_currencies);
+
+
+            final MultiSelectListPreference otherCurrenciesPreference = (MultiSelectListPreference) findPreference(getString(R.string.pref_main_other_currencies_key));
+            otherCurrenciesPreference.setEntries(Utility.getAvailableCurrenciesEntries(getActivity()));
+            //lp.setDefaultValue("1");
+            otherCurrenciesPreference.setEntryValues(Utility.getAvailableCurrenciesValues(getActivity()));
+
+            final ListPreference mainCurrencyPreference = (ListPreference) findPreference(getString(R.string.pref_main_currency_key));
+            mainCurrencyPreference.setEntries(Utility.getAvailableCurrenciesEntries(getActivity()));
+            //lp.setDefaultValue("1");
+            mainCurrencyPreference.setEntryValues(Utility.getAvailableCurrenciesValues(getActivity()));
+
+
+            Preference buyCurrenciesButton = (Preference)findPreference("buy_currencies");
+            buyCurrenciesButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle(preference.getTitle())
+                            .setMessage(preference.getTitle());
+
+                    AlertDialog welcomeAlert = builder.create();
+                    welcomeAlert.show();
+                    mainCurrencyPreference.setEntries(Utility.getAvailableCurrenciesEntries1(getActivity()));
                     //lp.setDefaultValue("1");
-                    otherCurrenciesPreference.setEntryValues(getAvailableCurrenciesValues1());
+                    mainCurrencyPreference.setEntryValues(Utility.getAvailableCurrenciesValues1(getActivity()));
+
+                    otherCurrenciesPreference.setEntries(Utility.getAvailableCurrenciesEntries1(getActivity()));
+                    //lp.setDefaultValue("1");
+                    otherCurrenciesPreference.setEntryValues(Utility.getAvailableCurrenciesValues1(getActivity()));
 
 
                     return true;
@@ -260,49 +286,6 @@ public class SettingsActivity extends PreferenceActivity  {
 
         * */
 
-        private CharSequence[] getAvailableCurrenciesEntries(){
-             CharSequence[] entries = {
-                    getString(R.string.pref_main_currency_label_ils),
-                    getString(R.string.pref_main_currency_label_usd),
-                    getString(R.string.pref_main_currency_label_eur),
-                    getString(R.string.pref_main_currency_label_gbp)
-            };
-            return entries;
-        }
-
-        private CharSequence[] getAvailableCurrenciesValues(){
-            CharSequence[] entryValues = {
-                    getString(R.string.pref_main_currency_ils),
-                    getString(R.string.pref_main_currency_usd),
-                    getString(R.string.pref_main_currency_eur),
-                    getString(R.string.pref_main_currency_gbp)
-            };
-            return entryValues;
-        }
-
-        private CharSequence[] getAvailableCurrenciesEntries1(){
-            CharSequence[] entries = {
-                    getString(R.string.pref_main_currency_label_ils),
-                    getString(R.string.pref_main_currency_label_usd),
-                    getString(R.string.pref_main_currency_label_eur),
-                    getString(R.string.pref_main_currency_label_cad),
-                    getString(R.string.pref_main_currency_label_gbp)
-            };
-            return entries;
-        }
-
-        private CharSequence[] getAvailableCurrenciesValues1(){
-            CharSequence[] entryValues = {
-                    getString(R.string.pref_main_currency_ils),
-                    getString(R.string.pref_main_currency_usd),
-                    getString(R.string.pref_main_currency_eur),
-                    getString(R.string.pref_main_currency_cad),
-                    getString(R.string.pref_main_currency_gbp)
-            };
-            return entryValues;
-        }
-
-
         private void bindPreferenceSummaryToValue(Preference preference) {
             // Set the listener to watch for value changes.
             preference.setOnPreferenceChangeListener(this);
@@ -335,6 +318,11 @@ public class SettingsActivity extends PreferenceActivity  {
 
             return true;
         }
+
+
+
+
+
 
     }
 }

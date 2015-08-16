@@ -182,8 +182,20 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
                 xVals.add(shortDateText);
 
                 float rate = cursor.getFloat(Utility.getTrendPreferredCurrencyColumnId(Utility.getPreferredCurrency(getActivity())));
-                if(!Utility.isGrams(getActivity())) {
+
+                String weightUnitKey =Utility.getPreferredWeightUnit(getActivity());
+                if(weightUnitKey.equals(getActivity().getString(R.string.pref_units_ounce))){
                     rate *= Utility.GRAMS_IN_OUNCE;
+                } else if(weightUnitKey.equals(getActivity().getString(R.string.pref_units_grain))){
+                    rate *= Utility.GRAMS_IN_GRAIN;
+                } else if(weightUnitKey.equals(getActivity().getString(R.string.pref_units_baht))){
+                    rate *= Utility.GRAMS_IN_BAHT;
+                } else if(weightUnitKey.equals(getActivity().getString(R.string.pref_units_pennyweight))){
+                    rate *= Utility.GRAMS_IN_PENNYWEIGHT;
+                } else if(weightUnitKey.equals(getActivity().getString(R.string.pref_units_tola))){
+                    rate *= Utility.GRAMS_IN_TOLA;
+                } else if(weightUnitKey.equals(getActivity().getString(R.string.pref_units_dram))){
+                    rate *= Utility.GRAMS_IN_DRAM;
                 }
 
                 maxVal = rate>maxVal ? rate : maxVal;
