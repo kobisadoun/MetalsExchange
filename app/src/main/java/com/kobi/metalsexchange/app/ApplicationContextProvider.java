@@ -9,6 +9,9 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.kobi.metalsexchange.app.inappbilling.util.IabHelper;
+import com.kobi.metalsexchange.app.inappbilling.util.IabResult;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +31,8 @@ public class ApplicationContextProvider extends Application {
      */
     private static Context sContext;
 
+    private static IabHelper mHelper;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -37,6 +42,27 @@ public class ApplicationContextProvider extends Application {
         if(!prefs.contains(sContext.getString(R.string.pref_main_currency_key))){
             new CountryLocator().execute("");
         }
+
+        String base64EncodedPublicKey =
+                "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvKlgSMygNFSYdPzMaPo1ETiTscWSCoaIQt/aClqcyZtuGcqDhKj+/REn8KKH8jvL5kBDN3/4TAjkeLvsVdINOM/D3w+jSdwL+DZXFVvqYHI/siv9hBfM/J4uBCoF3VGn5L5PHgVQm092ZmrEtMJncjnwp4lKVVuEKRHXFvl/b+tS1H9YnY5F4ps2tMlU07v28sUAxb6EL9t2yQrkofHLC6NrsP8WVq5wfxhCNelZI+ssE4yD6iIwnLUuRd/xw9tZ49Qmat+0NIA5MhXLNWzukL9Ln4V19p34QsSao67vn3SUrakt4nWRnOVBorlclKUikDjOXyMrUodkKRpiYughKwIDAQAB";
+
+        mHelper = new IabHelper(this, base64EncodedPublicKey);
+        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+                                       public void onIabSetupFinished(IabResult result)
+                                       {
+                                           if (!result.isSuccess()) {
+                                               Log.d(LOG_TAG, "In-app Billing setup failed: " +
+                                                       result);
+                                           } else {
+                                               Log.d(LOG_TAG, "In-app Billing is set up OK");
+                                           }
+                                       }
+                                   });
+    }
+
+
+    public static IabHelper getIabHelper(){
+        return mHelper;
     }
 
     /**
@@ -94,11 +120,12 @@ public class ApplicationContextProvider extends Application {
 
                         Currency currency = Currency.getInstance(locale);
                         String defaultCurrency = currency.getCurrencyCode();
-
-                        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(sContext);
-                        SharedPreferences.Editor spe = prefs.edit();
-                        spe.putString(sContext.getString(R.string.pref_main_currency_key), defaultCurrency);
-                        spe.commit();
+                        if(Utility.isFreeSupportedCurrency(defaultCurrency)){
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(sContext);
+                            SharedPreferences.Editor spe = prefs.edit();
+                            spe.putString(sContext.getString(R.string.pref_main_currency_key), defaultCurrency);
+                            spe.commit();
+                        }
 
                     } catch (JSONException e) {
                         Log.e("JSON Parser", "Error parsing data " + e.toString());

@@ -64,13 +64,14 @@
             android:layout_width="match_parent"
             android:orientation="vertical">
 
-            <android.support.v7.widget.AppCompatTextView
+            <com.kobi.metalsexchange.app.component.AutofitTextView
                 android:fontFamily="sans-serif-light"
                 android:id="@+id/detail_rate_textview"
                 android:textColor="@color/primary_text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:singleLine="true"
                 android:textSize="45sp"
                 />
 

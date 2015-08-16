@@ -46,6 +46,7 @@
     <string name="pref_units_label_grams">Gramo</string>
     <string name="pref_units_label_ounce">Onza Troy</string>
 
+    <string name="pref_main_buy_currencies_label">Comprar divisas</string>
     <string name="pref_main_currency_label">Divisa predeterminada</string>
     <string name="pref_main_other_currencies_label">Otras divisas</string>
     <string name="pref_main_other_currencies_summary">Seleccione un máximo de 3 divisas adicionales</string>

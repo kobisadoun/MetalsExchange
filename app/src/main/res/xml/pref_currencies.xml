@@ -1,5 +1,11 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <Preference
+        android:title="@string/pref_main_buy_currencies_label"
+        android:key="buy_currencies"
+        android:icon="@drawable/ic_payment"
+        android:summary=""/>
+
     <ListPreference
         android:title="@string/pref_main_currency_label"
         android:summary=""
@@ -15,4 +21,6 @@
         android:defaultValue="@array/pref_main_currency_values_default"
         android:entryValues="@array/pref_main_currency_values"
         android:entries="@array/pref_main_currency_options" />
+
+
 </PreferenceScreen>

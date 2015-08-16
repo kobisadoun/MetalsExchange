@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         pref.registerOnSharedPreferenceChangeListener(this);
-        long lastUpdated = pref.getLong("LAST_UPDATED", 0);
+        updateTheLastUpdatedTime();
 
 
         String currencyId = Utility.getPreferredCurrency(this);

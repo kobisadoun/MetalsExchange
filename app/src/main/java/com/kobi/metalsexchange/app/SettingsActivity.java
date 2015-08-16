@@ -17,7 +17,6 @@ package com.kobi.metalsexchange.app;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -85,6 +84,41 @@ public class SettingsActivity extends PreferenceActivity  {
             fakeHeader.setTitle(R.string.pref_currencies_header);
             getPreferenceScreen().addPreference(fakeHeader);
             addPreferencesFromResource(R.xml.pref_currencies);
+
+
+            final MultiSelectListPreference otherCurrenciesPreference = (MultiSelectListPreference) findPreference(getString(R.string.pref_main_other_currencies_key));
+            otherCurrenciesPreference.setEntries(getAvailableCurrenciesEntries());
+            //lp.setDefaultValue("1");
+            otherCurrenciesPreference.setEntryValues(getAvailableCurrenciesValues());
+
+            final ListPreference mainCurrencyPreference = (ListPreference) findPreference(getString(R.string.pref_main_currency_key));
+            mainCurrencyPreference.setEntries(getAvailableCurrenciesEntries());
+            //lp.setDefaultValue("1");
+            mainCurrencyPreference.setEntryValues(getAvailableCurrenciesValues());
+
+
+            Preference button = (Preference)findPreference("buy_currencies");
+            button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle(preference.getTitle())
+                            .setMessage(preference.getTitle());
+
+                    AlertDialog welcomeAlert = builder.create();
+                    welcomeAlert.show();
+                    mainCurrencyPreference.setEntries(getAvailableCurrenciesEntries1());
+                    //lp.setDefaultValue("1");
+                    mainCurrencyPreference.setEntryValues(getAvailableCurrenciesValues1());
+
+                    otherCurrenciesPreference.setEntries(getAvailableCurrenciesEntries1());
+                    //lp.setDefaultValue("1");
+                    otherCurrenciesPreference.setEntryValues(getAvailableCurrenciesValues1());
+
+
+                    return true;
+                }
+            });
 
 
             fakeHeader = new PreferenceCategory(getActivity());
@@ -172,7 +206,6 @@ public class SettingsActivity extends PreferenceActivity  {
 
 
             final MultiSelectListPreference otherCurrenciesListPreference = (MultiSelectListPreference) findPreference(getString(R.string.pref_main_other_currencies_key));
-            Dialog d = otherCurrenciesListPreference.getDialog();
             otherCurrenciesListPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener()
 
                                                                         {
@@ -196,6 +229,80 @@ public class SettingsActivity extends PreferenceActivity  {
 
         }
 
+        /*
+        *  <string-array name="pref_main_currency_options">
+        <item>@string/pref_main_currency_label_ils</item>
+        <item>@string/pref_main_currency_label_usd</item>
+        <item>@string/pref_main_currency_label_eur</item>
+        <item>@string/pref_main_currency_label_gbp</item>
+        <item>@string/pref_main_currency_label_cad</item>
+        <item>@string/pref_main_currency_label_dkk</item>
+        <item>@string/pref_main_currency_label_nok</item>
+        <item>@string/pref_main_currency_label_sek</item>
+        <item>@string/pref_main_currency_label_chf</item>
+        <item>@string/pref_main_currency_label_jod</item>
+        <item>@string/pref_main_currency_label_egp</item>
+    </string-array>
+
+    <string-array name="pref_main_currency_values">
+        <item>@string/pref_main_currency_ils</item>
+        <item>@string/pref_main_currency_usd</item>
+        <item>@string/pref_main_currency_eur</item>
+        <item>@string/pref_main_currency_gbp</item>
+        <item>@string/pref_main_currency_cad</item>
+        <item>@string/pref_main_currency_dkk</item>
+        <item>@string/pref_main_currency_nok</item>
+        <item>@string/pref_main_currency_sek</item>
+        <item>@string/pref_main_currency_chf</item>
+        <item>@string/pref_main_currency_jod</item>
+        <item>@string/pref_main_currency_egp</item>
+    </string-array>
+
+        * */
+
+        private CharSequence[] getAvailableCurrenciesEntries(){
+             CharSequence[] entries = {
+                    getString(R.string.pref_main_currency_label_ils),
+                    getString(R.string.pref_main_currency_label_usd),
+                    getString(R.string.pref_main_currency_label_eur),
+                    getString(R.string.pref_main_currency_label_gbp)
+            };
+            return entries;
+        }
+
+        private CharSequence[] getAvailableCurrenciesValues(){
+            CharSequence[] entryValues = {
+                    getString(R.string.pref_main_currency_ils),
+                    getString(R.string.pref_main_currency_usd),
+                    getString(R.string.pref_main_currency_eur),
+                    getString(R.string.pref_main_currency_gbp)
+            };
+            return entryValues;
+        }
+
+        private CharSequence[] getAvailableCurrenciesEntries1(){
+            CharSequence[] entries = {
+                    getString(R.string.pref_main_currency_label_ils),
+                    getString(R.string.pref_main_currency_label_usd),
+                    getString(R.string.pref_main_currency_label_eur),
+                    getString(R.string.pref_main_currency_label_cad),
+                    getString(R.string.pref_main_currency_label_gbp)
+            };
+            return entries;
+        }
+
+        private CharSequence[] getAvailableCurrenciesValues1(){
+            CharSequence[] entryValues = {
+                    getString(R.string.pref_main_currency_ils),
+                    getString(R.string.pref_main_currency_usd),
+                    getString(R.string.pref_main_currency_eur),
+                    getString(R.string.pref_main_currency_cad),
+                    getString(R.string.pref_main_currency_gbp)
+            };
+            return entryValues;
+        }
+
+
         private void bindPreferenceSummaryToValue(Preference preference) {
             // Set the listener to watch for value changes.
             preference.setOnPreferenceChangeListener(this);
@@ -211,7 +318,7 @@ public class SettingsActivity extends PreferenceActivity  {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
-            Utility.resetRatesStatus(getActivity());
+            //????Utility.resetRatesStatus(getActivity());
             if (preference instanceof ListPreference) {
                 // For list preferences, look up the correct display value in
                 // the preference's 'entries' list (since they have separate labels/values).

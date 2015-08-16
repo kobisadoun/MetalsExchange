@@ -65,22 +65,50 @@ public class Utility {
 
     private static boolean TWO_PANE;
 
+    public static boolean isSupportedCurrency(String currencyCode){
+        switch (currencyCode) {
+            case CURRENCY_ILS:
+            case CURRENCY_USD:
+            case CURRENCY_GBP:
+            case CURRENCY_EUR:
+            case CURRENCY_CAD:
+            case CURRENCY_DKK:
+            case CURRENCY_NOK:
+            case CURRENCY_SEK:
+            case CURRENCY_CHF:
+            case CURRENCY_JOD:
+            case CURRENCY_EGP:
+                return true;
+        }
+        return false;
+    }
+
+    public static boolean isFreeSupportedCurrency(String currencyCode){
+        switch (currencyCode) {
+            case CURRENCY_ILS:
+            case CURRENCY_USD:
+            case CURRENCY_GBP:
+            case CURRENCY_EUR:
+                return true;
+        }
+        return false;
+    }
+
     public static String getPreferredCurrency(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String currency = context.getString(R.string.pref_main_currency_key);
-        if(currency.equals("nis")){
-            return CURRENCY_ILS;
+        String currencyKey = context.getString(R.string.pref_main_currency_key);
+        String preferredCurrency = prefs.getString(currencyKey,CURRENCY_USD);
+        switch (preferredCurrency) {
+            case "nis":
+                return CURRENCY_ILS;
+            case "usd":
+                return CURRENCY_USD;
+            case "gbp":
+                return CURRENCY_GBP;
+            case "eur":
+                return CURRENCY_EUR;
         }
-        else if(currency.equals("usd")){
-            return CURRENCY_USD;
-        }
-        else if(currency.equals("gbp")){
-            return CURRENCY_GBP;
-        }
-        else if(currency.equals("eur")){
-            return CURRENCY_EUR;
-        }
-        return prefs.getString(currency,CURRENCY_USD);
+        return preferredCurrency;
     }
 
     public static List<String> getOtherCurrencies(Context context) {

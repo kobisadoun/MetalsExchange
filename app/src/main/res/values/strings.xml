@@ -59,6 +59,7 @@
     <string name="pref_units_ounce" translatable="false">ounce</string>
 
 
+    <string name="pref_main_buy_currencies_label">Buy Currencies</string>
     <string name="pref_main_currency_label">Default Currency</string>
     <string name="pref_main_other_currencies_label">Other Currencies</string>
     <string name="pref_main_other_currencies_summary">Select maximum 3 additional currencies</string>
