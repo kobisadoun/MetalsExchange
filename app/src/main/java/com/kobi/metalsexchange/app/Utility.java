@@ -580,8 +580,14 @@ public class Utility {
                 c.getResources().getString(R.string.pref_main_currency_label_ils),
                 c.getResources().getString(R.string.pref_main_currency_label_usd),
                 c.getResources().getString(R.string.pref_main_currency_label_eur),
+                c.getResources().getString(R.string.pref_main_currency_label_gbp),
                 c.getResources().getString(R.string.pref_main_currency_label_cad),
-                c.getResources().getString(R.string.pref_main_currency_label_gbp)
+                c.getResources().getString(R.string.pref_main_currency_label_dkk),
+                c.getResources().getString(R.string.pref_main_currency_label_nok),
+                c.getResources().getString(R.string.pref_main_currency_label_sek),
+                c.getResources().getString(R.string.pref_main_currency_label_chf),
+                c.getResources().getString(R.string.pref_main_currency_label_jod),
+                c.getResources().getString(R.string.pref_main_currency_label_egp)
         };
         return entries;
     }
@@ -591,8 +597,14 @@ public class Utility {
                 c.getResources().getString(R.string.pref_main_currency_ils),
                 c.getResources().getString(R.string.pref_main_currency_usd),
                 c.getResources().getString(R.string.pref_main_currency_eur),
+                c.getResources().getString(R.string.pref_main_currency_gbp),
                 c.getResources().getString(R.string.pref_main_currency_cad),
-                c.getResources().getString(R.string.pref_main_currency_gbp)
+                c.getResources().getString(R.string.pref_main_currency_dkk),
+                c.getResources().getString(R.string.pref_main_currency_nok),
+                c.getResources().getString(R.string.pref_main_currency_sek),
+                c.getResources().getString(R.string.pref_main_currency_chf),
+                c.getResources().getString(R.string.pref_main_currency_jod),
+                c.getResources().getString(R.string.pref_main_currency_egp),
         };
         return entryValues;
     }
@@ -601,9 +613,7 @@ public class Utility {
     static public CharSequence[] getAvailableWeightUnitsEntries(Context c){
         CharSequence[] entries = {
                 c.getResources().getString(R.string.pref_units_label_grams),
-                c.getResources().getString(R.string.pref_units_label_ounce),
-                c.getResources().getString(R.string.pref_units_label_grain)
-
+                c.getResources().getString(R.string.pref_units_label_ounce)
         };
         return entries;
     }
@@ -611,8 +621,8 @@ public class Utility {
     static public CharSequence[] getAvailableWeightUnitsValues(Context c){
         CharSequence[] entryValues = {
                 c.getResources().getString(R.string.pref_units_grams),
-                c.getResources().getString(R.string.pref_units_ounce),
-                c.getResources().getString(R.string.pref_units_grain)
+                c.getResources().getString(R.string.pref_units_ounce)
+
         };
         return entryValues;
     }
@@ -622,7 +632,10 @@ public class Utility {
                 c.getResources().getString(R.string.pref_units_label_grams),
                 c.getResources().getString(R.string.pref_units_label_ounce),
                 c.getResources().getString(R.string.pref_units_label_grain),
-                c.getResources().getString(R.string.pref_units_label_baht)
+                c.getResources().getString(R.string.pref_units_label_baht),
+                c.getResources().getString(R.string.pref_units_label_pennyweight),
+                c.getResources().getString(R.string.pref_units_label_tola),
+                c.getResources().getString(R.string.pref_units_label_dram)
         };
         return entries;
     }
@@ -632,7 +645,10 @@ public class Utility {
                 c.getResources().getString(R.string.pref_units_grams),
                 c.getResources().getString(R.string.pref_units_ounce),
                 c.getResources().getString(R.string.pref_units_grain),
-                c.getResources().getString(R.string.pref_units_baht)
+                c.getResources().getString(R.string.pref_units_baht),
+                c.getResources().getString(R.string.pref_units_pennyweight),
+                c.getResources().getString(R.string.pref_units_tola),
+                c.getResources().getString(R.string.pref_units_dram)
         };
         return entryValues;
     }
