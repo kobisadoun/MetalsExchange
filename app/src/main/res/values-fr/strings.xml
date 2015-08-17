@@ -51,9 +51,9 @@
     <string name="pref_units_label_pennyweight">Pennyweight</string>
     <string name="pref_units_label_tola">Tola</string>
     <string name="pref_units_label_dram">Dram</string>
-    <string name="pref_units_buy_weight_units_label">Acheter des unités de poids</string>
+    <string name="pref_units_buy_weight_units_label">achats intégrés</string>
 
-    <string name="pref_main_buy_currencies_label">Acheter des devises</string>
+    <string name="pref_main_buy_currencies_label">achats intégrés</string>
     <string name="pref_main_currency_label">Devise par défaut</string>
     <string name="pref_main_other_currencies_label">Autres devises</string>
     <string name="pref_main_other_currencies_summary">Sélectionnez 3 autres devises au maximum</string>

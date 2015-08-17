@@ -51,9 +51,9 @@
     <string name="pref_units_label_pennyweight">Pennyweight</string>
     <string name="pref_units_label_tola">טולה</string>
     <string name="pref_units_label_dram">דרהם</string>
-    <string name="pref_units_buy_weight_units_label">קנה יחידות משקל</string>
+    <string name="pref_units_buy_weight_units_label">רכישות מתוך האפליקציה</string>
 
-    <string name="pref_main_buy_currencies_label">קנה מטבעות נוספים</string>
+    <string name="pref_main_buy_currencies_label">רכישות מתוך האפליקציה</string>
     <string name="pref_main_currency_label">מטבע ברירת מחדל</string>
     <string name="pref_main_other_currencies_label">מטבעות אחרים</string>
     <string name="pref_main_other_currencies_summary">בחר מקסימום 3 מטבעות נוספים</string>

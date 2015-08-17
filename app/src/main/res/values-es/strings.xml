@@ -42,12 +42,23 @@
 
     <string name="pref_show_jewish_customs_label">Mostrar costumbres judías</string>
 
+    <string name="pref_units_label_baht">Baht</string>
+    <string name="pref_units_label_grain">Grain</string>
+    <string name="pref_units_label_pennyweight">Pennyweight</string>
+    <string name="pref_units_label_tola">Tola</string>
+    <string name="pref_units_label_dram">Dram</string>
+    <string name="calculator_weight_baht">Peso(฿)</string>
+    <string name="calculator_weight_dram">Peso(dr)</string>
+    <string name="calculator_weight_grain">Peso(gr)</string>
+    <string name="calculator_weight_pennyweight">Peso(dwt)</string>
+    <string name="calculator_weight_tola">Peso(tola)</string>
+
     <string name="pref_units_label">Unidades de peso</string>
     <string name="pref_units_label_grams">Gramo</string>
     <string name="pref_units_label_ounce">Onza Troy</string>
-    <string name="pref_units_buy_weight_units_label">Comprar unidades de peso</string>
+    <string name="pref_units_buy_weight_units_label">compra dentro de la aplicación</string>
 
-    <string name="pref_main_buy_currencies_label">Comprar divisas</string>
+    <string name="pref_main_buy_currencies_label">compra dentro de la aplicación</string>
     <string name="pref_main_currency_label">Divisa predeterminada</string>
     <string name="pref_main_other_currencies_label">Otras divisas</string>
     <string name="pref_main_other_currencies_summary">Seleccione un máximo de 3 divisas adicionales</string>

@@ -51,9 +51,9 @@
     <string name="pref_units_label_pennyweight">Pennyweight</string>
     <string name="pref_units_label_tola">Tola</string>
     <string name="pref_units_label_dram">Dram</string>
-    <string name="pref_units_buy_weight_units_label">Gewichtseinheiten kaufen</string>
+    <string name="pref_units_buy_weight_units_label">In-App-Kauf</string>
 
-    <string name="pref_main_buy_currencies_label">Währungen kaufen</string>
+    <string name="pref_main_buy_currencies_label">In-App-Kauf</string>
     <string name="pref_main_currency_label">Feinunze</string>
     <string name="pref_main_other_currencies_label">Andere Währungen</string>
     <string name="pref_main_other_currencies_summary">Wählen Sie maximal drei zusätzliche Währungen aus</string>
