@@ -14,7 +14,7 @@
 
 package com.kobi.metalsexchange.app.inappbilling.util;
 
-//kobi
+//kobi1
 // This code was converted from code at http://iharder.sourceforge.net/base64/
 // Lots of extraneous features were removed.
 /* The original code said:
