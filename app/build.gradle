@@ -8,8 +8,8 @@ android {
         applicationId "com.kobi.metalsexchange.app"
         minSdkVersion 11
         targetSdkVersion 21
-        versionCode 9
-        versionName "2.3"
+        versionCode 10
+        versionName "3.0"
         multiDexEnabled = true
 
     }
