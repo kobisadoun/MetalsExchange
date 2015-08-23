@@ -43,6 +43,7 @@ public class ApplicationContextProvider extends Application {
             new CountryLocator().execute("");
         }
 
+        //InAppPurchase key
         String base64EncodedPublicKey =
                 "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvKlgSMygNFSYdPzMaPo1ETiTscWSCoaIQt/aClqcyZtuGcqDhKj+/REn8KKH8jvL5kBDN3/4TAjkeLvsVdINOM/D3w+jSdwL+DZXFVvqYHI/siv9hBfM/J4uBCoF3VGn5L5PHgVQm092ZmrEtMJncjnwp4lKVVuEKRHXFvl/b+tS1H9YnY5F4ps2tMlU07v28sUAxb6EL9t2yQrkofHLC6NrsP8WVq5wfxhCNelZI+ssE4yD6iIwnLUuRd/xw9tZ49Qmat+0NIA5MhXLNWzukL9Ln4V19p34QsSao67vn3SUrakt4nWRnOVBorlclKUikDjOXyMrUodkKRpiYughKwIDAQAB";
 
