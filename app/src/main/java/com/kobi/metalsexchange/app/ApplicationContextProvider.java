@@ -11,6 +11,8 @@ import android.util.Log;
 
 import com.kobi.metalsexchange.app.inappbilling.util.IabHelper;
 import com.kobi.metalsexchange.app.inappbilling.util.IabResult;
+import com.kobi.metalsexchange.app.inappbilling.util.Inventory;
+import com.kobi.metalsexchange.app.inappbilling.util.Purchase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +27,11 @@ import java.util.Currency;
 import java.util.Locale;
 
 public class ApplicationContextProvider extends Application {
+
+    public static boolean EMULATOR_MODE = "google_sdk".equals(Build.PRODUCT) || "sdk".equals(Build.PRODUCT) || "sdk_x86".equals(Build.PRODUCT) || "vbox86p".equals(Build.PRODUCT);
+    public static final String SKU_CALCULATOR = "com.kobi.metalsexchange.app.calculator";
+    public static boolean mHasCalculatorPurchase = false;
+
     public final String LOG_TAG = ApplicationContextProvider.class.getSimpleName();
     /**
      * Keeps a reference of the application context
@@ -44,19 +51,84 @@ public class ApplicationContextProvider extends Application {
         }
         String base64EncodedPublicKey =
                 "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvKlgSMygNFSYdPzMaPo1ETiTscWSCoaIQt/aClqcyZtuGcqDhKj+/REn8KKH8jvL5kBDN3/4TAjkeLvsVdINOM/D3w+jSdwL+DZXFVvqYHI/siv9hBfM/J4uBCoF3VGn5L5PHgVQm092ZmrEtMJncjnwp4lKVVuEKRHXFvl/b+tS1H9YnY5F4ps2tMlU07v28sUAxb6EL9t2yQrkofHLC6NrsP8WVq5wfxhCNelZI+ssE4yD6iIwnLUuRd/xw9tZ49Qmat+0NIA5MhXLNWzukL9Ln4V19p34QsSao67vn3SUrakt4nWRnOVBorlclKUikDjOXyMrUodkKRpiYughKwIDAQAB";
+        if(!EMULATOR_MODE) {
+            mHelper = new IabHelper(this, base64EncodedPublicKey);
+            mHelper.enableDebugLogging(true); //TODO Remove in production
+            mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+                public void onIabSetupFinished(IabResult result) {
+                    if (result != null && !result.isSuccess()) {
+                        Log.d(LOG_TAG, "In-app Billing setup failed: " + result);
+                    } else {
+                        Log.d(LOG_TAG, "In-app Billing is set up OK");
+                    }
 
-        mHelper = new IabHelper(this, base64EncodedPublicKey);
-        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-                                       public void onIabSetupFinished(IabResult result)
-                                       {
-                                           if (!result.isSuccess()) {
-                                               Log.d(LOG_TAG, "In-app Billing setup failed: " +
-                                                       result);
-                                           } else {
-                                               Log.d(LOG_TAG, "In-app Billing is set up OK");
-                                           }
-                                       }
-                                   });
+                    // IAB is fully set up. Now, let's get an inventory of stuff we own.
+                    Log.d(LOG_TAG, "Setup successful. Querying inventory.");
+                    mHelper.queryInventoryAsync(mGotInventoryListener);
+                }
+            });
+        }
+    }
+
+    // Listener that's called when we finish querying the items and subscriptions we own
+    IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
+        public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
+            Log.d(LOG_TAG, "Query inventory finished.");
+
+            // Have we been disposed of in the meantime? If so, quit.
+            if (mHelper == null) return;
+
+            // Is it a failure?
+            if (result.isFailure()) {
+                Log.d(LOG_TAG, "Failed to query inventory: " + result);
+                return;
+            }
+
+            Log.d(LOG_TAG, "Query inventory was successful.");
+
+            /*
+             * Check for items we own. Notice that for each purchase, we check
+             * the developer payload to see if it's correct! See
+             * verifyDeveloperPayload().
+             */
+
+            // Do we have the premium upgrade?
+            Purchase calculatorPurchase = inventory.getPurchase(SKU_CALCULATOR);
+            mHasCalculatorPurchase = (calculatorPurchase != null && verifyDeveloperPayload(calculatorPurchase));
+            Log.d(LOG_TAG, "User has calculator: " + mHasCalculatorPurchase);
+
+            Log.d(LOG_TAG, "Initial inventory query finished; enabling main UI.");
+        }
+    };
+
+    /** Verifies the developer payload of a purchase. */
+    public static boolean verifyDeveloperPayload(Purchase p) {
+        String payload = p.getDeveloperPayload();
+
+        /*
+         * TODO: verify that the developer payload of the purchase is correct. It will be
+         * the same one that you sent when initiating the purchase.
+         *
+         * WARNING: Locally generating a random string when starting a purchase and
+         * verifying it here might seem like a good approach, but this will fail in the
+         * case where the user purchases an item on one device and then uses your app on
+         * a different device, because on the other device you will not have access to the
+         * random string you originally generated.
+         *
+         * So a good developer payload has these characteristics:
+         *
+         * 1. If two different users purchase an item, the payload is different between them,
+         *    so that one user's purchase can't be replayed to another user.
+         *
+         * 2. The payload must be such that you can verify it even when the app wasn't the
+         *    one who initiated the purchase flow (so that items purchased by the user on
+         *    one device work on other devices owned by the user).
+         *
+         * Using your own server to store and verify developer payloads across app
+         * installations is recommended.
+         */
+
+        return true;
     }
 
 
