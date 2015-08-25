@@ -7,7 +7,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:gravity="center_vertical"
         android:layout_gravity="start"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:background="@android:color/white"
@@ -25,28 +25,57 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             />
 
-        <FrameLayout
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/rate_detail_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            tools:context="com.kobi.metalsexchange.app.DetailActivity"
-            tools:ignore="MergeRootFrame" />
 
-        <FrameLayout
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/rate_graph_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingLeft="16dp"
-            android:paddingEnd="16dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="10dp"
-            android:minHeight="140dp"
-            tools:context="com.kobi.metalsexchange.app.DetailActivity"
-            tools:ignore="MergeRootFrame" />
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent">
+                <FrameLayout
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/rate_detail_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context="com.kobi.metalsexchange.app.DetailActivity"
+                    tools:ignore="MergeRootFrame" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent">
+                <FrameLayout
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/rate_graph_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context="com.kobi.metalsexchange.app.DetailActivity"
+                    tools:ignore="MergeRootFrame" />
+
+            </LinearLayout>
+
+        <!--<FrameLayout-->
+            <!--xmlns:tools="http://schemas.android.com/tools"-->
+            <!--android:id="@+id/rate_detail_container"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingTop="10dp"-->
+            <!--tools:context="com.kobi.metalsexchange.app.DetailActivity"-->
+            <!--tools:ignore="MergeRootFrame" />-->
+
+        <!--<FrameLayout-->
+            <!--xmlns:tools="http://schemas.android.com/tools"-->
+            <!--android:id="@+id/rate_graph_container"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingStart="16dp"-->
+            <!--android:paddingLeft="16dp"-->
+            <!--android:paddingEnd="16dp"-->
+            <!--android:paddingRight="16dp"-->
+            <!--android:paddingBottom="10dp"-->
+            <!--android:minHeight="140dp"-->
+            <!--tools:context="com.kobi.metalsexchange.app.DetailActivity"-->
+            <!--tools:ignore="MergeRootFrame" />-->
 
     </LinearLayout>
 

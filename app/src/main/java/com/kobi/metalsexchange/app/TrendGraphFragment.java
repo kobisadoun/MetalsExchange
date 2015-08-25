@@ -20,9 +20,9 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.Highlight;
 import com.github.mikephil.charting.utils.ValueFormatter;
 import com.kobi.metalsexchange.app.data.MetalsContract;
 
@@ -167,8 +167,8 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
         if (cursor != null) {
             int xAxisIdx = 0;
             int xAxisHighlighted = -1;
-            ArrayList<String> xVals = new ArrayList();
-            ArrayList<Entry> yVals = new ArrayList();
+            ArrayList<String> xVals = new ArrayList<>();
+            ArrayList<Entry> yVals = new ArrayList<>();
             float maxVal=0;
             float minVal=Float.MAX_VALUE;
             while (cursor.moveToNext()) {
@@ -250,7 +250,7 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
             YAxis leftAxis = mChart.getAxisLeft();
             leftAxis.setAxisMaxValue(maxVal*1.005f);
             leftAxis.setStartAtZero(false);
-            leftAxis.setAxisMinValue(minVal*0.995f);
+            leftAxis.setAxisMinValue(minVal * 0.995f);
             // leftAxis.setStartAtZero(false);
 
             leftAxis.setValueFormatter(new ValueFormatter() {
@@ -282,7 +282,7 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
             mChart.setScaleEnabled(true);
             mChart.setPinchZoom(true);
 
-            mChart.setHighlightIndicatorEnabled(true);
+            mChart.setHighlightEnabled(true);
             mChart.setDrawGridBackground(false);
 
             //  mChart.setVisibleYRange(30, YAxis.AxisDependency.LEFT);
@@ -353,4 +353,6 @@ public class TrendGraphFragment extends Fragment implements LoaderManager.Loader
     public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
         ((FABHideable)getActivity()).hideFloatingActionButton();
     }
+
+
 }
