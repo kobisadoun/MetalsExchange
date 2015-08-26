@@ -81,6 +81,8 @@ public class IabHelper {
     // Has this object been disposed of? (If so, we should ignore callbacks, etc)
     boolean mDisposed = false;
 
+    boolean mIsBound = false;
+
     // Are subscriptions supported?
     boolean mSubscriptionsSupported = false;
 
@@ -270,7 +272,7 @@ public class IabHelper {
 
         if (intentServices != null && !intentServices.isEmpty()) {
             // service available to handle that Intent
-            mContext.bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
+            mIsBound = mContext.bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
         }
         else {
             // no service available to handle that Intent
@@ -293,7 +295,7 @@ public class IabHelper {
         mSetupDone = false;
         if (mServiceConn != null) {
             logDebug("Unbinding from service.");
-            if (mContext != null) mContext.unbindService(mServiceConn);
+            if (mContext != null && mIsBound) mContext.unbindService(mServiceConn);
         }
         mDisposed = true;
         mContext = null;
