@@ -12,6 +12,8 @@
     <string name="action_about">About</string>
     <string name="action_rate">Rate</string>
     <string name="action_share">Share</string>
+    <string name="action_upgrade_to_premium">Upgrade to Premium</string>
+
 
     <string name="action_refresh">Refresh</string>
     <string name="action_calculate">Calculate</string>
@@ -68,10 +70,7 @@
     <string name="pref_units_pennyweight" translatable="false">pennyweight</string>
     <string name="pref_units_tola" translatable="false">tola</string>
     <string name="pref_units_dram" translatable="false">dram</string>
-    <string name="pref_units_buy_weight_units_label">in-app purchase</string>
 
-
-    <string name="pref_main_buy_currencies_label">in-app purchase</string>
     <string name="pref_main_currency_label">Default Currency</string>
     <string name="pref_main_other_currencies_label">Other Currencies</string>
     <string name="pref_main_other_currencies_summary">Select maximum 3 additional currencies</string>

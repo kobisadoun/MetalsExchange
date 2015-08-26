@@ -12,6 +12,7 @@
     <string name="action_about">À propos</string>
     <string name="action_rate">Noter</string>
     <string name="action_share">Partager</string>
+    <string name="action_upgrade_to_premium">Mise à niveau vers Premium</string>
 
     <string name="action_refresh">Actualiser</string>
     <string name="action_calculate">Calculer</string>
@@ -51,9 +52,7 @@
     <string name="pref_units_label_pennyweight">Pennyweight</string>
     <string name="pref_units_label_tola">Tola</string>
     <string name="pref_units_label_dram">Dram</string>
-    <string name="pref_units_buy_weight_units_label">achats intégrés</string>
 
-    <string name="pref_main_buy_currencies_label">achats intégrés</string>
     <string name="pref_main_currency_label">Devise par défaut</string>
     <string name="pref_main_other_currencies_label">Autres devises</string>
     <string name="pref_main_other_currencies_summary">Sélectionnez 3 autres devises au maximum</string>

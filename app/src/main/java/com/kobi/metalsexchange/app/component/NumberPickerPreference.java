@@ -10,12 +10,15 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.NumberPicker;
 
+import com.kobi.metalsexchange.app.MainActivity;
+
 /**
  * A {@link android.preference.Preference} that displays a number picker as a dialog.
  */
 public class NumberPickerPreference extends DialogPreference {
 
-    public static final int MAX_VALUE = 30;
+    public static final int MAX_VALUE_FREE = 30;
+    public static final int MAX_VALUE_PREMIUM = 300;
     public static final int MIN_VALUE = 10;
 
     private NumberPicker picker;
@@ -48,7 +51,7 @@ public class NumberPickerPreference extends DialogPreference {
     protected void onBindDialogView(View view) {
         super.onBindDialogView(view);
         picker.setMinValue(MIN_VALUE);
-        picker.setMaxValue(MAX_VALUE);
+        picker.setMaxValue(MainActivity.mIsPremium ? MAX_VALUE_PREMIUM : MAX_VALUE_FREE);
         picker.setValue(getValue());
         picker.setWrapSelectorWheel(false);
     }

@@ -20,18 +20,24 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.kobi.metalsexchange.app.component.SlidingTabLayout;
+import com.kobi.metalsexchange.app.inappbilling.util.IabHelper;
+import com.kobi.metalsexchange.app.inappbilling.util.IabResult;
+import com.kobi.metalsexchange.app.inappbilling.util.Inventory;
+import com.kobi.metalsexchange.app.inappbilling.util.Purchase;
 import com.kobi.metalsexchange.app.sync.MetalsExchangeSyncAdapter;
 import com.software.shell.fab.ActionButton;
 
@@ -47,9 +53,17 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
     private ActionButton mFloatingActionButton;
     private TextView mLastUpdatedTextView;
 
+
+    public static boolean EMULATOR_MODE = /*"google_sdk".equals(Build.PRODUCT) || "sdk".equals(Build.PRODUCT) || "sdk_x86".equals(Build.PRODUCT) ||*/ "vbox86p".equals(Build.PRODUCT);
+    public static final String SKU_PREMIUM = "com.kobi.metalsexchange.app.premium";
+    // (arbitrary) request code for the purchase flow
+    static final int RC_REQUEST = 10001;
+    public static boolean mIsPremium = false;
+    private IabHelper mHelper;
+
     @Override
     public void hideOrShowFloatingActionButton(){
-        if(mFloatingActionButton != null) {
+        if(mFloatingActionButton != null && MainActivity.mIsPremium) {
             if (mFloatingActionButton.isHidden()) {
                 mFloatingActionButton.show();
             } else {
@@ -60,21 +74,118 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
 
     @Override
     public void hideFloatingActionButton(){
-        if(mFloatingActionButton != null) {
+        if(mFloatingActionButton != null && MainActivity.mIsPremium) {
             mFloatingActionButton.hide();
         }
     }
 
     @Override
     public void showFloatingActionButton(){
-        if(mFloatingActionButton != null) {
+        if(mFloatingActionButton != null && MainActivity.mIsPremium) {
             mFloatingActionButton.show();
         }
+    }
+
+    // Listener that's called when we finish querying the items and subscriptions we own
+    IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
+        public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
+            Log.d(LOG_TAG, "Query inventory finished.");
+
+            // Have we been disposed of in the meantime? If so, quit.
+            if (mHelper == null) return;
+
+            // Is it a failure?
+            if (result.isFailure()) {
+                Log.d(LOG_TAG, "Failed to query inventory: " + result);
+                return;
+            }
+
+            Log.d(LOG_TAG, "Query inventory was successful.");
+
+            /*
+             * Check for items we own. Notice that for each purchase, we check
+             * the developer payload to see if it's correct! See
+             * verifyDeveloperPayload().
+             */
+
+            // Do we have the premium upgrade?
+            Purchase premiumPurchase = inventory.getPurchase(SKU_PREMIUM);
+            mIsPremium = (premiumPurchase != null && verifyDeveloperPayload(premiumPurchase));
+            Log.d(LOG_TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
+
+            Log.d(LOG_TAG, "Initial inventory query finished; enabling main UI.");
+        }
+    };
+
+    /** Verifies the developer payload of a purchase. */
+    public static boolean verifyDeveloperPayload(Purchase p) {
+        String payload = p.getDeveloperPayload();
+
+        /*
+         * TODO: verify that the developer payload of the purchase is correct. It will be
+         * the same one that you sent when initiating the purchase.
+         *
+         * WARNING: Locally generating a random string when starting a purchase and
+         * verifying it here might seem like a good approach, but this will fail in the
+         * case where the user purchases an item on one device and then uses your app on
+         * a different device, because on the other device you will not have access to the
+         * random string you originally generated.
+         *
+         * So a good developer payload has these characteristics:
+         *
+         * 1. If two different users purchase an item, the payload is different between them,
+         *    so that one user's purchase can't be replayed to another user.
+         *
+         * 2. The payload must be such that you can verify it even when the app wasn't the
+         *    one who initiated the purchase flow (so that items purchased by the user on
+         *    one device work on other devices owned by the user).
+         *
+         * Using your own server to store and verify developer payloads across app
+         * installations is recommended.
+         */
+
+        return true;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        // very important:
+        Log.d(LOG_TAG, "Destroying helper.");
+        if (mHelper != null) mHelper.dispose();
+        mHelper = null;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        String base64EncodedPublicKey =
+                "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvKlgSMygNFSYdPzMaPo1ETiTscWSCoaIQt/aClqcyZtuGcqDhKj+/REn8KKH8jvL5kBDN3/4TAjkeLvsVdINOM/D3w+jSdwL+DZXFVvqYHI/siv9hBfM/J4uBCoF3VGn5L5PHgVQm092ZmrEtMJncjnwp4lKVVuEKRHXFvl/b+tS1H9YnY5F4ps2tMlU07v28sUAxb6EL9t2yQrkofHLC6NrsP8WVq5wfxhCNelZI+ssE4yD6iIwnLUuRd/xw9tZ49Qmat+0NIA5MhXLNWzukL9Ln4V19p34QsSao67vn3SUrakt4nWRnOVBorlclKUikDjOXyMrUodkKRpiYughKwIDAQAB";
+        if(!EMULATOR_MODE) {
+            mHelper = new IabHelper(this, base64EncodedPublicKey);
+           // mHelper.enableDebugLogging(true); //TODO Remove in production
+            mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+                public void onIabSetupFinished(IabResult result) {
+                    if (result != null && !result.isSuccess()) {
+                        Log.d(LOG_TAG, "In-app Billing setup failed: " + result);
+                    } else {
+                        Log.d(LOG_TAG, "In-app Billing is set up OK");
+                    }
+
+                    // IAB is fully set up. Now, let's get an inventory of stuff we own.
+                    Log.d(LOG_TAG, "Setup successful. Querying inventory.");
+                    mHelper.queryInventoryAsync(mGotInventoryListener);
+                }
+            });
+        }
+        else{
+            mIsPremium = true;
+        }
+
+
         mCurrencyId = Utility.getPreferredCurrency(this);
         mWeightUnitId = Utility.getPreferredWeightUnit(this);
         setContentView(R.layout.activity_main);
@@ -145,12 +256,12 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
 
 
             mFloatingActionButton = (ActionButton) findViewById(R.id.action_button);
-            mFloatingActionButton.hide();
             if(mFloatingActionButton != null) {
+                mFloatingActionButton.hide();
+                mFloatingActionButton.setVisibility(MainActivity.mIsPremium ? View.VISIBLE : View.GONE);
                 mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         DetailFragment df = (DetailFragment) getSupportFragmentManager().findFragmentByTag(DETAILFRAGMENT_TAG);
                         Bundle b = new Bundle();
                         b.putString("METAL_ID", Utility.getCurrentMetalId(MainActivity.this));
@@ -203,6 +314,18 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
         return true;
     }
 
+    /**
+     * Gets called every time the user presses the menu button.
+     * Use if your menu is dynamic.
+     */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if(mIsPremium) {
+            menu.removeItem(R.id.action_upgrade_to_premium);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -233,6 +356,11 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
 //            ((TextView)welcomeAlert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
 //            return true;
 //        }
+        else if (id == R.id.action_upgrade_to_premium) {
+            String payload = "";
+            mHelper.launchPurchaseFlow(this, SKU_PREMIUM, RC_REQUEST, mPurchaseFinishedListener, payload);
+            return true;
+        }
         else if (id == R.id.action_rate) {
             Uri uri = Uri.parse("market://details?id=" + getPackageName());
             Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
@@ -252,6 +380,33 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
 
         return super.onOptionsItemSelected(item);
     }
+
+    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
+        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
+            Log.d(LOG_TAG, "Purchase finished: " + result + ", purchase: " + purchase);
+
+            // if we were disposed of in the meantime, quit.
+            if (mHelper == null) return;
+
+            if (result.isFailure()) {
+                return;
+            }
+
+            if (!verifyDeveloperPayload(purchase)) {
+                return;
+            }
+
+            Log.d(LOG_TAG, "Purchase successful.");
+
+            if (purchase.getSku().equals(SKU_PREMIUM)) {
+                Log.d(LOG_TAG, "Premium was purchased.");
+                mIsPremium = true;
+                if(mFloatingActionButton != null) {
+                    mFloatingActionButton.setVisibility(MainActivity.mIsPremium ? View.VISIBLE : View.GONE);
+                }
+            }
+        }
+    };
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -323,7 +478,9 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.rate_graph_container, fragmentChart, CHARTFRAGMENT_TAG)
                     .commit();
-            mFloatingActionButton.show();
+            if(MainActivity.mIsPremium) {
+                mFloatingActionButton.show();
+            }
         } else {
             Intent intent = new Intent(this, DetailActivity.class)
                     .setData(contentUri);

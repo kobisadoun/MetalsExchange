@@ -555,7 +555,7 @@ public class Utility {
     }
 
 
-    static public CharSequence[] getAvailableCurrenciesEntries(Context c){
+    static public CharSequence[] getFreeCurrenciesEntries(Context c){
         CharSequence[] entries = {
                 c.getResources().getString(R.string.pref_main_currency_label_ils),
                 c.getResources().getString(R.string.pref_main_currency_label_usd),
@@ -565,7 +565,7 @@ public class Utility {
         return entries;
     }
 
-    static public CharSequence[] getAvailableCurrenciesValues(Context c){
+    static public CharSequence[] getFreeCurrenciesValues(Context c){
         CharSequence[] entryValues = {
                 c.getResources().getString(R.string.pref_main_currency_ils),
                 c.getResources().getString(R.string.pref_main_currency_usd),
@@ -575,7 +575,7 @@ public class Utility {
         return entryValues;
     }
 
-    static public CharSequence[] getAvailableCurrenciesEntries1(Context c){
+    static public CharSequence[] getPremiumCurrenciesEntries(Context c){
         CharSequence[] entries = {
                 c.getResources().getString(R.string.pref_main_currency_label_ils),
                 c.getResources().getString(R.string.pref_main_currency_label_usd),
@@ -592,7 +592,7 @@ public class Utility {
         return entries;
     }
 
-    static public CharSequence[] getAvailableCurrenciesValues1(Context c){
+    static public CharSequence[] getPremiumCurrenciesValues(Context c){
         CharSequence[] entryValues = {
                 c.getResources().getString(R.string.pref_main_currency_ils),
                 c.getResources().getString(R.string.pref_main_currency_usd),
@@ -610,7 +610,7 @@ public class Utility {
     }
 
 
-    static public CharSequence[] getAvailableWeightUnitsEntries(Context c){
+    static public CharSequence[] getFreeWeightUnitsEntries(Context c){
         CharSequence[] entries = {
                 c.getResources().getString(R.string.pref_units_label_grams),
                 c.getResources().getString(R.string.pref_units_label_ounce)
@@ -618,7 +618,7 @@ public class Utility {
         return entries;
     }
 
-    static public CharSequence[] getAvailableWeightUnitsValues(Context c){
+    static public CharSequence[] getFreeWeightUnitsValues(Context c){
         CharSequence[] entryValues = {
                 c.getResources().getString(R.string.pref_units_grams),
                 c.getResources().getString(R.string.pref_units_ounce)
@@ -627,7 +627,7 @@ public class Utility {
         return entryValues;
     }
 
-    static public CharSequence[] getAvailableWeightUnitsEntries1(Context c){
+    static public CharSequence[] getPremiumWeightUnitsEntries(Context c){
         CharSequence[] entries = {
                 c.getResources().getString(R.string.pref_units_label_grams),
                 c.getResources().getString(R.string.pref_units_label_ounce),
@@ -640,7 +640,7 @@ public class Utility {
         return entries;
     }
 
-    static public CharSequence[] getAvailableWeightUnitsValues1(Context c){
+    static public CharSequence[] getPremiumWeightUnitsValues(Context c){
         CharSequence[] entryValues = {
                 c.getResources().getString(R.string.pref_units_grams),
                 c.getResources().getString(R.string.pref_units_ounce),

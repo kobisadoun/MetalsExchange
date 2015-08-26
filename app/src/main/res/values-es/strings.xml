@@ -12,6 +12,7 @@
     <string name="action_about">Acerca de</string>
     <string name="action_rate">Cotización</string>
     <string name="action_share">Compartir</string>
+    <string name="action_upgrade_to_premium">Asciende a Premium</string>
 
     <string name="action_refresh">Actualizar</string>
     <string name="action_calculate">Calcular</string>
@@ -57,9 +58,7 @@
     <string name="pref_units_label">Unidades de peso</string>
     <string name="pref_units_label_grams">Gramo</string>
     <string name="pref_units_label_ounce">Onza Troy</string>
-    <string name="pref_units_buy_weight_units_label">compra dentro de la aplicación</string>
 
-    <string name="pref_main_buy_currencies_label">compra dentro de la aplicación</string>
     <string name="pref_main_currency_label">Divisa predeterminada</string>
     <string name="pref_main_other_currencies_label">Otras divisas</string>
     <string name="pref_main_other_currencies_summary">Seleccione un máximo de 3 divisas adicionales</string>

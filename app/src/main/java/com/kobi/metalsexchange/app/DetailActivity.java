@@ -21,16 +21,12 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.kobi.metalsexchange.app.component.RoundImage;
 import com.kobi.metalsexchange.app.data.MetalsContract;
-import com.kobi.metalsexchange.app.inappbilling.util.IabHelper;
-import com.kobi.metalsexchange.app.inappbilling.util.IabResult;
-import com.kobi.metalsexchange.app.inappbilling.util.Purchase;
 import com.software.shell.fab.ActionButton;
 
 
@@ -42,7 +38,7 @@ public class DetailActivity extends AppCompatActivity implements FABHideable {
 
     @Override
     public void hideOrShowFloatingActionButton(){
-        if(mFloatingActionButton != null) {
+        if(mFloatingActionButton != null && MainActivity.mIsPremium) {
             if (mFloatingActionButton.isHidden()) {
                 mFloatingActionButton.show();
             } else {
@@ -53,14 +49,14 @@ public class DetailActivity extends AppCompatActivity implements FABHideable {
 
     @Override
     public void hideFloatingActionButton(){
-        if(mFloatingActionButton != null) {
+        if(mFloatingActionButton != null && MainActivity.mIsPremium) {
             mFloatingActionButton.hide();
         }
     }
 
     @Override
     public void showFloatingActionButton(){
-        if(mFloatingActionButton != null) {
+        if(mFloatingActionButton != null && MainActivity.mIsPremium) {
             mFloatingActionButton.show();
         }
     }
@@ -69,37 +65,10 @@ public class DetailActivity extends AppCompatActivity implements FABHideable {
     @Override
     protected void onResume() {
         super.onResume();
-        if(mFloatingActionButton != null) {
+        if(mFloatingActionButton != null && MainActivity.mIsPremium) {
             mFloatingActionButton.playShowAnimation();
         }
     }
-
-    // Callback for when a purchase is finished
-    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
-        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
-            Log.d(LOG_TAG, "Purchase finished: " + result + ", purchase: " + purchase);
-
-            // if we were disposed of in the meantime, quit.
-            if (ApplicationContextProvider.getIabHelper() == null) return;
-
-            if (result.isFailure()) {
-                return;
-            }
-
-            if (!ApplicationContextProvider.verifyDeveloperPayload(purchase)) {
-                return;
-            }
-
-            Log.d(LOG_TAG, "Purchase successful.");
-
-            if (purchase.getSku().equals(ApplicationContextProvider.SKU_CALCULATOR)) {
-                Log.d(LOG_TAG, "Calculator was purchased.");
-                openCalculator();
-            }
-        }
-    };
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,18 +79,18 @@ public class DetailActivity extends AppCompatActivity implements FABHideable {
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         mFloatingActionButton = (ActionButton) findViewById(R.id.action_button);
+        mFloatingActionButton.setVisibility(MainActivity.mIsPremium ? View.VISIBLE : View.GONE);
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(ApplicationContextProvider.EMULATOR_MODE || ApplicationContextProvider.mHasCalculatorPurchase){
-                    openCalculator();
-                }
-                else {
-                    Log.d(LOG_TAG, "Launching purchase flow for first item.");
-                    String payload = "";
-                    ApplicationContextProvider.getIabHelper().launchPurchaseFlow(DetailActivity.this, ApplicationContextProvider.SKU_CALCULATOR, RC_REQUEST, mPurchaseFinishedListener, payload);
-                }
+                DetailFragment df = (DetailFragment)getSupportFragmentManager().findFragmentByTag(DetailFragment.class.getSimpleName());
+                Bundle b = new Bundle();
+                b.putString("METAL_ID", Utility.getCurrentMetalId(DetailActivity.this));
+                b.putDouble("CURRENT_VALUE", df.getRawRate());
+                b.putLong("CURRENT_DATE", df.getDate());
+                Intent calculateIntent = new Intent(DetailActivity.this, CalculateActivity.class);
+                calculateIntent.putExtras(b);
+                startActivity(calculateIntent);
             }
         });
 
@@ -160,17 +129,6 @@ public class DetailActivity extends AppCompatActivity implements FABHideable {
                     .add(R.id.rate_graph_container, fragmentChart)
                     .commit();
         }
-    }
-
-    private void openCalculator(){
-        DetailFragment df = (DetailFragment)getSupportFragmentManager().findFragmentByTag(DetailFragment.class.getSimpleName());
-        Bundle b = new Bundle();
-        b.putString("METAL_ID", Utility.getCurrentMetalId(DetailActivity.this));
-        b.putDouble("CURRENT_VALUE", df.getRawRate());
-        b.putLong("CURRENT_DATE", df.getDate());
-        Intent calculateIntent = new Intent(DetailActivity.this, CalculateActivity.class);
-        calculateIntent.putExtras(b);
-        startActivity(calculateIntent);
     }
 
     @Override

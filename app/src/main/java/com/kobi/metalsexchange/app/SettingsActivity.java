@@ -82,28 +82,15 @@ public class SettingsActivity extends PreferenceActivity  {
 
 
             final ListPreference weightUnitPreference = (ListPreference) findPreference(getString(R.string.pref_units_key));
-            weightUnitPreference.setEntries(Utility.getAvailableWeightUnitsEntries(getActivity()));
-            //lp.setDefaultValue("1");
-            weightUnitPreference.setEntryValues(Utility.getAvailableWeightUnitsValues(getActivity()));
+            if(MainActivity.mIsPremium) {
+                weightUnitPreference.setEntries(Utility.getPremiumWeightUnitsEntries(getActivity()));
+                weightUnitPreference.setEntryValues(Utility.getPremiumWeightUnitsValues(getActivity()));
+            }
+            else{
+                weightUnitPreference.setEntries(Utility.getFreeWeightUnitsEntries(getActivity()));
+                weightUnitPreference.setEntryValues(Utility.getFreeWeightUnitsValues(getActivity()));
+            }
 
-            Preference buyWeightUnitssButton = (Preference)findPreference("buy_weight_units");
-            buyWeightUnitssButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setTitle(preference.getTitle())
-                            .setMessage(preference.getTitle());
-
-                    AlertDialog welcomeAlert = builder.create();
-                    welcomeAlert.show();
-                    weightUnitPreference.setEntries(Utility.getAvailableWeightUnitsEntries1(getActivity()));
-                    //lp.setDefaultValue("1");
-                    weightUnitPreference.setEntryValues(Utility.getAvailableWeightUnitsValues1(getActivity()));
-
-
-                    return true;
-                }
-            });
 
 
             fakeHeader = new PreferenceCategory(getActivity());
@@ -113,38 +100,23 @@ public class SettingsActivity extends PreferenceActivity  {
 
 
             final MultiSelectListPreference otherCurrenciesPreference = (MultiSelectListPreference) findPreference(getString(R.string.pref_main_other_currencies_key));
-            otherCurrenciesPreference.setEntries(Utility.getAvailableCurrenciesEntries(getActivity()));
+            otherCurrenciesPreference.setEntries(Utility.getFreeCurrenciesEntries(getActivity()));
             //lp.setDefaultValue("1");
-            otherCurrenciesPreference.setEntryValues(Utility.getAvailableCurrenciesValues(getActivity()));
+            otherCurrenciesPreference.setEntryValues(Utility.getFreeCurrenciesValues(getActivity()));
 
             final ListPreference mainCurrencyPreference = (ListPreference) findPreference(getString(R.string.pref_main_currency_key));
-            mainCurrencyPreference.setEntries(Utility.getAvailableCurrenciesEntries(getActivity()));
-            //lp.setDefaultValue("1");
-            mainCurrencyPreference.setEntryValues(Utility.getAvailableCurrenciesValues(getActivity()));
-
-
-            Preference buyCurrenciesButton = (Preference)findPreference("buy_currencies");
-            buyCurrenciesButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setTitle(preference.getTitle())
-                            .setMessage(preference.getTitle());
-
-                    AlertDialog welcomeAlert = builder.create();
-                    welcomeAlert.show();
-                    mainCurrencyPreference.setEntries(Utility.getAvailableCurrenciesEntries1(getActivity()));
-                    //lp.setDefaultValue("1");
-                    mainCurrencyPreference.setEntryValues(Utility.getAvailableCurrenciesValues1(getActivity()));
-
-                    otherCurrenciesPreference.setEntries(Utility.getAvailableCurrenciesEntries1(getActivity()));
-                    //lp.setDefaultValue("1");
-                    otherCurrenciesPreference.setEntryValues(Utility.getAvailableCurrenciesValues1(getActivity()));
-
-
-                    return true;
-                }
-            });
+            if(MainActivity.mIsPremium) {
+                mainCurrencyPreference.setEntries(Utility.getPremiumCurrenciesEntries(getActivity()));
+                mainCurrencyPreference.setEntryValues(Utility.getPremiumCurrenciesValues(getActivity()));
+                otherCurrenciesPreference.setEntries(Utility.getPremiumCurrenciesEntries(getActivity()));
+                otherCurrenciesPreference.setEntryValues(Utility.getPremiumCurrenciesValues(getActivity()));
+            }
+            else{
+                mainCurrencyPreference.setEntries(Utility.getFreeCurrenciesEntries(getActivity()));
+                mainCurrencyPreference.setEntryValues(Utility.getFreeCurrenciesValues(getActivity()));
+                otherCurrenciesPreference.setEntries(Utility.getFreeCurrenciesEntries(getActivity()));
+                otherCurrenciesPreference.setEntryValues(Utility.getFreeCurrenciesValues(getActivity()));
+            }
 
 
             fakeHeader = new PreferenceCategory(getActivity());

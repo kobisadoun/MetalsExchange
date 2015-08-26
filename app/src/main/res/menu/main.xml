@@ -13,4 +13,8 @@
         android:title="@string/action_rate"
         android:orderInCategory="102"
         app:showAsAction="never" />
+    <item android:id="@+id/action_upgrade_to_premium"
+        android:title="@string/action_upgrade_to_premium"
+        android:orderInCategory="103"
+        app:showAsAction="never" />
 </menu>

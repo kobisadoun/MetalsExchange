@@ -12,6 +12,7 @@
     <string name="action_about">حول</string>
     <string name="action_rate">تقييم</string>
     <string name="action_share">مشاركة</string>
+    <string name="action_upgrade_to_premium">الترقية إلى بريميوم</string>
 
     <string name="action_refresh">تحديث</string>
     <string name="action_calculate">حساب</string>
@@ -52,9 +53,7 @@
     <string name="pref_units_label_pennyweight">Pennyweight</string>
     <string name="pref_units_label_tola">Tola</string>
     <string name="pref_units_label_dram">Dram</string>
-    <string name="pref_units_buy_weight_units_label">شراء داخل التطبيق</string>
 
-    <string name="pref_main_buy_currencies_label">شراء داخل التطبيق</string>
     <string name="pref_main_currency_label">العملة الافتراضية</string>
     <string name="pref_main_other_currencies_label">عملات أخرى</string>
     <string name="pref_main_other_currencies_summary">اختيار ما يصل إلى ثلاث عملات إضافية</string>

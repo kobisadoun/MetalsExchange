@@ -16,11 +16,5 @@
         android:entryValues="@array/pref_main_currency_values"
         android:entries="@array/pref_main_currency_options" />
 
-    <Preference
-        android:title="@string/pref_main_buy_currencies_label"
-        android:key="buy_currencies"
-        android:icon="@drawable/ic_payment"
-        android:summary=""/>
-
 
 </PreferenceScreen>

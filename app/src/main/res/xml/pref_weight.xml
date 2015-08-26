@@ -7,10 +7,4 @@
         android:entryValues="@array/pref_units_values"
         android:entries="@array/pref_units_options" />
 
-    <Preference
-        android:title="@string/pref_units_buy_weight_units_label"
-        android:key="buy_weight_units"
-        android:icon="@drawable/ic_payment"
-        android:summary=""/>
-
 </PreferenceScreen>
