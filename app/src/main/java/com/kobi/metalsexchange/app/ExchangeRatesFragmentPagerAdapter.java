@@ -36,9 +36,9 @@ public class ExchangeRatesFragmentPagerAdapter extends FragmentPagerAdapter /*Fr
         return Utility.getMetalName(Utility.getMetalIdForTabPosition(position), context);
     }
 
-    public int getPageIcon(int position) {
-        return Utility.getIconResourceForMetal(Utility.getMetalIdForTabPosition(position));
-    }
+//    public int getPageIcon(int position) {
+//        return Utility.getIconResourceForMetal(Utility.getMetalIdForTabPosition(position));
+//    }
 
 
 }

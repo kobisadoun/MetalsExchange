@@ -15,15 +15,11 @@
  */
 package com.kobi.metalsexchange.app;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.kobi.metalsexchange.app.component.RoundImage;
 
 
 public class CalculateActivity extends AppCompatActivity {
@@ -44,9 +40,9 @@ public class CalculateActivity extends AppCompatActivity {
 
         setTitle(getResources().getString(R.string.calculator_fragment_name));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Bitmap bm = BitmapFactory.decodeResource(getResources(), Utility.getIconResourceForMetal(metalId));
-        RoundImage roundedImage = new RoundImage(bm);
-        getSupportActionBar().setIcon(roundedImage);
+//        Bitmap bm = BitmapFactory.decodeResource(getResources(), Utility.getIconResourceForMetal(metalId));
+//        RoundImage roundedImage = new RoundImage(bm);
+//        getSupportActionBar().setIcon(roundedImage);
         if (savedInstanceState == null) {
             CalculateFragment fragment = new CalculateFragment();
             fragment.setArguments(arguments);

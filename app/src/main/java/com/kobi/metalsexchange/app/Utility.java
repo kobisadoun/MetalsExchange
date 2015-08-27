@@ -424,19 +424,19 @@ public class Utility {
     }
 
 
-    public static int getIconResourceForMetal(String metalId) {
-        switch (metalId) {
-            case GOLD:
-                return R.drawable.ic_gold;
-            case SILVER:
-                return R.drawable.ic_silver;
-            case PLATINUM:
-                return R.drawable.ic_platinum;
-            case PALLADIUM:
-                return R.drawable.ic_palladium;
-        }
-        return -1;
-    }
+//    public static int getIconResourceForMetal(String metalId) {
+//        switch (metalId) {
+//            case GOLD:
+//                return R.drawable.ic_gold;
+//            case SILVER:
+//                return R.drawable.ic_silver;
+//            case PLATINUM:
+//                return R.drawable.ic_platinum;
+//            case PALLADIUM:
+//                return R.drawable.ic_palladium;
+//        }
+//        return -1;
+//    }
 
     public static int getColorResourceForMetal(String metalId) {
         switch (metalId) {
