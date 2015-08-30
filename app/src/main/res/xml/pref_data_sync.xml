@@ -19,6 +19,6 @@
     <com.kobi.metalsexchange.app.component.NumberPickerPreference
         android:key="@string/pref_history_business_days_key"
         android:title="@string/pref_history_business_days_label"
-        android:defaultValue="30" />
+        android:defaultValue="10" />
 
 </PreferenceScreen>

@@ -18,8 +18,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Currency;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class ApplicationContextProvider extends Application {
 
@@ -102,6 +105,10 @@ public class ApplicationContextProvider extends Application {
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(sContext);
                             SharedPreferences.Editor spe = prefs.edit();
                             spe.putString(sContext.getString(R.string.pref_main_currency_key), defaultCurrency);
+
+                            Set<String> defaultSet = new HashSet<>(Arrays.asList(sContext.getResources().getStringArray(R.array.pref_main_currency_values_default)));
+                            defaultSet.remove(defaultCurrency);
+                            spe.putStringSet(sContext.getString(R.string.pref_main_other_currencies_key), defaultSet);
                             spe.commit();
                         }
 
