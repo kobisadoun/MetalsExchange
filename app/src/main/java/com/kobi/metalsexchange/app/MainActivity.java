@@ -17,6 +17,7 @@ package com.kobi.metalsexchange.app;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -357,8 +358,26 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
 //            return true;
 //        }
         else if (id == R.id.action_upgrade_to_premium) {
-            String payload = "";
-            mHelper.launchPurchaseFlow(this, SKU_PREMIUM, RC_REQUEST, mPurchaseFinishedListener, payload);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(item.getTitle())
+                    .setMessage(getResources().getString(R.string.upgrade_to_premium_description))
+                    .setCancelable(true)
+                    .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            String payload = "";
+                            mHelper.launchPurchaseFlow(MainActivity.this, SKU_PREMIUM, RC_REQUEST, mPurchaseFinishedListener, payload);
+                            dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog premiumAlert = builder.create();
+            premiumAlert.show();
             return true;
         }
         else if (id == R.id.action_rate) {

@@ -121,4 +121,24 @@
     <string name="karat_enum_10">10 carati</string>
     <string name="karat_enum_9">9 carati</string>
     <string name="karat_enum_8">8 carati</string>
+
+    <string name="upgrade_to_premium_description">\u2022 calcolatrice \n
+                            \n
+                            \u2022 Valute: \n
+                            \u2015 Dollaro canadese\n
+                            \u2015 corona danese\n
+                            \u2015 Corona Norvegese\n
+                            \u2015 Corona svedese\n
+                            \u2015 Franco svizzero\n
+                            \u2015 dinaro giordano\n
+                            \u2015 sterlina egiziana\n
+                            \n
+                            \u2022 unità di peso: \n
+                            \u2015 Grain\n
+                            \u2015 Baht\n
+                            \u2015 Pennyweight\n
+                            \u2015 Tola\n
+                            \u2015 Dram\n
+                            \n
+                            \u2022 Dimensione massima cronologia (giorni lavorativi): 300</string>
 </resources>

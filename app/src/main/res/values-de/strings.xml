@@ -121,4 +121,24 @@
     <string name="karat_enum_10">10 Karat</string>
     <string name="karat_enum_9">9 Karat</string>
     <string name="karat_enum_8">8 Karat</string>
+
+    <string name="upgrade_to_premium_description">\u2022 Taschenrechner \n
+                            \n
+                            \u2022 Währungen: \n
+                            \u2015 Kanadischer Dollar\n
+                            \u2015 Dänische Krone\n
+                            \u2015 Norwegische Krone\n
+                            \u2015 Schwedische Krone\n
+                            \u2015 Schweizer Franken\n
+                            \u2015 Jordanischer Dinar\n
+                            \u2015 Ägyptisches Pfund\n
+                            \n
+                            \u2022 Gewichtseinheiten: \n
+                            \u2015 Grain\n
+                            \u2015 Baht\n
+                            \u2015 Pennyweight\n
+                            \u2015 Tola\n
+                            \u2015 Dram\n
+                            \n
+                            \u2022 Maximale Größe der Geschichte (Arbeitstage): 300</string>
 </resources>

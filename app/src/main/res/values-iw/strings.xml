@@ -49,7 +49,7 @@
     <string name="pref_units_label_ounce">אונקיה טרוי</string>
     <string name="pref_units_label_grain">גריין</string>
     <string name="pref_units_label_baht">באט</string>
-    <string name="pref_units_label_pennyweight">Pennyweight</string>
+    <string name="pref_units_label_pennyweight">אגורה</string>
     <string name="pref_units_label_tola">טולה</string>
     <string name="pref_units_label_dram">דרהם</string>
 
@@ -57,7 +57,7 @@
     <string name="pref_main_other_currencies_label">מטבעות אחרים</string>
     <string name="pref_main_other_currencies_summary">בחר מקסימום 3 מטבעות נוספים</string>
 
-    <string name="pref_main_currency_label_ils">שקל חדש (₪)</string>
+    <string name="pref_main_currency_label_ils">שקל חדש</string>
     <string name="pref_main_currency_label_usd">דולר אמריקאי</string>
     <string name="pref_main_currency_label_eur">אירו</string>
     <string name="pref_main_currency_label_gbp">לירה אנגלית</string>
@@ -107,7 +107,7 @@
     <string name="calculator_weight_ounce">משקל(אונקיה)</string>
     <string name="calculator_weight_grain">משקל(גריין)</string>
     <string name="calculator_weight_baht">משקל(฿)</string>
-    <string name="calculator_weight_pennyweight">משקל(dwt)</string>
+    <string name="calculator_weight_pennyweight">משקל(אגורה)</string>
     <string name="calculator_weight_tola">משקל(טולה)</string>
     <string name="calculator_weight_dram">משקל(דרהם)</string>
     <string name="calculator_copy_action">העתק</string>
@@ -120,4 +120,24 @@
     <string name="karat_enum_10">10 קראט</string>
     <string name="karat_enum_9">9 קראט</string>
     <string name="karat_enum_8">8 קראט</string>
+
+    <string name="upgrade_to_premium_description">\u2022 מחשבון \n
+                            \n
+                            \u2022 מטבעות: \n
+                            \u2015 דולר קנדי\n
+                            \u2015 כתר דני\n
+                            \u2015 כתר נורבגי\n
+                            \u2015 כתר שבדי\n
+                            \u2015 פרנק שווייצרי\n
+                            \u2015 דינר ירדני\n
+                            \u2015 לירה מצרית\n
+                            \n
+                            \u2022 יחידות משקל: \n
+                            \u2015 גריין\n
+                            \u2015 באט\n
+                            \u2015 אגורה\n
+                            \u2015 טולה\n
+                            \u2015 דרהם\n
+                            \n
+                            \u2022 גודל היסטוריה מירבי (ימי עסקים): 300</string>
 </resources>

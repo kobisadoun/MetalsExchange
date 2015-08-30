@@ -159,4 +159,25 @@
     <string name="karat_enum_10">10 Karat</string>
     <string name="karat_enum_9">9 Karat</string>
     <string name="karat_enum_8">8 Karat</string>
+    
+    
+    <string name="upgrade_to_premium_description">\u2022 Calculator \n
+                            \n
+                            \u2022 Currencies: \n
+                            \u2015 Canada Dollar\n
+                            \u2015 Denmark Krone\n
+                            \u2015 Norway Krone\n
+                            \u2015 Sweden Krona\n
+                            \u2015 Switzerland Franc\n
+                            \u2015 Jordanian dinar\n
+                            \u2015 Egypt Pound\n
+                            \n
+                            \u2022 Weight Units: \n
+                            \u2015 Grain\n
+                            \u2015 Baht\n
+                            \u2015 Pennyweight\n
+                            \u2015 Tola\n
+                            \u2015 Dram\n
+                            \n
+                            \u2022 Maximum history Size (Business days): 300</string>
 </resources>

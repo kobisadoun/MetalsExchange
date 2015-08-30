@@ -121,4 +121,24 @@
     <string name="karat_enum_10">10 carats</string>
     <string name="karat_enum_9">9 carats</string>
     <string name="karat_enum_8">8 carats</string>
+
+    <string name="upgrade_to_premium_description">\u2022 Calculatrice \n
+                            \n
+                            \u2022 Devises: \n
+                            \u2015 Dollar canadien\n
+                            \u2015 Couronne danoise\n
+                            \u2015 Couronne norvégienne\n
+                            \u2015 Couronne suédoise\n
+                            \u2015 Franc suisse\n
+                            \u2015 Dinar jordanien\n
+                            \u2015 Livre égyptienne\n
+                            \n
+                            \u2022 Unités de poids: \n
+                            \u2015 Grain\n
+                            \u2015 Baht\n
+                            \u2015 Pennyweight\n
+                            \u2015 Tola\n
+                            \u2015 Dram\n
+                            \n
+                            \u2022 Durée maximale de l\'historique (en jours ouvrables): 300</string>
 </resources>
