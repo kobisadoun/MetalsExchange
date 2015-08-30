@@ -95,7 +95,7 @@
 
                 <FrameLayout
                     android:id="@+id/rate_graph_container"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     android:minHeight="250dp" />
 
