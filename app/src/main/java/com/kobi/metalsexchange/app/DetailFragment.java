@@ -349,7 +349,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
                     rate +"\n"+
                     (otherRate1 != null ? otherRate1 +"\n" : "") +
                     (otherRate2 != null ? otherRate2 +"\n" : "") +
-                    (otherRate3 != null ? otherRate1: "");
+                    (otherRate3 != null ? otherRate3: "");
 
             // If onCreateOptionsMenu has already happened, we need to update the share intent now.
             if (mShareActionProvider != null) {
