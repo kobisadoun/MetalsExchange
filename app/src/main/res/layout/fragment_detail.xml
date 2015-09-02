@@ -41,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:src="@drawable/shekel"
+                android:layout_marginTop="2dp"
                 android:background="#00000000"
                 android:elevation="10dp"/>
             <ImageButton
@@ -52,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:src="@drawable/ben"
+                android:layout_marginTop="2dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:background="#00000000"

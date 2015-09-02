@@ -137,6 +137,21 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         mCurrency3View = (TextView) rootView.findViewById(R.id.detail_currency3_textview);
 
         mShekelButtonView = (ImageButton) rootView.findViewById(R.id.detail_shekel_button);
+        mShekelButtonView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        mShekelButtonView.setImageResource(R.drawable.shekel_pressed);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_OUTSIDE:
+                    case MotionEvent.ACTION_UP:
+                        mShekelButtonView.setImageResource(R.drawable.shekel);
+                }
+                return false;
+            }
+        });
         mShekelButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,7 +159,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
                 alertDialog.setTitle(getString(R.string.zecher_machatzit_hashekel));
 
                 double zecherMachatzitHashekelRaw = oneGramPrice * 10;
-                zecherMachatzitHashekelRaw = (double)Math.round(zecherMachatzitHashekelRaw);
+                zecherMachatzitHashekelRaw = (double) Math.round(zecherMachatzitHashekelRaw);
                 String zecherMachatzitHashekel = Utility.getFormattedCurrency(zecherMachatzitHashekelRaw, Utility.getPreferredCurrency(getActivity()), getActivity(), false);
 
                 String message = getString(R.string.zecher_machatzit_hashekel_details, zecherMachatzitHashekel);
@@ -169,6 +184,22 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         });
 
         mPidionButtonView = (ImageButton) rootView.findViewById(R.id.detail_pidion_button);
+        mPidionButtonView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mPidionButtonView.setImageResource(R.drawable.ben_pressed);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_OUTSIDE:
+                    case MotionEvent.ACTION_UP:
+                        mPidionButtonView.setImageResource(R.drawable.ben);
+                }
+                return false;
+            }
+        });
         mPidionButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
