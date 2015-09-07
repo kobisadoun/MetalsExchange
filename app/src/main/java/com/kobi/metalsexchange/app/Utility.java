@@ -557,27 +557,27 @@ public class Utility {
 
     static public CharSequence[] getFreeCurrenciesEntries(Context c){
         CharSequence[] entries = {
-                c.getResources().getString(R.string.pref_main_currency_label_ils),
                 c.getResources().getString(R.string.pref_main_currency_label_usd),
                 c.getResources().getString(R.string.pref_main_currency_label_eur),
-                c.getResources().getString(R.string.pref_main_currency_label_gbp)
+                c.getResources().getString(R.string.pref_main_currency_label_gbp),
+                c.getResources().getString(R.string.pref_main_currency_label_ils)
         };
         return entries;
     }
 
     static public CharSequence[] getFreeCurrenciesValues(Context c){
         CharSequence[] entryValues = {
-                c.getResources().getString(R.string.pref_main_currency_ils),
                 c.getResources().getString(R.string.pref_main_currency_usd),
                 c.getResources().getString(R.string.pref_main_currency_eur),
-                c.getResources().getString(R.string.pref_main_currency_gbp)
+                c.getResources().getString(R.string.pref_main_currency_gbp),
+                c.getResources().getString(R.string.pref_main_currency_ils)
         };
         return entryValues;
     }
 
     static public CharSequence[] getPremiumCurrenciesEntries(Context c){
         CharSequence[] entries = {
-                c.getResources().getString(R.string.pref_main_currency_label_ils),
+
                 c.getResources().getString(R.string.pref_main_currency_label_usd),
                 c.getResources().getString(R.string.pref_main_currency_label_eur),
                 c.getResources().getString(R.string.pref_main_currency_label_gbp),
@@ -586,6 +586,7 @@ public class Utility {
                 c.getResources().getString(R.string.pref_main_currency_label_nok),
                 c.getResources().getString(R.string.pref_main_currency_label_sek),
                 c.getResources().getString(R.string.pref_main_currency_label_chf),
+                c.getResources().getString(R.string.pref_main_currency_label_ils),
                 c.getResources().getString(R.string.pref_main_currency_label_jod),
                 c.getResources().getString(R.string.pref_main_currency_label_egp)
         };
@@ -594,7 +595,6 @@ public class Utility {
 
     static public CharSequence[] getPremiumCurrenciesValues(Context c){
         CharSequence[] entryValues = {
-                c.getResources().getString(R.string.pref_main_currency_ils),
                 c.getResources().getString(R.string.pref_main_currency_usd),
                 c.getResources().getString(R.string.pref_main_currency_eur),
                 c.getResources().getString(R.string.pref_main_currency_gbp),
@@ -603,8 +603,10 @@ public class Utility {
                 c.getResources().getString(R.string.pref_main_currency_nok),
                 c.getResources().getString(R.string.pref_main_currency_sek),
                 c.getResources().getString(R.string.pref_main_currency_chf),
+                c.getResources().getString(R.string.pref_main_currency_ils),
                 c.getResources().getString(R.string.pref_main_currency_jod),
-                c.getResources().getString(R.string.pref_main_currency_egp),
+                c.getResources().getString(R.string.pref_main_currency_egp)
+
         };
         return entryValues;
     }
