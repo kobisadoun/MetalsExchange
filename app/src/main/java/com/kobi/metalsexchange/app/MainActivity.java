@@ -33,6 +33,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kobi.metalsexchange.app.component.SlidingTabLayout;
 import com.kobi.metalsexchange.app.inappbilling.util.IabHelper;
@@ -178,7 +179,12 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
 
                     // IAB is fully set up. Now, let's get an inventory of stuff we own.
                     Log.d(LOG_TAG, "Setup successful. Querying inventory.");
-                    mHelper.queryInventoryAsync(mGotInventoryListener);
+                    try {
+                        mHelper.queryInventoryAsync(mGotInventoryListener);
+                    }catch (IllegalStateException e){
+                        Log.d(LOG_TAG, "In-app Billing setup failed");
+                        mIsPremium = false;
+                    }
                 }
             });
         }
@@ -371,7 +377,12 @@ public class MainActivity extends AppCompatActivity implements ExchangeRatesFrag
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             String payload = "";
-                            mHelper.launchPurchaseFlow(MainActivity.this, SKU_PREMIUM, RC_REQUEST, mPurchaseFinishedListener, payload);
+                            try {
+                                mHelper.launchPurchaseFlow(MainActivity.this, SKU_PREMIUM, RC_REQUEST, mPurchaseFinishedListener, payload);
+                            }catch (IllegalStateException e){
+                                Log.d(LOG_TAG, "Billing service disconnected.");
+                                Toast.makeText(MainActivity.this, "Billing service disconnected.", Toast.LENGTH_LONG).show();
+                            }
                             dialog.dismiss();
                         }
                     });
