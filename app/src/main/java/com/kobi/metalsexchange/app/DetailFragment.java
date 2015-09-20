@@ -235,7 +235,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         super.onResume();
         //getLoaderManager().restartLoader(DETAIL_LOADER, null, this);
         // If onLoadFinished happens before this, we can go ahead and set the share intent now.
-        if (mExchangeRate != null) {
+        if (mExchangeRate != null && mShareActionProvider != null) {
             mShareActionProvider.setShareIntent(createShareExchangeRatesIntent());
         }
     }
