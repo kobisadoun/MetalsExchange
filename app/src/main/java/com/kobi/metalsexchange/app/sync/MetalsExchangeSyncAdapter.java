@@ -312,7 +312,9 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
 
                 DayCurrenciesPerNisXMLParser lastDayCurrenciesXMLParser = new DayCurrenciesPerNisXMLParser(getContext(), dateStringAsArg);
                 HashMap<String, HashMap<String, Double>> currenciesMap = lastDayCurrenciesXMLParser.getCurrenciesPerNIS();
-                while (currenciesMap == null) {
+                int retries = 5;
+                while (currenciesMap == null && retries > 0) {
+                    retries--;
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(convertedDate);
                     cal.add(Calendar.DATE, -1);
