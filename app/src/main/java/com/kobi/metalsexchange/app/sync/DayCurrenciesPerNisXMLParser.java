@@ -97,7 +97,7 @@ public class DayCurrenciesPerNisXMLParser {
 
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            //urlConnection.setRequestProperty("User-Agent", "Chrome/43.0.2357.130");
+            urlConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
             urlConnection.connect();
 
             // Read the input stream into a String
