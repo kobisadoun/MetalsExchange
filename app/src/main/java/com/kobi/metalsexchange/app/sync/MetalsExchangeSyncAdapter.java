@@ -276,7 +276,7 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
 
         //currencies conversion
         Document doc = Jsoup.parse(ratesStr);
-        Element table = doc.getElementsByTag("table").get(15);
+        Element table = doc.getElementsByClass("table-block").last();
         Iterator<Element> rows = table.select("tr").iterator();
         rows.next();//we skip the header
         rows.next();//we skip the header
