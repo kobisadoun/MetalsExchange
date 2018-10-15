@@ -92,7 +92,7 @@ public class DayCurrenciesPerNisXMLParser {
         try {
             String args = dateArg !=null && !dateArg.isEmpty() ? "?rdate="+dateArg : "";
 
-            Uri builtUri = Uri.parse("http://www.boi.org.il/currency.xml"+args).buildUpon().build();
+            Uri builtUri = Uri.parse("https://www.boi.org.il/currency.xml"+args).buildUpon().build();
             URL url = new URL(builtUri.toString());
 
             urlConnection = (HttpURLConnection) url.openConnection();

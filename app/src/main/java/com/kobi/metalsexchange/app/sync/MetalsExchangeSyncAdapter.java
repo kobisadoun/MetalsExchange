@@ -132,9 +132,9 @@ public class MetalsExchangeSyncAdapter extends AbstractThreadedSyncAdapter {
         BufferedReader reader = null;
 
         try {
-            String urlSite = "http://www.kitco.com/gold.londonfix.html";
+            String urlSite = "https://www.kitco.com/gold.londonfix.html";
             if(current){
-                urlSite = "http://www.kitco.com/kitco-gold-index.html";
+                urlSite = "https://www.kitco.com/kitco-gold-index.html";
             }
             //we need to query all metals
             Uri builtUri = Uri.parse(urlSite).buildUpon().build();
